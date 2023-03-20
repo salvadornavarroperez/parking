@@ -81,6 +81,19 @@ class Database
 		return $this->connection->insert_id;
 	}
 
+	public function insertDBusuario($table, $data)
+	{
+		$fields = implode(',', array_keys($data));
+		$values = '"';
+		$values .= implode('","', array_values($data));
+		$values .= '"';
+
+		$query = "INSERT INTO USUARIO (".$fields.') VALUES ('.$values.')';
+		$this->connection->query($query);
+		
+		return $this->connection->insert_id;
+	}
+
 	/**
 	 * Método para actualizar un registro de la BD
 	 * Hay que indicar el registro mediante un campo que sea clave primaria y que debe llamarse "id"
