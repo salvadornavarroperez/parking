@@ -81,7 +81,7 @@ class Database
 		return $this->connection->insert_id;
 	}
 
-	public function insertDBusuario($table, $data)
+	public function insertDBUsuario($table, $data)
 	{
 		$fields = implode(',', array_keys($data));
 		$values = '"';
@@ -89,6 +89,19 @@ class Database
 		$values .= '"';
 
 		$query = "INSERT INTO USUARIO (".$fields.') VALUES ('.$values.')';
+		$this->connection->query($query);
+		
+		return $this->connection->insert_id;
+	}
+
+	public function insertDBRol($table, $data)
+	{
+		$fields = implode(',', array_keys($data));
+		$values = '"';
+		$values .= implode('","', array_values($data));
+		$values .= '"';
+
+		$query = "INSERT INTO ROL (".$fields.') VALUES ('.$values.')';
 		$this->connection->query($query);
 		
 		return $this->connection->insert_id;
