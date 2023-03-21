@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-03-2023 a las 18:20:35
+-- Tiempo de generación: 21-03-2023 a las 11:53:06
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `fechas` (
-  `Id_fecha` int(11) NOT NULL,
+  `id_fecha` int(11) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -76,11 +76,22 @@ CREATE TABLE `reservas` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id_rol` int(11) NOT NULL,
+  `tipo_rol` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `socios`
 --
 
 CREATE TABLE `socios` (
-  `Id_socio` int(11) NOT NULL,
+  `Id_Socio` int(11) NOT NULL,
   `Id_usuario` int(11) NOT NULL,
   `plaza_fija` tinyint(1) NOT NULL,
   `id_plaza` int(11) NOT NULL
@@ -97,7 +108,8 @@ CREATE TABLE `usuarios` (
   `Nombre` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Correo` varchar(255) NOT NULL,
-  `Token` varchar(255) NOT NULL
+  `Token` varchar(255) DEFAULT NULL,
+  `rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -108,7 +120,7 @@ CREATE TABLE `usuarios` (
 -- Indices de la tabla `fechas`
 --
 ALTER TABLE `fechas`
-  ADD PRIMARY KEY (`Id_fecha`);
+  ADD PRIMARY KEY (`id_fecha`);
 
 --
 -- Indices de la tabla `pagos_socios`
@@ -133,10 +145,16 @@ ALTER TABLE `reservas`
   ADD KEY `Reservas_fk1` (`id_plaza`);
 
 --
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id_rol`);
+
+--
 -- Indices de la tabla `socios`
 --
 ALTER TABLE `socios`
-  ADD PRIMARY KEY (`Id_socio`),
+  ADD PRIMARY KEY (`Id_Socio`),
   ADD KEY `Socios_fk0` (`Id_usuario`),
   ADD KEY `Socios_fk1` (`id_plaza`);
 
@@ -144,7 +162,8 @@ ALTER TABLE `socios`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`Id_usuario`);
+  ADD PRIMARY KEY (`Id_usuario`),
+  ADD KEY `Usuarios_fk0` (`rol`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -154,7 +173,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `fechas`
 --
 ALTER TABLE `fechas`
-  MODIFY `Id_fecha` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_fecha` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos_socios`
@@ -175,10 +194,16 @@ ALTER TABLE `reservas`
   MODIFY `Id_reserva` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `socios`
 --
 ALTER TABLE `socios`
-  MODIFY `Id_socio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_Socio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -194,22 +219,28 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `pagos_socios`
 --
 ALTER TABLE `pagos_socios`
-  ADD CONSTRAINT `Pagos_socios_fk0` FOREIGN KEY (`id_socio`) REFERENCES `socios` (`Id_socio`),
-  ADD CONSTRAINT `Pagos_socios_fk1` FOREIGN KEY (`id_fecha`) REFERENCES `fechas` (`Id_fecha`);
+  ADD CONSTRAINT `Pagos_socios_fk0` FOREIGN KEY (`id_socio`) REFERENCES `socios` (`Id_Socio`) ON DELETE CASCADE,
+  ADD CONSTRAINT `Pagos_socios_fk1` FOREIGN KEY (`id_fecha`) REFERENCES `fechas` (`id_fecha`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  ADD CONSTRAINT `Reservas_fk0` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`Id_usuario`),
-  ADD CONSTRAINT `Reservas_fk1` FOREIGN KEY (`id_plaza`) REFERENCES `plazas` (`Id_plaza`);
+  ADD CONSTRAINT `Reservas_fk0` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`Id_usuario`) ON DELETE CASCADE,
+  ADD CONSTRAINT `Reservas_fk1` FOREIGN KEY (`id_plaza`) REFERENCES `plazas` (`Id_plaza`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `socios`
 --
 ALTER TABLE `socios`
-  ADD CONSTRAINT `Socios_fk0` FOREIGN KEY (`Id_usuario`) REFERENCES `usuarios` (`Id_usuario`),
-  ADD CONSTRAINT `Socios_fk1` FOREIGN KEY (`id_plaza`) REFERENCES `plazas` (`Id_plaza`);
+  ADD CONSTRAINT `Socios_fk0` FOREIGN KEY (`Id_usuario`) REFERENCES `usuarios` (`Id_usuario`) ON DELETE CASCADE,
+  ADD CONSTRAINT `Socios_fk1` FOREIGN KEY (`id_plaza`) REFERENCES `plazas` (`Id_plaza`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `Usuarios_fk0` FOREIGN KEY (`rol`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
