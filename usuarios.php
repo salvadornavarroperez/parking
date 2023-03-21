@@ -18,11 +18,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
 		$params = $_GET;
 
-		$usuarios = $usuarios->get($params);
+		$usuarios = $usuario->get($params);
 
 		$response = array(
 			'result' => 'ok',
-			'players' => $usuarios
+			'usuarios' => $usuarios
 		);
 
 		Response::result(200, $response);
