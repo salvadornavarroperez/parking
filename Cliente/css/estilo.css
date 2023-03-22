@@ -1,0 +1,133 @@
+/* Fuentes */
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+/* Estilos de página */
+body {
+  background-color: #f8f8f8;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1{
+  text-align: center;
+}
+
+/* Estilos de formulario */
+form {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+}
+
+form select {
+  appearance: none;
+  background-color: #fff;
+  border: 2px solid #aaa;
+  border-radius: 10px;
+  color: #555;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+  transition: all 0.3s ease-in-out;
+}
+
+form select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  outline: none;
+}
+
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #2c2c2c;
+  
+}
+
+form input[type="text"],
+form input[type="password"],
+form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+form input[type="submit"] {
+  background-color: #1abc9c;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+form input[type="reset"] {
+  background-color: #b12d2d;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+form input[type="submit"]:hover {
+  background-color: #148f77;
+}
+
+
+form input[type="reset"]:hover {
+  background-color: #da4769;
+}
+
+#respuesta{
+  display: none;
+  margin: 0 auto;
+  border: 1px solid black;
+  max-width: 600px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(119, 98, 178, 0.5);
+  color: #e8e8e8;
+  font-weight: 700;
+
+}
+#formulario2{
+  display: none;
+}
+#selecciona{
+  display: none;
+}
+table {
+  
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+td {
+  
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+
+
+
+.disponible{
+  background-color: #4caf50;
+}

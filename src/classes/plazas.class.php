@@ -5,7 +5,7 @@
 require_once 'src/response.php';
 require_once 'src/database.php';
 
-class Player extends Database
+class Plazas extends Database
 {
 	/**
 	 * Atributo que indica la tabla asociada a la clase del modelo
