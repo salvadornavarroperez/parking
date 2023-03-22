@@ -37,12 +37,21 @@ formulario.addEventListener("submit",(event)=>{
     }
     if(regexNombre.test(nombre.value)&&regexPassword.test(password.value)&&regexEmail.test(email.value))
     {
-        //hacemos la petición
-        let params=new URLSearchParams("nombre="+nombre.value+"&password="+password.value+"&correo="+email.value+"&rol="+select.value)
-        let options = {
-            method: "POST",
-            body: params
-          }
+        
+          //formamos el objeto que vamos a enviar por post para que la api rest haga un post
+            const objeto={
+                'nombre':nombre.value,
+                'password':password.value,
+                'correo':email.value,
+                'rol':select.value
+            }
+            let options={
+                method: "POST",
+                headers:{'Content-type':'aplication/json'},
+                body:JSON.stringify(objeto)
+                    }
+            
+
         fetch("http://localhost/Proyecto/parking/altaUsuario.php",options)
         .then(respuesta=>respuesta.json())
         .then(datos=>{

@@ -22,7 +22,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		if(!isset($params)){
 			$response = array(
 				'result' => 'error',
-				'details' => 'Error en la solicitud'
+				'details' => 'Error en la solicitud',
+				'filtro' =>'no lo ha pasado' 
 			);
 
 			Response::result(400, $response);
