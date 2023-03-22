@@ -96,14 +96,21 @@ form input[type="reset"]:hover {
 
 #respuesta{
   display: none;
+  margin: 0 auto;
   border: 1px solid black;
+  max-width: 600px;
   padding: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
-  border-color: rgba(255, 0, 0, 0.5);
+  background-color: rgba(119, 98, 178, 0.5);
   color: #e8e8e8;
+  font-weight: 700;
 
 }
-#socio{
+#formulario2{
   display: none;
 }
+#selecciona{
+  display: none;
+}
+

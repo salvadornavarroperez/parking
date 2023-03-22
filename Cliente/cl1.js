@@ -1,7 +1,8 @@
 //recojo los valores del formulario
-const formulario=document.querySelector("form");
+const formulario=document.querySelector("#formulario1");
 let respuesta=document.querySelector("#respuesta");
-let formulario2=document.querySelector("#socio")
+let formulario2=document.querySelector("#formulario2")
+let seleccionaSocio=document.querySelector("#selecciona")
 formulario.addEventListener("submit",(event)=>{
 
     //evitamos el envio de datos
@@ -60,11 +61,22 @@ formulario.addEventListener("submit",(event)=>{
             respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
             console.log(datos)
             formulario2.style.display="block";
+            seleccionaSocio.style.display="block";
 
             
         })  
 
     }
 
+    
+})
 
+seleccionaSocio.addEventListener("change",(event)=>{
+
+    if(event.target.value=="si")
+    {
+        
+
+
+    }
 })
