@@ -56,7 +56,7 @@ formulario.addEventListener("submit",(event)=>{
         .then(respuesta=>respuesta.json())
         .then(datos=>{
 
-            respuesta.textContent="Resultado: "+datos.resultados+" id de usuario: "+datos.user_id;
+            respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
             console.log(datos)
 
             
