@@ -7,6 +7,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+h1{
+  text-align: center;
+}
+
 /* Estilos de formulario */
 form {
   margin: 0 auto;
