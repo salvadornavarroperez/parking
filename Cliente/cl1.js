@@ -12,6 +12,7 @@ formulario.addEventListener("submit",(event)=>{
     let passErr=document.querySelector("#passErr");
     let email=document.querySelector("#email");
     let emailErr=document.querySelector("#emailErr");
+    let select=document.querySelector("#rol");
 
     //creamos las expresiones regulares que comprueben que se cumple con los valores requeridos
     const regexEmail = /\S+@\S+\.\S+/;
@@ -37,7 +38,7 @@ formulario.addEventListener("submit",(event)=>{
     if(regexNombre.test(nombre.value)&&regexPassword.test(password.value)&&regexEmail.test(email.value))
     {
         //hacemos la petición
-        let params=new URLSearchParams("nombre="+nombre.value+"&password="+password.value+"&correo="+email.value)
+        let params=new URLSearchParams("nombre="+nombre.value+"&password="+password.value+"&correo="+email.value+"&rol="+select.value)
         let options = {
             method: "POST",
             body: params

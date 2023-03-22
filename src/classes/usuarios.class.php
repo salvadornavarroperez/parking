@@ -27,9 +27,10 @@ class Usuarios extends Database
 	 * Array con los campos de la tabla que se pueden proporcionar para insertar registros
 	 */
 	private $allowedConditions_insert = array(
-		'Nombre',
-        'Password',
-        'Correo'
+		'nombre',
+        'password',
+        'correo',
+		'rol'
         
 	);
 
@@ -39,7 +40,7 @@ class Usuarios extends Database
 	private function validate($data)
 	{
 
-		if (!isset($data['Nombre']) || empty($data['Password']) || empty($data['Correo'])) {
+		if (!isset($data['nombre']) || empty($data['password']) || empty($data['correo'])||!isset($data['rol']) ) {
 			$response = array(
 				'result' => 'error',
 				'details' => 'El campo player_name es obligatorio'
