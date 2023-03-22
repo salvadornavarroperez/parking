@@ -94,4 +94,16 @@ form input[type="reset"]:hover {
   background-color: #da4769;
 }
 
-  
+#respuesta{
+  display: none;
+  border: 1px solid black;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-color: rgba(255, 0, 0, 0.5);
+  color: #e8e8e8;
+
+}
+#socio{
+  display: none;
+}

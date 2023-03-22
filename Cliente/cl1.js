@@ -1,6 +1,7 @@
 //recojo los valores del formulario
 const formulario=document.querySelector("form");
 let respuesta=document.querySelector("#respuesta");
+let formulario2=document.querySelector("#socio")
 formulario.addEventListener("submit",(event)=>{
 
     //evitamos el envio de datos
@@ -55,9 +56,10 @@ formulario.addEventListener("submit",(event)=>{
         fetch("http://localhost/Proyecto/parking/altaUsuario.php",options)
         .then(respuesta=>respuesta.json())
         .then(datos=>{
-
+            respuesta.style.display="block";
             respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
             console.log(datos)
+            formulario2.style.display="block";
 
             
         })  
