@@ -113,4 +113,21 @@ form input[type="reset"]:hover {
 #selecciona{
   display: none;
 }
+table {
+  
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+td {
+  
+  border: 1px solid #ccc;
+  padding: 10px;
+}
 
+
+
+
+.disponible{
+  background-color: #4caf50;
+}

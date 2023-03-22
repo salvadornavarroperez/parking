@@ -3,6 +3,7 @@ const formulario=document.querySelector("#formulario1");
 let respuesta=document.querySelector("#respuesta");
 let formulario2=document.querySelector("#formulario2")
 let seleccionaSocio=document.querySelector("#selecciona")
+let tablaPlazas=document.querySelector("#plazas")
 formulario.addEventListener("submit",(event)=>{
 
     //evitamos el envio de datos
@@ -75,8 +76,43 @@ seleccionaSocio.addEventListener("change",(event)=>{
 
     if(event.target.value=="si")
     {
-        
+        //mostramos los demas controles de formulario para mostrar las plazas
+        //hay que saber el número de páginas que se desea mostrar, pero la cuenta es 50 resultados por pagina
+        fetch("http://localhost/Proyecto/parking/plazas.php?page=4")
+        .then(respuesta=>respuesta.json())
+        .then(datos=>{
 
+            
+            console.log(datos);
+
+
+        })
 
     }
 })
+
+function mostrarPlazas(datos)
+{
+    //creamos una fila por cada 50 resultados
+    let fila=tablaPlazas.insertRow();
+    
+    for(let i=0;i<datos.length;i++)
+    {
+        //cada 25 plazas insertamos la fila a la tabla
+        if((i+1)%25==0)
+        {
+            tablaPlazas.appendChild(fila)
+            //borramos el contenido de la fila
+            fila.innerHTML="";
+        }
+        let celda=fila.insertCell();
+        if(datos[i].disponible==1)
+        {
+            celda.classList.add("disponible");
+            celda.textContent=datos[i].número_plaza;
+        }
+        fila.appendChild(celda);
+
+    }
+
+}
