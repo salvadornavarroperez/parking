@@ -19,9 +19,9 @@ class AuthModel
 	/**
 	 * Método para autentificarse en la API
 	 */
-	public function login($username, $password)
+	public function login($correo, $password)
 	{
-		$query = "SELECT id, nombres, username FROM usuario WHERE username = '$username' AND password = '$password'";
+		$query = "SELECT Id_usuario, Correo, Password FROM usuarios WHERE Correo = '$correo' AND password = '$password'";
 
 		$results = $this->connection->query($query);
 
@@ -42,7 +42,7 @@ class AuthModel
 	 */
 	public function update($id, $token)
 	{
-		$query = "UPDATE usuario SET token = '$token' WHERE id = $id";
+		$query = "UPDATE usuarios SET Token = '$token' WHERE Id_usuario = $id";
 
 		$this->connection->query($query);
 		
@@ -58,7 +58,7 @@ class AuthModel
 	 */
 	public function getById($id)
 	{
-		$query = "SELECT token FROM usuario WHERE id = $id";
+		$query = "SELECT Token FROM usuario WHERE Id_usuario = $id";
 
 		$results = $this->connection->query($query);
 

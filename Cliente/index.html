@@ -4,17 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Alta Usuario</title>
     <link rel="stylesheet" href="css/estilo.css">
+    <script defer src="cl1.js"></script>
 </head>
 <body>
     <form>
-        <label for="usuario">Usuario</label>
-        <input type="text" name="usuario" id="usuario">
-        <label for="password">
+        <label for="rol">Rol</label>
+        <select name="rol" id="rol">
+            <option value="0">Usuario</option>
+            <option value="1">Socio</option>
+            <option value="2">Administrador</option>
+        </select>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre">
+        <div id="nombErr"></div>
+        <label for="password">Password</label>
         <input  type="password" name="password" id="password">
+        <div id="passErr"></div>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email">       
+        <div id="emailErr"></div>
         <input type="submit" name="enviar">
+        <input type="reset" value="Reset">
     </form>
+    <div id="respuesta"></div>
     
 </body>
 </html>

@@ -14,7 +14,7 @@ class Authentication extends AuthModel
 	/**
 	 * Tabla donde estarán los usuarios
 	 */
-	private $table = 'usuario';
+	private $table = 'usuarios';
 
 	/**
 	 * Clave secreta para realizar la encriptación y desencriptación del token, se debería cambiar por una clave robusta
@@ -26,7 +26,7 @@ class Authentication extends AuthModel
 	 */
 	public function signIn($user)
 	{
-		if(!isset($user['username']) || !isset($user['password']) || empty($user['username']) || empty($user['password'])){
+		if(!isset($user['Correo']) || !isset($user['Password']) || empty($user['Correo']) || empty($user['Password'])){
 			$response = array(
 				'result' => 'error',
 				'details' => 'Los campos password y username son obligatorios'
@@ -36,7 +36,7 @@ class Authentication extends AuthModel
 			exit;
 		}
 
-		$result = parent::login($user['username'], hash('sha256' , $user['password']));
+		$result = parent::login($user['Correo'], hash('sha256' , $user['Password']));
 
 		if(sizeof($result) == 0){
 			$response = array(
