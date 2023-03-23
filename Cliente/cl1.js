@@ -46,7 +46,7 @@ formulario.addEventListener("submit",(event)=>{
                 'nombre':nombre.value,
                 'password':password.value,
                 'correo':email.value,
-                'rol':"1"
+                'rol':1
             }
             let options={
                 method: "POST",
