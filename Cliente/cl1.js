@@ -88,9 +88,23 @@ formulario.addEventListener("submit",(event)=>{
     
 })
 
+//añadimos los datos para 
+metodoPago.addEventListener("change",(event)=>{
+
+    if(event.target.value==="true")
+    {
+        
+
+
+    }
+
+
+})
+
+
 seleccionaSocio.addEventListener("change",(event)=>{
 
-    if(event.target.value=="si")
+    if(event.target.value==="si")
     {
         //mostramos los demas controles de formulario para mostrar las plazas
         //hay que saber el número de páginas que se desea mostrar, pero la cuenta es 50 resultados por pagina
@@ -106,6 +120,9 @@ seleccionaSocio.addEventListener("change",(event)=>{
 
     }
 })
+
+
+
 
 function mostrarPlazas(datos)
 {

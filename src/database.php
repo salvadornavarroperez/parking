@@ -9,7 +9,7 @@ class Database
 	/**
 	 * Atributo que indica la cantidad de registros por página a la hora de recuperar datos
 	 */
-	private $results_page = 50;
+	private $results_page = 400;
 
 	public function __construct(){
 		$this->connection = new mysqli('localhost', 'root', '', 'parking', '3306');
