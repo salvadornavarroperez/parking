@@ -23,7 +23,7 @@ formulario.addEventListener("submit",(event)=>{
 
     //evitamos el envio de datos
     event.preventDefault();
-   
+    
 
    
        
@@ -85,7 +85,6 @@ formulario.addEventListener("submit",(event)=>{
             sessionStorage.setItem('id', datos.user_id);
             console.log(datos)
             formulario2.style.display="block";
-            seleccionaSocio.style.display="block";
 
             
         })  
@@ -171,24 +170,7 @@ metodoPago.addEventListener("change",(event)=>{
 })
 
 
-seleccionaSocio.addEventListener("change",(event)=>{
 
-    if(event.target.value==="si")
-    {
-        //mostramos los demas controles de formulario para mostrar las plazas
-        //hay que saber el número de páginas que se desea mostrar, pero la cuenta es 50 resultados por pagina
-        fetch("http://localhost/Proyecto/parking/plazas.php?page=4")
-        .then(respuesta=>respuesta.json())
-        .then(datos=>{
-
-            
-            console.log(datos);
-
-
-        })
-
-    }
-})
 
 
 
