@@ -15,7 +15,7 @@ formulario.addEventListener("submit",(event)=>{
     let passErr=document.querySelector("#passErr");
     let email=document.querySelector("#email");
     let emailErr=document.querySelector("#emailErr");
-    let select=document.querySelector("#rol");
+    
 
     //creamos las expresiones regulares que comprueben que se cumple con los valores requeridos
     const regexEmail = /\S+@\S+\.\S+/;
@@ -46,7 +46,7 @@ formulario.addEventListener("submit",(event)=>{
                 'nombre':nombre.value,
                 'password':password.value,
                 'correo':email.value,
-                'rol':select.value
+                'rol':"1"
             }
             let options={
                 method: "POST",
