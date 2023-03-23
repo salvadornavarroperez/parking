@@ -67,98 +67,36 @@ formulario.addEventListener("submit",(event)=>{
             };            
             registraUsuario(objeto);
 
-            if(metodoPago.value==="true")
-            {
-                numTarjeta.style.display="block";
-                nomTarjeta.style.display="block";
-                mesTarjeta.style.display="block";
-                añoTarjeta.style.display="block";
-                document.querySelector("#labNunTar").style.display="block";
-                document.querySelector("#labNomTar").style.display="block";
-                document.querySelector("#labFecha").style.display="block";
-
-            }
+            
+            
+            
+            
+            
            
             
     }
 
+    metodoPago.addEventListener("change",(event)=>{
+
+        console.log(event.target.value)
+        if(event.target.value=="true")
+        {
+            let display="block";
+            Etiquetas(display);
+        }
+        else if(metodoPago.value=="false")
+        {
+            let display="none";
+            Etiquetas(display);
+        }
+
+
+    })
+
     
 })
 
-//añadimos los datos para 
-metodoPago.addEventListener("change",(event)=>{
 
-    if(event.target.value==="true")
-    {
-        //mostramos los campos para mostrar los datos
-        numTarjeta.style.display="block";
-        nomTarjeta.style.display="block";
-
-        //expresion regular para la tarjeta
-        const regextarjeta=/^\d{16}$/
-        const regexnombtarjeta=/^[a-zA-Z\s]+$/
-
-        //vamos a crear los option para los valores de los meses de la fecha de caducidad de la tarejeta(meses y años)
-        for(let i=1;i<=12;i++)
-        {
-            let option=document.createElement("option");
-            option.value=i<10?"0"+i:i;
-            option.textContent=i<10?"0"+i:i;
-            mesTarjeta.appendChild(option);
-        }
-
-        for(let i=23;i<=32;i++)
-        {
-            let option=document.createElement("option");
-            option.value="20"+i;
-            option.textContent="20"+i;
-            añoTarjeta.appendChild(option);
-        }
-
-        //montamos el la fecha de caducidad de la tarjeta para que sea válida para DATE mysql
-        let fechaCaducidad=`${añoTarjeta.value}-${mesTarjeta-1}-01`;
-        
-        //comprobamos la validez de los valores de la tarjeta
-        if(!regextarjeta.test(numTarjeta.value))
-        {
-            document.querySelector("#numTarErr").textContent="El número de tarjeta no es válido";
-        }
-        if(!regexnombtarjeta.test(nomTarjeta.value))
-        {
-            document.querySelector("#nomTarErr").textContent="El nombre de la tarjeta no es válido";
-
-        }
-        //si ambos son válidos montamos el cuerpo del fetch
-        if(regextarjeta.test(numTarjeta.value)&&regexnombtarjeta.test(nomTarjeta.value))
-        {
-            //montamos el cuerpo del post
-            const pago={
-                'usuario':sessionStorage.getItem('id'),
-                'numero_tarjeta':numTarjeta.value,
-                'nombre_tarjeta':nomTarjeta.value,
-                'fecha_caducidad':fechaCaducidad
-            }
-
-            let options={
-                method: "POST",
-                headers:{'Content-type':'aplication/json'},
-                body:JSON.stringify(pago)
-                    }
-
-            fetch("http://localhost/Proyecto/parking/metodo_pago.php",options)
-            .then(respuesta=>respuesta.json())
-            .then(datos=>{
-
-                                console.log(datos);
-
-
-            })        
-        }
-
-    }
-
-
-})
 
 
 
@@ -186,9 +124,83 @@ function registraUsuario(objeto)
 
 }
 
-function registraMetodoPago(objeto)
+function Etiquetas(disp)
 {
+    numTarjeta.style.display=disp;
+    nomTarjeta.style.display=disp;
+    mesTarjeta.style.display=disp;
+    añoTarjeta.style.display=disp;
+    document.querySelector("#labNunTar").style.display=disp;
+    document.querySelector("#labNomTar").style.display=disp;
+    document.querySelector("#labFecha").style.display=disp;
 
+
+
+}
+
+
+function registraMetodoPago()
+{
+    //expresion regular para la tarjeta
+    const regextarjeta=/^\d{16}$/
+    const regexnombtarjeta=/^[a-zA-Z\s]+$/
+
+    //vamos a crear los option para los valores de los meses de la fecha de caducidad de la tarejeta(meses y años)
+    for(let i=1;i<=12;i++)
+    {
+        let option=document.createElement("option");
+        option.value=i<10?"0"+i:i;
+        option.textContent=i<10?"0"+i:i;
+        mesTarjeta.appendChild(option);
+    }
+
+    for(let i=23;i<=32;i++)
+    {
+        let option=document.createElement("option");
+        option.value="20"+i;
+        option.textContent="20"+i;
+        añoTarjeta.appendChild(option);
+    }
+
+    //montamos el la fecha de caducidad de la tarjeta para que sea válida para DATE mysql
+    let fechaCaducidad=`${añoTarjeta.value}-${mesTarjeta.value-1}-01`;
+    
+    //comprobamos la validez de los valores de la tarjeta
+    if(!regextarjeta.test(numTarjeta.value))
+    {
+        document.querySelector("#numTarErr").textContent="El número de tarjeta no es válido";
+    }
+    if(!regexnombtarjeta.test(nomTarjeta.value))
+    {
+        document.querySelector("#nomTarErr").textContent="El nombre de la tarjeta no es válido";
+
+    }
+    //si ambos son válidos montamos el cuerpo del fetch
+    if(regextarjeta.test(numTarjeta.value)&&regexnombtarjeta.test(nomTarjeta.value))
+    {
+        //montamos el cuerpo del post
+        const pago={
+            'usuario':sessionStorage.getItem('id'),
+            'numero_tarjeta':numTarjeta.value,
+            'nombre_tarjeta':nomTarjeta.value,
+            'fecha_caducidad':fechaCaducidad
+        }
+
+        let options={
+            method: "POST",
+            headers:{'Content-type':'aplication/json'},
+            body:JSON.stringify(pago)
+                }
+
+        fetch("http://localhost/Proyecto/parking/metodo_pago.php",options)
+        .then(respuesta=>respuesta.json())
+        .then(datos=>{
+
+                            console.log(datos);
+
+
+        })        
+    }
 
 
 
