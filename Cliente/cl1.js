@@ -1,18 +1,23 @@
-//recojo los valores del formulario
+//elementos del formulario1
 const formulario=document.querySelector("#formulario1");
 let respuesta=document.querySelector("#respuesta");
-let formulario2=document.querySelector("#formulario2")
-let seleccionaSocio=document.querySelector("#selecciona")
-let tablaPlazas=document.querySelector("#plazas")
+let nombre=document.querySelector("#nombre");
+let nombErr=document.querySelector("#nombErr");
+let password=document.querySelector("#password");
+let passErr=document.querySelector("#passErr");
+let email=document.querySelector("#email");
+let emailErr=document.querySelector("#emailErr");
 let mostrarPass=document.querySelector("#oculto")
- //recogemos los datos del formulario
- let nombre=document.querySelector("#nombre");
- let nombErr=document.querySelector("#nombErr");
- let password=document.querySelector("#password");
- let passErr=document.querySelector("#passErr");
- let email=document.querySelector("#email");
- let emailErr=document.querySelector("#emailErr");
- let metodoPago=document.querySelector("#metodoPago");
+
+//elementos del formulario2
+let formulario2=document.querySelector("#formulario2")
+let tablaPlazas=document.querySelector("#plazas")
+let seleccionaSocio=document.querySelector("#seleccionaSocio")
+let metodoPago=document.querySelector("#metodoPago");
+let numTarjeta=document.querySelector("#numeroTarjeta");
+let nomTarjeta=document.querySelector("#nombreTarjeta");
+let mesTarjeta=document.querySelector("#mes");
+let añoTarjeta=document.querySelector("#año");
 
 formulario.addEventListener("submit",(event)=>{
 
@@ -76,6 +81,8 @@ formulario.addEventListener("submit",(event)=>{
         .then(datos=>{
             respuesta.style.display="block";
             respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
+            //vamos a almacenar el id de usuario, que podemos usar en el formulario2
+            sessionStorage.setItem('id', datos.user_id);
             console.log(datos)
             formulario2.style.display="block";
             seleccionaSocio.style.display="block";
@@ -93,8 +100,70 @@ metodoPago.addEventListener("change",(event)=>{
 
     if(event.target.value==="true")
     {
-        
+        //mostramos los campos para mostrar los datos
+        numTarjeta.style.display="block";
+        nomTarjeta.style.display="block";
 
+        //expresion regular para la tarjeta
+        const regextarjeta=/^\d{16}$/
+        const regexnombtarjeta=/^[a-zA-Z\s]+$/
+
+        //vamos a crear los option para los valores de los meses de la fecha de caducidad de la tarejeta(meses y años)
+        for(let i=1;i<=12;i++)
+        {
+            let option=document.createElement("option");
+            option.value=i<10?"0"+i:i;
+            option.textContent=i<10?"0"+i:i;
+            mesTarjeta.appendChild(option);
+        }
+
+        for(let i=23;i<=32;i++)
+        {
+            let option=document.createElement("option");
+            option.value="20"+i;
+            option.textContent="20"+i;
+            añoTarjeta.appendChild(option);
+        }
+
+        //montamos el la fecha de caducidad de la tarjeta para que sea válida para DATE mysql
+        let fechaCaducidad=`${añoTarjeta.value}-${mesTarjeta-1}-01`;
+        
+        //comprobamos la validez de los valores de la tarjeta
+        if(!regextarjeta.test(numTarjeta.value))
+        {
+            document.querySelector("#numTarErr").textContent="El número de tarjeta no es válido";
+        }
+        if(!regexnombtarjeta.test(nomTarjeta.value))
+        {
+            document.querySelector("#nomTarErr").textContent="El nombre de la tarjeta no es válido";
+
+        }
+        //si ambos son válidos montamos el cuerpo del fetch
+        if(regextarjeta.test(numTarjeta.value)&&regexnombtarjeta.test(nomTarjeta.value))
+        {
+            //montamos el cuerpo del post
+            const pago={
+                'usuario':sessionStorage.getItem('id'),
+                'numero_tarjeta':numTarjeta.value,
+                'nombre_tarjeta':nomTarjeta.value,
+                'fecha_caducidad':fechaCaducidad
+            }
+
+            let options={
+                method: "POST",
+                headers:{'Content-type':'aplication/json'},
+                body:JSON.stringify(pago)
+                    }
+
+            fetch("http://localhost/Proyecto/parking/metodo_pago.php",options)
+            .then(respuesta=>respuesta.json())
+            .then(datos=>{
+
+                                console.log(datos);
+
+
+            })        
+        }
 
     }
 
