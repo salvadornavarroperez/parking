@@ -12,6 +12,7 @@ let mostrarPass=document.querySelector("#oculto")
  let passErr=document.querySelector("#passErr");
  let email=document.querySelector("#email");
  let emailErr=document.querySelector("#emailErr");
+ let metodoPago=document.querySelector("#metodoPago");
 
 formulario.addEventListener("submit",(event)=>{
 
@@ -53,6 +54,9 @@ formulario.addEventListener("submit",(event)=>{
     if(regexNombre.test(nombre.value)&&regexPassword.test(password.value)&&regexEmail.test(email.value))
     {
         
+          //si ha seleccionado un métodod de pago
+            
+
           //formamos el objeto que vamos a enviar por post para que la api rest haga un post
             const objeto={
                 'nombre':nombre.value,

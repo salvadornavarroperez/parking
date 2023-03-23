@@ -24,15 +24,21 @@
         <div id="passErr"></div>
         <label for="email">Email</label>
         <input type="text" name="email" id="email">       
-        <div id="emailErr"></div>
+        <div id="emailErr"></div>        
         <input type="submit" name="enviar">
         <input type="reset" value="Reset">
     </form>
     <div id="respuesta"></div>
     <form id="formulario2">
+        <label for="metodoPago">Quiere añadir una tarjeta de credito?</label>
+        <select name="metodoPago" id="metodoPago">
+            <option value=""></option>
+            <option value="true">Si</option>
+            <option value="false">No</option>
+        </select>
         <label for="selecciona">Quiere ser socio?</label>
         <select name="selecciona" id="selecciona">
-            <option value="">----</option>
+            <option value=""></option>
             <option value="si">Si</option>
             <option value="no">No</option>
         </select>
