@@ -24,36 +24,29 @@
         <div id="passErr"></div>
         <label for="email">Email</label>
         <input type="text" name="email" id="email">       
-        <div id="emailErr"></div>        
-        <input type="submit" name="enviar">
-        <input type="reset" value="Reset">
-    </form>
-    <div id="respuesta"></div>
-    <form id="formulario2">
+        <div id="emailErr"></div>
         <label for="metodoPago">Quiere añadir una tarjeta de credito?</label>
         <select name="metodoPago" id="metodoPago">
             <option value=""></option>
             <option value="true">Si</option>
             <option value="false">No</option>
         </select>
-        <label for="numeroTarjeta">Número de tarjeta</label>
+        <label for="numeroTarjeta" id="labNunTar">Número de tarjeta</label>
         <input type="text" name="numeroTarjeta" id="numeroTarjeta">
         <div id="numTarErr"></div>
-        <label for="nombreTarjeta">Nombre de la tarjeta</label>
+        <label for="nombreTarjeta" id="labNomTar">Nombre de la tarjeta</label>
         <input type="text" name="nombreTarjeta" id="nombreTarjeta">
         <div id="nomTarErr"></div>
-        <label>Fecha Caducidad</label>
+        <label id="labFecha">Fecha Caducidad</label>
         <select  id="mes">        
         </select>
         <select id="año">            
         </select>
         <input type="submit" name="enviar2">
-        <input type="reset" value="Reset2">
-        
-        
+        <input type="reset" value="Reset2">             
+       
     </form>
-    <table id="plazas">
-            
-    </table>
+    <div id="respuesta"></div>    
+   
 </body>
 </html>

@@ -7,12 +7,8 @@ let password=document.querySelector("#password");
 let passErr=document.querySelector("#passErr");
 let email=document.querySelector("#email");
 let emailErr=document.querySelector("#emailErr");
-let mostrarPass=document.querySelector("#oculto")
-
-//elementos del formulario2
-let formulario2=document.querySelector("#formulario2")
-let tablaPlazas=document.querySelector("#plazas")
-let seleccionaSocio=document.querySelector("#seleccionaSocio")
+let mostrarPass=document.querySelector("#oculto");
+let tablaPlazas=document.querySelector("#plazas");
 let metodoPago=document.querySelector("#metodoPago");
 let numTarjeta=document.querySelector("#numeroTarjeta");
 let nomTarjeta=document.querySelector("#nombreTarjeta");
@@ -68,27 +64,22 @@ formulario.addEventListener("submit",(event)=>{
                 'password':password.value,
                 'correo':email.value,
                 'rol':1
+            };            
+            registraUsuario(objeto);
+
+            if(metodoPago.value==="true")
+            {
+                numTarjeta.style.display="block";
+                nomTarjeta.style.display="block";
+                mesTarjeta.style.display="block";
+                añoTarjeta.style.display="block";
+                document.querySelector("#labNunTar").style.display="block";
+                document.querySelector("#labNomTar").style.display="block";
+                document.querySelector("#labFecha").style.display="block";
+
             }
-            let options={
-                method: "POST",
-                headers:{'Content-type':'aplication/json'},
-                body:JSON.stringify(objeto)
-                    }
+           
             
-
-        fetch("http://localhost/Proyecto/parking/altaUsuario.php",options)
-        .then(respuesta=>respuesta.json())
-        .then(datos=>{
-            respuesta.style.display="block";
-            respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
-            //vamos a almacenar el id de usuario, que podemos usar en el formulario2
-            sessionStorage.setItem('id', datos.user_id);
-            console.log(datos)
-            formulario2.style.display="block";
-
-            
-        })  
-
     }
 
     
@@ -171,7 +162,38 @@ metodoPago.addEventListener("change",(event)=>{
 
 
 
+function registraUsuario(objeto)
+{
+    let options={
+        method: "POST",
+        headers:{'Content-type':'aplication/json'},
+        body:JSON.stringify(objeto)
+            }
+    
 
+        fetch("http://localhost/Proyecto/parking/altaUsuario.php",options)
+        .then(respuesta=>respuesta.json())
+        .then(datos=>{
+            respuesta.style.display="block";
+            respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
+            //vamos a almacenar el id de usuario, que podemos usar en el formulario2
+            sessionStorage.setItem('id', datos.user_id);
+            
+            
+
+            
+        })  
+
+}
+
+function registraMetodoPago(objeto)
+{
+
+
+
+
+
+}
 
 
 
