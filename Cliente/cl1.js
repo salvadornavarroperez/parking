@@ -4,17 +4,29 @@ let respuesta=document.querySelector("#respuesta");
 let formulario2=document.querySelector("#formulario2")
 let seleccionaSocio=document.querySelector("#selecciona")
 let tablaPlazas=document.querySelector("#plazas")
+let mostrarPass=document.querySelector("#oculto")
+ //recogemos los datos del formulario
+ let nombre=document.querySelector("#nombre");
+ let nombErr=document.querySelector("#nombErr");
+ let password=document.querySelector("#password");
+ let passErr=document.querySelector("#passErr");
+ let email=document.querySelector("#email");
+ let emailErr=document.querySelector("#emailErr");
+
 formulario.addEventListener("submit",(event)=>{
 
     //evitamos el envio de datos
     event.preventDefault();
-    //recogemos los datos del formulario
-    let nombre=document.querySelector("#nombre");
-    let nombErr=document.querySelector("#nombErr");
-    let password=document.querySelector("#password");
-    let passErr=document.querySelector("#passErr");
-    let email=document.querySelector("#email");
-    let emailErr=document.querySelector("#emailErr");
+   
+
+   
+       
+        
+    
+    
+    
+    
+    
     
 
     //creamos las expresiones regulares que comprueben que se cumple con los valores requeridos
@@ -116,3 +128,10 @@ function mostrarPlazas(datos)
     }
 
 }
+
+mostrarPass.addEventListener("click",function() {
+    
+    const tipo=password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute("type", tipo);
+
+})
