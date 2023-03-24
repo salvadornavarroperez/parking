@@ -117,7 +117,7 @@ metodoPago.addEventListener("click",function(){
 
 login.addEventListener("click",function(){
 
-    window.location.href = 'pago.html';
+    window.location.href = 'login.html';
 
 
 })
