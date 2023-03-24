@@ -54,6 +54,8 @@ class Authentication extends AuthModel
 				'Id_usuario' => $result[0]['Id_usuario'],
 				'Correo' => $result[0]['Correo']
 			)
+			
+
 		);
 
 		$jwt = JWT::encode($dataToken, $this->key);

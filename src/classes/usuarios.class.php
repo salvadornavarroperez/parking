@@ -19,7 +19,8 @@ class Usuarios extends Database
 		'Id_usuario',
         'Nombre',
         'Password',
-        'Correo',        
+        'Correo',
+		'token',        
         'page'
 	);
 
