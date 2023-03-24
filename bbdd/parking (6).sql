@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-03-2023 a las 11:34:04
+-- Tiempo de generación: 24-03-2023 a las 11:58:52
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `parking`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `coches`
+--
+
+CREATE TABLE `coches` (
+  `id_matricula` int(11) NOT NULL,
+  `usuario` int(11) NOT NULL,
+  `matricula` varchar(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -348,6 +360,14 @@ CREATE TABLE `usuarios` (
 --
 
 --
+-- Indices de la tabla `coches`
+--
+ALTER TABLE `coches`
+  ADD PRIMARY KEY (`id_matricula`),
+  ADD UNIQUE KEY `matricula` (`matricula`),
+  ADD KEY `Coches_fk0` (`usuario`);
+
+--
 -- Indices de la tabla `fechas`
 --
 ALTER TABLE `fechas`
@@ -411,6 +431,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `coches`
+--
+ALTER TABLE `coches`
+  MODIFY `id_matricula` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `fechas`
 --
 ALTER TABLE `fechas`
@@ -461,6 +487,12 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `coches`
+--
+ALTER TABLE `coches`
+  ADD CONSTRAINT `Coches_fk0` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`Id_usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `metodo_pago`
