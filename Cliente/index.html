@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alta Usuario</title>
     <link rel="stylesheet" href="css/estilo.css">
@@ -10,37 +10,23 @@
 </head>
 <body>
     <h1>Bienvenido al registro de nuestro parking</h1>
-    <form id="formulario1">
-        <label for="rol">Rol</label>
-        <select name="rol" id="rol">
-            <option value="1">Usuario</option>
-            <option value="2">Socio</option>
-            <option value="3">Administrador</option>
-        </select>
+    <form id="formulario1">      
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="nombre">
         <div id="nombErr"></div>
         <label for="password">Password</label>
         <input  type="password" name="password" id="password">
+        <button id="oculto"><img src="imagenes/oculto.png" id="imagenOculto"></button>
         <div id="passErr"></div>
         <label for="email">Email</label>
         <input type="text" name="email" id="email">       
-        <div id="emailErr"></div>
+        <div id="emailErr"></div>   
         <input type="submit" name="enviar">
-        <input type="reset" value="Reset">
+        <input type="reset" value="Reset" id="reset">    
     </form>
-    <div id="respuesta"></div>
-    <form id="formulario2">
-        <label for="selecciona">Quiere ser socio?</label>
-        <select name="selecciona" id="selecciona">
-            <option value="">----</option>
-            <option value="si">Si</option>
-            <option value="no">No</option>
-        </select>
-        
-    </form>
-    <table id="plazas">
-            
-    </table>
+    <button id="metodoPago">Insertar Metodo pago</button>
+    <button id="login">Login</button>
+    <div id="respuesta"></div>    
+   
 </body>
 </html>

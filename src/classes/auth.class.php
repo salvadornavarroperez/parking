@@ -51,14 +51,16 @@ class Authentication extends AuthModel
 		$dataToken = array(
 			'iat' => time(),
 			'data' => array(
-				'id' => $result[0]['id'],
-				'nombres' => $result[0]['nombres']
+				'Id_usuario' => $result[0]['Id_usuario'],
+				'Correo' => $result[0]['Correo']
 			)
+			
+
 		);
 
 		$jwt = JWT::encode($dataToken, $this->key);
 
-		parent::update($result[0]['id'], $jwt);
+		parent::update($result[0]['Id_usuario'], $jwt);
 
 		return $jwt;
 	}

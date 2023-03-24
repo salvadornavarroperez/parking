@@ -5,34 +5,29 @@
 require_once 'src/response.php';
 require_once 'src/database.php';
 
-class Usuarios extends Database
+class Vehiculos extends Database
 {
 	/**
 	 * Atributo que indica la tabla asociada a la clase del modelo
 	 */
-	private $table = 'usuarios';
+	private $table = 'vehiculos';
 
 	/**
 	 * Array con los campos de la tabla que se pueden usar como filtro para recuperar registros
 	 */
 	private $allowedConditions_get = array(
-		'Id_usuario',
-        'Nombre',
-        'Password',
-        'Correo',
-		'token',        
-        'page'
+		'id_matricula',
+		'usuario',
+        'matricula',
+		'page'
 	);
 
 	/**
 	 * Array con los campos de la tabla que se pueden proporcionar para insertar registros
 	 */
 	private $allowedConditions_insert = array(
-		'nombre',
-        'password',
-        'correo',
-		'rol'
-        
+		'usuario',
+        'matricula'
 	);
 
 	/**
@@ -41,10 +36,10 @@ class Usuarios extends Database
 	private function validate($data)
 	{
 
-		if (!isset($data['nombre']) || empty($data['password']) || empty($data['correo'])||!isset($data['rol']) ) {
+		if (!isset($data['usuario']) || empty($data['matricula'])) {
 			$response = array(
 				'result' => 'error',
-				'details' => 'El campo player_name es obligatorio'
+				'details' => 'El campo usuario y matricula son obligatorios'
 			);
 
 			Response::result(400, $response);
@@ -72,9 +67,9 @@ class Usuarios extends Database
 			}
 		}
 
-		$usuarios = parent::getDB($this->table, $params);
+		$coches = parent::getDB($this->table, $params);
 
-		return $usuarios;
+		return $coches;
 	}
 
 	/**
@@ -119,7 +114,7 @@ class Usuarios extends Database
 		}
 
 		if ($this->validate($params)) {
-			$affected_rows = parent::updateDB($this->table, $id, $params,"Id_usuario");
+			$affected_rows = parent::updateDB($this->table, $id, $params,"id_matricula");
 
 			if ($affected_rows == 0) {
 				$response = array(
@@ -138,7 +133,7 @@ class Usuarios extends Database
 	 */
 	public function delete($id)
 	{
-		$affected_rows = parent::deleteDB($this->table, $id,"Id_usuario");
+		$affected_rows = parent::deleteDB($this->table, $id,"id_matricula");
 
 		if ($affected_rows == 0) {
 			$response = array(

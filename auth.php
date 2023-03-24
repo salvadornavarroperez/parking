@@ -17,6 +17,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		$response = array(
 			'result' => 'ok',
 			'token' => $token
+			
 		);
 
 		Response::result(201, $response);

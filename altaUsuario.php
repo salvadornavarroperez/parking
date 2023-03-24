@@ -31,7 +31,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		}
 
         //hay que aplicar el hash md5 a la contraseña para guardarla en la base de datos
-        $passMd5=md5($params['password']);
+		
+        $passMd5=hash('sha256',$params['password']);
         $params["password"]=$passMd5;
 
 		$user_id = $usuario->insert($params);

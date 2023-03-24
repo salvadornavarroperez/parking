@@ -1,21 +1,26 @@
-//recojo los valores del formulario
-const formulario=document.querySelector("#formulario1");
+//elementos del formulario1
+const formulario=document.querySelector("#formulario");
 let respuesta=document.querySelector("#respuesta");
-let formulario2=document.querySelector("#formulario2")
-let seleccionaSocio=document.querySelector("#selecciona")
-let tablaPlazas=document.querySelector("#plazas")
+let nombre=document.querySelector("#nombre");
+let nombErr=document.querySelector("#nombErr");
+let password=document.querySelector("#password");
+let passErr=document.querySelector("#passErr");
+let email=document.querySelector("#email");
+let mostrarPass=document.querySelector("#oculto");
+let botonReset=document.querySelector("#reset");
+//recogemos el select que nos sirve para pasar a la siguiente pagina
+let metodoPago=document.querySelector("#metodoPago");
+let login=document.querySelector("#login");
+
+//lo deshabilitamos de primeras hasta que el registro de usuario se complete
+metodoPago.disabled=true;
+
+
 formulario.addEventListener("submit",(event)=>{
 
     //evitamos el envio de datos
-    event.preventDefault();
-    //recogemos los datos del formulario
-    let nombre=document.querySelector("#nombre");
-    let nombErr=document.querySelector("#nombErr");
-    let password=document.querySelector("#password");
-    let passErr=document.querySelector("#passErr");
-    let email=document.querySelector("#email");
-    let emailErr=document.querySelector("#emailErr");
-    let select=document.querySelector("#rol");
+    event.preventDefault();  
+    
 
     //creamos las expresiones regulares que comprueben que se cumple con los valores requeridos
     const regexEmail = /\S+@\S+\.\S+/;
@@ -41,55 +46,89 @@ formulario.addEventListener("submit",(event)=>{
     if(regexNombre.test(nombre.value)&&regexPassword.test(password.value)&&regexEmail.test(email.value))
     {
         
+          //si ha seleccionado un métodod de pago
+            
+
           //formamos el objeto que vamos a enviar por post para que la api rest haga un post
             const objeto={
                 'nombre':nombre.value,
                 'password':password.value,
                 'correo':email.value,
-                'rol':select.value
-            }
-            let options={
-                method: "POST",
-                headers:{'Content-type':'aplication/json'},
-                body:JSON.stringify(objeto)
-                    }
+                'rol':1
+            };            
+            registraUsuario(objeto); 
             
+            
+            
+            
+           
+            
+    }
+
+   
+    
+})
+
+
+
+
+
+
+function registraUsuario(objeto)
+{
+    let options={
+        method: "POST",
+        headers:{'Content-type':'aplication/json'},
+        body:JSON.stringify(objeto)
+            }
+    
 
         fetch("http://localhost/Proyecto/parking/altaUsuario.php",options)
         .then(respuesta=>respuesta.json())
         .then(datos=>{
             respuesta.style.display="block";
             respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
-            console.log(datos)
-            formulario2.style.display="block";
-            seleccionaSocio.style.display="block";
+            //vamos a almacenar el id de usuario, que podemos usar en el formulario2
+            
+            if(datos.user_id!=null)
+            {
+                //guardamos el id del usuario
+                sessionStorage.setItem('id', datos.user_id);
+                //habilitamos los botones
+                metodoPago.disabled=false;
+                
+
+
+            }
+            
+            
+            
 
             
         })  
 
-    }
+}
 
-    
+metodoPago.addEventListener("click",function(){
+
+    window.location.href = 'pago.html';
+
 })
 
-seleccionaSocio.addEventListener("change",(event)=>{
+login.addEventListener("click",function(){
 
-    if(event.target.value=="si")
-    {
-        //mostramos los demas controles de formulario para mostrar las plazas
-        //hay que saber el número de páginas que se desea mostrar, pero la cuenta es 50 resultados por pagina
-        fetch("http://localhost/Proyecto/parking/plazas.php?page=4")
-        .then(respuesta=>respuesta.json())
-        .then(datos=>{
-
-            
-            console.log(datos);
+    window.location.href = 'login.html';
 
 
-        })
-
-    }
 })
+
+
+
+/*
+
+
+
+
 
 function mostrarPlazas(datos)
 {
@@ -116,3 +155,10 @@ function mostrarPlazas(datos)
     }
 
 }
+*/
+mostrarPass.addEventListener("click",function() {
+    
+    const tipo=password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute("type", tipo);
+
+})

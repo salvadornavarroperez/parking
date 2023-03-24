@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodo de pago</title>
+    <script defer src="metodoPago.js"></script>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <form id="formulario">
+        <label for="numeroTarjeta" id="labNunTar" class="ocultos">Número de tarjeta</label>
+        <input type="text" name="numeroTarjeta" id="numeroTarjeta" class="ocultos">
+        <div id="numTarErr"></div>
+        <label for="nombreTarjeta" id="labNomTar" class="ocultos">Nombre de la tarjeta</label>
+        <input type="text" name="nombreTarjeta" id="nombreTarjeta" class="ocultos">
+        <div id="nomTarErr"></div>
+        <label id="labFecha" class="ocultos">Fecha Caducidad</label>
+        <label id="labmes">Mes</label>
+        <select  id="mes" class="ocultos">        
+        </select>
+        <label id="labaño">Año</label>
+        <select id="año" class="ocultos">            
+        </select>
+        <input type="submit" name="enviar">
+        <input type="reset" value="Reset">
+    </form>
+    
+</body>
+</html>
