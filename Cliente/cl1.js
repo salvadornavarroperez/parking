@@ -6,8 +6,8 @@ let nombErr=document.querySelector("#nombErr");
 let password=document.querySelector("#password");
 let passErr=document.querySelector("#passErr");
 let email=document.querySelector("#email");
-
-
+let mostrarPass=document.querySelector("#oculto");
+let botonReset=document.querySelector("#reset");
 //recogemos el select que nos sirve para pasar a la siguiente pagina
 let metodoPago=document.querySelector("#metodoPago");
 let login=document.querySelector("#login");
@@ -68,6 +68,7 @@ formulario.addEventListener("submit",(event)=>{
    
     
 })
+
 
 
 

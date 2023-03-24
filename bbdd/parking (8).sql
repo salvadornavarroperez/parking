@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-03-2023 a las 12:28:22
+-- Tiempo de generación: 24-03-2023 a las 13:11:42
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -339,9 +339,15 @@ CREATE TABLE `usuarios` (
   `Password` varchar(255) NOT NULL,
   `Correo` varchar(255) DEFAULT NULL,
   `Token` varchar(255) DEFAULT NULL,
-  `rol` int(11) NOT NULL,
-  `matricula` varchar(10) NOT NULL
+  `rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`Id_usuario`, `Nombre`, `Password`, `Correo`, `Token`, `rol`) VALUES
+(25, 'David', '10e7ea85e4df329ff3bbd47a4c8de41d', 'david@hotmail.com', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -414,7 +420,6 @@ ALTER TABLE `socios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`Id_usuario`),
-  ADD UNIQUE KEY `matricula` (`matricula`),
   ADD UNIQUE KEY `Correo` (`Correo`),
   ADD KEY `Usuarios_fk0` (`rol`);
 
@@ -476,7 +481,7 @@ ALTER TABLE `socios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `Id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `Id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`
