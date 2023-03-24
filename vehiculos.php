@@ -4,9 +4,9 @@
  *	La clase "player.class.php" es la clase del modelo, que representa a un jugador de la tabla
 */
 require_once 'src/response.php';
-require_once 'src/classes/Coches.class.php';
+require_once 'src/classes/Vehiculos.class.php';
 
-$coche = new Coches();
+$vehiculo = new Vehiculos();
 
 /**
  * Se mira el tipo de petición que ha llegado a la API y dependiendo de ello se realiza una u otra accción
@@ -18,11 +18,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
 		$params = $_GET;
 
-		$coches = $coche->get($params);
+		$vehiculos = $vehiculo->get($params);
 
 		$response = array(
 			'result' => 'ok',
-			'matriculas' => $coches
+			'matriculas' => $vehiculos
 		);
 
 		Response::result(200, $response);
@@ -44,7 +44,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$insert_id = $coche->insert($params);
+		$insert_id = $vehiculo->insert($params);
 
 		$response = array(
 			'result' => 'ok',
@@ -70,7 +70,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$coche->update($_GET['id_matricula'], $params);
+		$vehiculo->update($_GET['id_matricula'], $params);
 
 		$response = array(
 			'result' => 'ok'
@@ -93,7 +93,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$player->delete($_GET['id_matricula']);
+		$vehiculo->delete($_GET['id_matricula']);
 
 		$response = array(
 			'result' => 'ok'

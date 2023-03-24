@@ -7,8 +7,14 @@ let password=document.querySelector("#password");
 let passErr=document.querySelector("#passErr");
 let email=document.querySelector("#email");
 
+
 //recogemos el select que nos sirve para pasar a la siguiente pagina
 let metodoPago=document.querySelector("#metodoPago");
+let login=document.querySelector("#login");
+
+//lo deshabilitamos de primeras hasta que el registro de usuario se complete
+metodoPago.disabled=true;
+login.disabled=true;
 
 formulario.addEventListener("submit",(event)=>{
 
@@ -85,11 +91,11 @@ function registraUsuario(objeto)
             
             if(datos.user_id!=null)
             {
-                if()
-
                 //guardamos el id del usuario
                 sessionStorage.setItem('id', datos.user_id);
-                //redirigimos al formulario de registro de pago
+                //habilitamos los botones
+                metodoPago.disabled=false;
+                login.disabled=false;
 
 
             }
@@ -101,6 +107,20 @@ function registraUsuario(objeto)
         })  
 
 }
+
+metodoPago.addEventListener("click",function(){
+
+    window.location.href = 'pago.html';
+
+})
+
+login.addEventListener("click",function(){
+
+    window.location.href = 'pago.html';
+
+
+})
+
 
 
 /*

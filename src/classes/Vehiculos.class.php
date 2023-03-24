@@ -5,12 +5,12 @@
 require_once 'src/response.php';
 require_once 'src/database.php';
 
-class Coches extends Database
+class Vehiculos extends Database
 {
 	/**
 	 * Atributo que indica la tabla asociada a la clase del modelo
 	 */
-	private $table = 'coches';
+	private $table = 'vehiculos';
 
 	/**
 	 * Array con los campos de la tabla que se pueden usar como filtro para recuperar registros
