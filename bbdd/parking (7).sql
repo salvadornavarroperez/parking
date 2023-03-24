@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-03-2023 a las 11:58:52
+-- Tiempo de generación: 24-03-2023 a las 12:28:22
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -20,18 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `parking`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `coches`
---
-
-CREATE TABLE `coches` (
-  `id_matricula` int(11) NOT NULL,
-  `usuario` int(11) NOT NULL,
-  `matricula` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -355,17 +343,21 @@ CREATE TABLE `usuarios` (
   `matricula` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vehiculos`
+--
+
+CREATE TABLE `vehiculos` (
+  `id_matricula` int(11) NOT NULL,
+  `usuario` int(11) NOT NULL,
+  `matricula` varchar(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `coches`
---
-ALTER TABLE `coches`
-  ADD PRIMARY KEY (`id_matricula`),
-  ADD UNIQUE KEY `matricula` (`matricula`),
-  ADD KEY `Coches_fk0` (`usuario`);
 
 --
 -- Indices de la tabla `fechas`
@@ -427,14 +419,16 @@ ALTER TABLE `usuarios`
   ADD KEY `Usuarios_fk0` (`rol`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indices de la tabla `vehiculos`
 --
+ALTER TABLE `vehiculos`
+  ADD PRIMARY KEY (`id_matricula`),
+  ADD UNIQUE KEY `matricula` (`matricula`),
+  ADD KEY `Coches_fk0` (`usuario`);
 
 --
--- AUTO_INCREMENT de la tabla `coches`
+-- AUTO_INCREMENT de las tablas volcadas
 --
-ALTER TABLE `coches`
-  MODIFY `id_matricula` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `fechas`
@@ -485,14 +479,14 @@ ALTER TABLE `usuarios`
   MODIFY `Id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- Restricciones para tablas volcadas
+-- AUTO_INCREMENT de la tabla `vehiculos`
 --
+ALTER TABLE `vehiculos`
+  MODIFY `id_matricula` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Filtros para la tabla `coches`
+-- Restricciones para tablas volcadas
 --
-ALTER TABLE `coches`
-  ADD CONSTRAINT `Coches_fk0` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`Id_usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `metodo_pago`
@@ -526,6 +520,12 @@ ALTER TABLE `socios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `Usuarios_fk0` FOREIGN KEY (`rol`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `vehiculos`
+--
+ALTER TABLE `vehiculos`
+  ADD CONSTRAINT `Coches_fk0` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`Id_usuario`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

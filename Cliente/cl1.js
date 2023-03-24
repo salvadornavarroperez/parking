@@ -6,30 +6,14 @@ let nombErr=document.querySelector("#nombErr");
 let password=document.querySelector("#password");
 let passErr=document.querySelector("#passErr");
 let email=document.querySelector("#email");
-let emailErr=document.querySelector("#emailErr");
-let mostrarPass=document.querySelector("#oculto");
-let tablaPlazas=document.querySelector("#plazas");
-let metodoPago=document.querySelector("#metodoPago");
-let numTarjeta=document.querySelector("#numeroTarjeta");
-let nomTarjeta=document.querySelector("#nombreTarjeta");
-let mesTarjeta=document.querySelector("#mes");
-let añoTarjeta=document.querySelector("#año");
 
+//recogemos el select que nos sirve para pasar a la siguiente pagina
+let metodoPago=document.querySelector("#metodoPago");
 
 formulario.addEventListener("submit",(event)=>{
 
     //evitamos el envio de datos
-    event.preventDefault();
-    
-
-   
-       
-        
-    
-    
-    
-    
-    
+    event.preventDefault();  
     
 
     //creamos las expresiones regulares que comprueben que se cumple con los valores requeridos
@@ -66,9 +50,7 @@ formulario.addEventListener("submit",(event)=>{
                 'correo':email.value,
                 'rol':1
             };            
-            registraUsuario(objeto);
-
-            
+            registraUsuario(objeto); 
             
             
             
@@ -82,25 +64,6 @@ formulario.addEventListener("submit",(event)=>{
 })
 
 
-metodoPago.addEventListener("change",(event)=>{
-
-    
-    if(event.target.value=="true")
-    {
-        let visible="visibles";
-        let oculto="ocultos";
-        cambiarClase(visible,oculto);
-        registraMetodoPago();
-    }
-    else if(metodoPago.value=="false")
-    {
-        let visible="visibles";
-        let oculto="ocultos";
-        cambiarClase(oculto,visible);
-    }
-
-
-})
 
 
 
@@ -119,7 +82,18 @@ function registraUsuario(objeto)
             respuesta.style.display="block";
             respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
             //vamos a almacenar el id de usuario, que podemos usar en el formulario2
-            sessionStorage.setItem('id', datos.user_id);
+            
+            if(datos.user_id!=null)
+            {
+                if()
+
+                //guardamos el id del usuario
+                sessionStorage.setItem('id', datos.user_id);
+                //redirigimos al formulario de registro de pago
+
+
+            }
+            
             
             
 
@@ -128,29 +102,8 @@ function registraUsuario(objeto)
 
 }
 
-function cambiarClase(poner,quitar)
-{
-    document.querySelector("#labNunTar").classList.remove(quitar);
-    document.querySelector("#labNunTar").classList.add(poner);
-    document.querySelector("#labNomTar").classList.remove(quitar);
-    document.querySelector("#labNomTar").classList.add(poner);
-    document.querySelector("#labFecha").classList.remove(quitar);
-    document.querySelector("#labFecha").classList.add(poner);
-    numTarjeta.classList.remove(quitar);
-    numTarjeta.classList.add(poner);    
-    nomTarjeta.classList.remove(quitar);
-    nomTarjeta.classList.add(poner);
-    mesTarjeta.classList.remove(quitar);
-    mesTarjeta.classList.add(poner);
-    añoTarjeta.classList.remove(quitar);
-    añoTarjeta.classList.add(poner);
-    
 
-
-
-
-}
-
+/*
 
 function registraMetodoPago()
 {
@@ -247,7 +200,7 @@ function mostrarPlazas(datos)
     }
 
 }
-
+*/
 mostrarPass.addEventListener("click",function() {
     
     const tipo=password.getAttribute('type') === 'password' ? 'text' : 'password';

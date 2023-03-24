@@ -124,6 +124,13 @@ form input[type="reset"]:hover {
   font-weight: 700;
 
 }
+
+button{
+  margin: 0 auto;
+  display: block;
+
+
+}
 /*  
 #numeroTarjeta,#nombreTarjeta{
   display:none;
@@ -166,13 +173,7 @@ form input[type="reset"]:hover {
 
 */
 
-.ocultos{
-  display: none;
-}
 
-.visibles{
-  display: block;
-}
 
 table {
   
