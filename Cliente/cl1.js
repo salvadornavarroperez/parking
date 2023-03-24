@@ -15,6 +15,7 @@ let nomTarjeta=document.querySelector("#nombreTarjeta");
 let mesTarjeta=document.querySelector("#mes");
 let añoTarjeta=document.querySelector("#año");
 
+
 formulario.addEventListener("submit",(event)=>{
 
     //evitamos el envio de datos
@@ -76,27 +77,30 @@ formulario.addEventListener("submit",(event)=>{
             
     }
 
-    metodoPago.addEventListener("change",(event)=>{
-
-        console.log(event.target.value)
-        if(event.target.value=="true")
-        {
-            let display="block";
-            Etiquetas(display);
-        }
-        else if(metodoPago.value=="false")
-        {
-            let display="none";
-            Etiquetas(display);
-        }
-
-
-    })
-
+   
     
 })
 
 
+metodoPago.addEventListener("change",(event)=>{
+
+    
+    if(event.target.value=="true")
+    {
+        let visible="visibles";
+        let oculto="ocultos";
+        cambiarClase(visible,oculto);
+        registraMetodoPago();
+    }
+    else if(metodoPago.value=="false")
+    {
+        let visible="visibles";
+        let oculto="ocultos";
+        cambiarClase(oculto,visible);
+    }
+
+
+})
 
 
 
@@ -124,15 +128,24 @@ function registraUsuario(objeto)
 
 }
 
-function Etiquetas(disp)
+function cambiarClase(poner,quitar)
 {
-    numTarjeta.style.display=disp;
-    nomTarjeta.style.display=disp;
-    mesTarjeta.style.display=disp;
-    añoTarjeta.style.display=disp;
-    document.querySelector("#labNunTar").style.display=disp;
-    document.querySelector("#labNomTar").style.display=disp;
-    document.querySelector("#labFecha").style.display=disp;
+    document.querySelector("#labNunTar").classList.remove(quitar);
+    document.querySelector("#labNunTar").classList.add(poner);
+    document.querySelector("#labNomTar").classList.remove(quitar);
+    document.querySelector("#labNomTar").classList.add(poner);
+    document.querySelector("#labFecha").classList.remove(quitar);
+    document.querySelector("#labFecha").classList.add(poner);
+    numTarjeta.classList.remove(quitar);
+    numTarjeta.classList.add(poner);    
+    nomTarjeta.classList.remove(quitar);
+    nomTarjeta.classList.add(poner);
+    mesTarjeta.classList.remove(quitar);
+    mesTarjeta.classList.add(poner);
+    añoTarjeta.classList.remove(quitar);
+    añoTarjeta.classList.add(poner);
+    
+
 
 
 

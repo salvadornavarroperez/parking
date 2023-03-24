@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Expires" content="0">
-    <meta http-equiv="Last-Modified" content="0">
-    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
-    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alta Usuario</title>
     <link rel="stylesheet" href="css/estilo.css">
@@ -31,21 +27,15 @@
             <option value="true">Si</option>
             <option value="false">No</option>
         </select>
-        <label for="numeroTarjeta" id="labNunTar">Número de tarjeta</label>
-        <input type="text" name="numeroTarjeta" id="numeroTarjeta">
-        <div id="numTarErr"></div>
-        <label for="nombreTarjeta" id="labNomTar">Nombre de la tarjeta</label>
-        <input type="text" name="nombreTarjeta" id="nombreTarjeta">
-        <div id="nomTarErr"></div>
-        <label id="labFecha">Fecha Caducidad</label>
-        <select  id="mes">        
-        </select>
-        <select id="año">            
-        </select>
-        <input type="submit" name="enviar2">
-        <input type="reset" value="Reset2">             
+         
        
     </form>
+    <select name="metodoPago" id="metodoPago">
+        <option value=""></option>
+        <option value="true">Si</option>
+        <option value="false">No</option>
+    </select>
+
     <div id="respuesta"></div>    
    
 </body>

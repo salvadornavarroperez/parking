@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-03-2023 a las 12:00:16
+-- Tiempo de generación: 24-03-2023 a las 11:34:04
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -340,36 +340,8 @@ CREATE TABLE `usuarios` (
   `Correo` varchar(255) DEFAULT NULL,
   `Token` varchar(255) DEFAULT NULL,
   `rol` int(11) NOT NULL,
-  `matricula` varchar(10) DEFAULT NULL
+  `matricula` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`Id_usuario`, `Nombre`, `Password`, `Correo`, `Token`, `rol`, `matricula`) VALUES
-(1, 'David', '10e7ea85e4df329ff3bbd47a4c8de41d', 'paquito@hotmail.com', NULL, 1, NULL),
-(2, 'Oscar', '10e7ea85e4df329ff3bbd47a4c8de41d', 'oscar@hotmail.com', NULL, 1, NULL),
-(3, 'Salvador', '10e7ea85e4df329ff3bbd47a4c8de41d', 'salva@hotmail.com', NULL, 1, NULL),
-(4, 'paco', '10e7ea85e4df329ff3bbd47a4c8de41d', 'atocarla@hotmail.com', NULL, 1, NULL),
-(5, 'Lucia', '10e7ea85e4df329ff3bbd47a4c8de41d', 'lucia@gmail.com', NULL, 1, NULL),
-(6, 'Pedro', '10e7ea85e4df329ff3bbd47a4c8de41d', 'pedrito@hotmail.com', NULL, 2, NULL),
-(7, 'Alberto', 'b1e1b6a4d0761d19a8c286224b90a0f8', 'alberto@gmail.com', NULL, 1, NULL),
-(8, 'Pedro', '10e7ea85e4df329ff3bbd47a4c8de41d', 'pedro@hotmail.com', NULL, 1, NULL),
-(9, 'Carmen', '10e7ea85e4df329ff3bbd47a4c8de41d', 'carmen@hotmail.com', NULL, 1, NULL),
-(10, 'Juanjo', '10e7ea85e4df329ff3bbd47a4c8de41d', 'juanjo@hotmail.com', NULL, 1, NULL),
-(11, 'Antonio', '10e7ea85e4df329ff3bbd47a4c8de41d', 'antonio@hotmail.com', NULL, 1, NULL),
-(12, 'Maria del mar', '10e7ea85e4df329ff3bbd47a4c8de41d', 'marieta@hotmail.com', NULL, 1, NULL),
-(13, 'Juan', '10e7ea85e4df329ff3bbd47a4c8de41d', 'juan@hotmail.com', NULL, 1, NULL),
-(14, 'Guillermo', '10e7ea85e4df329ff3bbd47a4c8de41d', 'guillermo@hotmail.com', NULL, 1, NULL),
-(15, 'Miguel', '10e7ea85e4df329ff3bbd47a4c8de41d', 'miguel@hotmail.com', NULL, 1, NULL),
-(16, 'Benito', '10e7ea85e4df329ff3bbd47a4c8de41d', 'benito@hotmail.com', NULL, 1, NULL),
-(17, 'Eustaquio', '10e7ea85e4df329ff3bbd47a4c8de41d', 'eust@hotmail.com', NULL, 1, NULL),
-(18, 'Josefina', '2d71b9c1bdc97c509bc7aea3c3a6f0db', 'josefina@hotmail.com', NULL, 1, NULL),
-(19, 'Manolo', '10e7ea85e4df329ff3bbd47a4c8de41d', 'manolo@hotmail.com', NULL, 1, NULL),
-(20, 'Oscar', '10e7ea85e4df329ff3bbd47a4c8de41d', 'oscar2@hotmail.com', NULL, 1, NULL),
-(21, 'Alejandro', '10e7ea85e4df329ff3bbd47a4c8de41d', 'alex@gmail.com', NULL, 1, NULL),
-(22, 'Maria', '10e7ea85e4df329ff3bbd47a4c8de41d', 'maria@hotmail.com', NULL, 1, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -484,7 +456,7 @@ ALTER TABLE `socios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `Id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restricciones para tablas volcadas

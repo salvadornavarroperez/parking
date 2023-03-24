@@ -53,13 +53,7 @@ form label {
   
 }
 
-#labNunTar,#labNomTar,#labFecha
-{
-  display: none;
-  margin-bottom: 10px;
-  font-weight: 700;
-  color: #2c2c2c;
-}
+
 
 #nombre,
 #email,
@@ -130,7 +124,7 @@ form input[type="reset"]:hover {
   font-weight: 700;
 
 }
-
+/*  
 #numeroTarjeta,#nombreTarjeta{
   display:none;
   width: 100%;
@@ -142,19 +136,6 @@ form input[type="reset"]:hover {
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
 
-}
-
-
-table {
-  
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
-}
-td {
-  
-  border: 1px solid #ccc;
-  padding: 10px;
 }
 
 #mes,#año{
@@ -180,6 +161,31 @@ td {
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
   outline: none;
 }
+
+
+
+*/
+
+.ocultos{
+  display: none;
+}
+
+.visibles{
+  display: block;
+}
+
+table {
+  
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+td {
+  
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
 
 
 .disponible{
