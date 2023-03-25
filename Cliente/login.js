@@ -23,9 +23,12 @@ formulario.addEventListener("submit",function(event){
     .then(respuesta=>respuesta.json())
     .then(datos=>{
 
+        console.log(datos)
         if(datos.result==="ok")
         {
-            
+            localStorage.setItem("token",datos.token)
+            window.location.href = 'inicio.html';
+
 
 
         }

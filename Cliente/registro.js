@@ -1,5 +1,5 @@
 //elementos del formulario1
-const formulario=document.querySelector("#formulario");
+const formulario=document.querySelector("#formulario1");
 let respuesta=document.querySelector("#respuesta");
 let nombre=document.querySelector("#nombre");
 let nombErr=document.querySelector("#nombErr");
