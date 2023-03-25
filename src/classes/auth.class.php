@@ -64,6 +64,7 @@ class Authentication extends AuthModel
 
 		//vamos a tratar de devolver el id_usuario tambien en la respuesta
 		
+		
 
 
 

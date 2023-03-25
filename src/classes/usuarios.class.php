@@ -28,9 +28,9 @@ class Usuarios extends Database
 	 * Array con los campos de la tabla que se pueden proporcionar para insertar registros
 	 */
 	private $allowedConditions_insert = array(
-		'nombre',
-        'password',
-        'correo',
+		'Nombre',
+        'Password',
+        'Correo',
 		'rol'
         
 	);
@@ -150,6 +150,23 @@ class Usuarios extends Database
 			exit;
 		}
 	}
+
+	//funcion que usamos para devolver los datos 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 ?>
