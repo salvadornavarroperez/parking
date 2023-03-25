@@ -11,8 +11,9 @@ export function comprobar()
 
     setTimeout(function(){
 
-        //borramos el token del localStorage
+        //borramos el token y los datos de usuario del localStorage
         localStorage.removeItem("token")
+        localStorage.removeItem("usuario")
         comprobar()
     },1800000)
 

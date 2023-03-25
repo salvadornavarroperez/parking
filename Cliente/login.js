@@ -26,9 +26,20 @@ formulario.addEventListener("submit",function(event){
         console.log(datos)
         if(datos.result==="ok")
         {
+            //guradamos el token
             localStorage.setItem("token",datos.token)
+            //guardamos los datos de usuario, pero primero lo guardamos en un objeto sin el token
+            const usuario={
+                "Id_usuario":datos.Id_usuario,
+                "Nombre":datos.Nombre,
+                "Correo":datos.Correo,
+                "rol":datos.rol
+            }            
+            localStorage.setItem("usuario",JSON.stringify(usuario));            
+            
+            /*
             window.location.href = 'inicio.html';
-
+            */
 
 
         }
