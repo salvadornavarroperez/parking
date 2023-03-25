@@ -62,6 +62,14 @@ class Authentication extends AuthModel
 
 		parent::update($result[0]['Id_usuario'], $jwt);
 
+		//vamos a tratar de devolver el id_usuario tambien en la respuesta
+		
+
+
+
+
+
+
 		return $jwt;
 	}
 
