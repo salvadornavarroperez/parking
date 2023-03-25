@@ -35,11 +35,11 @@ formulario.addEventListener("submit",function(event){
                 "Correo":datos.Correo,
                 "rol":datos.rol
             }            
-            localStorage.setItem("usuario",JSON.stringify(usuario));            
+            localStorage.setItem("Datos_usuario",JSON.stringify(usuario));            
             
-            /*
+            
             window.location.href = 'inicio.html';
-            */
+            
 
 
         }
