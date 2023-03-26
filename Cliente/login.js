@@ -1,6 +1,7 @@
 const formulario=document.querySelector("#formulario")
-let correo=document.querySelector("#correo")
-let password=document.querySelector("#password")
+let correo=document.querySelector("#correo");
+let password=document.querySelector("#password");
+let olvidoContraseña=document.querySelector("#olvido");
 
 formulario.addEventListener("submit",function(event){
 
@@ -45,5 +46,11 @@ formulario.addEventListener("submit",function(event){
         }
 
     })        
+
+})
+ 
+olvidoContraseña.addEventListener("click",function(){
+
+    hre
 
 })
