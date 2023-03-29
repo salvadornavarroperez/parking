@@ -1,3 +1,7 @@
+import { comprobar } from './comprobacion.js';
+
+comprobar();
+
 var menu = document.getElementById("menu");
 var socioLista = document.createElement("li");
 var enlaceSocio = document.createElement("a");
