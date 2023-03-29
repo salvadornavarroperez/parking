@@ -41,7 +41,7 @@ class Usuarios extends Database
 	private function validate($data)
 	{
 
-		if (!isset($data['nombre']) || empty($data['password']) || empty($data['correo'])||!isset($data['rol']) ) {
+		if (!isset($data['Nombre']) || empty($data['Password']) || empty($data['Correo'])||!isset($data['rol']) ) {
 			$response = array(
 				'result' => 'error',
 				'details' => 'El campo player_name es obligatorio'

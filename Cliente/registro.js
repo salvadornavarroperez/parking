@@ -51,9 +51,9 @@ formulario.addEventListener("submit",(event)=>{
 
           //formamos el objeto que vamos a enviar por post para que la api rest haga un post
             const objeto={
-                'nombre':nombre.value,
-                'password':password.value,
-                'correo':email.value,
+                'Nombre':nombre.value,
+                'Password':password.value,
+                'Correo':email.value,
                 'rol':1
             };            
             registraUsuario(objeto); 
@@ -90,16 +90,6 @@ function registraUsuario(objeto)
             respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
             //vamos a almacenar el id de usuario, que podemos usar en el formulario2
             
-            if(datos.user_id!=null)
-            {
-                //guardamos el id del usuario
-                sessionStorage.setItem('id', datos.user_id);
-                //habilitamos los botones
-                metodoPago.disabled=false;
-                
-
-
-            }
             
             
             
