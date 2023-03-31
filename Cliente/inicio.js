@@ -1,15 +1,26 @@
 import { comprobar } from './comprobacion.js';
-
 comprobar();
+let acceso = document.getElementById('user')
 
 var menu = document.getElementById("menu");
 var socioLista = document.createElement("li");
 var enlaceSocio = document.createElement("a");
+
 enlaceSocio.textContent = "Hacerse socio";
 socioLista.id="esSocio";
 // formulario aun por hacer
 enlaceSocio.href="index-socio.html" 
 socioLista.appendChild(enlaceSocio);
+
+// hacemos aparecer diferente menu si el usuario esta logeado o no
+let datos_usuario = JSON.parse(localStorage.getItem('Datos_usuario'));
+console.log(datos_usuario)
+
+
+
+acceso.innerHTML = `<p>Bienvenido/a, ${datos_usuario.Nombre}</p> <a href="perfil_usuario.html">Mis perfil</a> <a href="cerrar_sesion.html">Cerrar sesión</a>`
+
+console.log(acceso)
 
 // variable usuario aun por definir por variable de storage, arreglo temporal
 var user = 2;
@@ -31,4 +42,4 @@ fetch("http://localhost/Proyecto/parking/socios.php?Id_usuario=" + user)
     } else if( socios.length > 0 && hacerseSocio != null) {
         socioLista.removeChild(enlaceSocio);
     }
-}) 
+})

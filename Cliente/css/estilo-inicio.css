@@ -36,3 +36,14 @@ main {
 	margin-left: 200px;
 	padding: 20px;
 }
+
+#user{
+	position: absolute;
+	width: 200px;
+	top: 40px;
+	right: 40px;
+  }
+
+main{
+	margin-left: 300px;
+  }
