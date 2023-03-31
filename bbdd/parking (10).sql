@@ -68,7 +68,7 @@ CREATE TABLE `pagos_socios` (
 
 CREATE TABLE `plazas` (
   `Id_plaza` int(11) NOT NULL,
-  `número_plaza` int(11) NOT NULL,
+  `numero_plaza` int(11) NOT NULL,
   `disponible` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -76,7 +76,7 @@ CREATE TABLE `plazas` (
 -- Volcado de datos para la tabla `plazas`
 --
 
-INSERT INTO `plazas` (`Id_plaza`, `número_plaza`, `disponible`) VALUES
+INSERT INTO `plazas` (`Id_plaza`, `numero_plaza`, `disponible`) VALUES
 (1, 1, 0),
 (2, 2, 1),
 (3, 3, 1),

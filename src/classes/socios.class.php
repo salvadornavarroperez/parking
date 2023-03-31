@@ -39,7 +39,7 @@ class Socios extends Database
 	private function validate($data)
 	{
 
-		if (!isset($data['Id_usuario']) || empty($data['plaza_fija']) || empty($data['id_plaza'])) {
+		if (!isset($data['Id_usuario']) || empty($data['id_plaza'])) {
 			$response = array(
 				'result' => 'error',
 				'details' => 'El campo player_name es obligatorio'
