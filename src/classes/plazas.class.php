@@ -36,10 +36,10 @@ class Plazas extends Database
 	private function validate($data)
 	{
 
-		if (!isset($data['numero_plaza']) || empty($data['disponible'])) {
+		if (empty($data['disponible'])) {
 			$response = array(
 				'result' => 'error',
-				'details' => 'El campo player_name es obligatorio'
+				'details' => 'El campo disponible es obligatorio'
 			);
 
 			Response::result(400, $response);
@@ -113,7 +113,7 @@ class Plazas extends Database
 			}
 		}
 
-		if ($this->validate($params)) {
+		
 			$affected_rows = parent::updateDB($this->table, $id, $params,"Id_plaza");
 
 			if ($affected_rows == 0) {
@@ -125,7 +125,7 @@ class Plazas extends Database
 				Response::result(200, $response);
 				exit;
 			}
-		}
+		
 	}
 
 	/**
