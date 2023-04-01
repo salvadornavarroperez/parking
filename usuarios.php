@@ -1,7 +1,7 @@
 <?php
 /**
- *	Script que se usa en los endpoints para trabajar con registros de la tabla PLAYER
- *	La clase "player.class.php" es la clase del modelo, que representa a un jugador de la tabla
+ *	Script que se usa en los endpoints para trabajar con registros de la tabla usuario
+ *	La clase "usuario.class.php" es la clase del modelo, que representa a un jugador de la tabla
 */
 require_once 'src/response.php';
 require_once 'src/classes/usuarios.class.php';
@@ -60,7 +60,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	case 'PUT':
 		$params = json_decode(file_get_contents('php://input'), true);
 
-		if(!isset($params) || !isset($_GET['Id_usuario']) || empty($_GET['id'])){
+		if(!isset($params) || !isset($params['Id_usuario']) || empty($params['Id_usuario'])){
 			$response = array(
 				'result' => 'error',
 				'details' => 'Error en la solicitud'
@@ -70,7 +70,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$player->update($_GET['id'], $params);
+		$usuario->update($params['Id_usuario'], $params);
 
 		$response = array(
 			'result' => 'ok'
@@ -83,7 +83,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	 * Cuando se solicita un DELETE se comprueba que se envíe un id de jugador. En caso afirmativo se utiliza el método delete() del modelo.
 	 */
 	case 'DELETE':
-		if(!isset($_GET['id']) || empty($_GET['id'])){
+		if(!isset($_GET['Id_usuario']) || empty($_GET['Id_usuario'])){
 			$response = array(
 				'result' => 'error',
 				'details' => 'Error en la solicitud'
@@ -93,7 +93,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$player->delete($_GET['id']);
+		$usuario->delete($_GET['Id_usuario']);
 
 		$response = array(
 			'result' => 'ok'
