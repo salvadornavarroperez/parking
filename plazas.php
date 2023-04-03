@@ -60,7 +60,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	case 'PUT':
 		$params = json_decode(file_get_contents('php://input'), true);
 
-		if(!isset($params) || !isset($_GET['id_plaza']) || empty($_GET['id_plaza'])){
+		if(!isset($params) || !isset($_GET['numero_plaza']) || empty($_GET['numero_plaza'])){
 			$response = array(
 				'result' => 'error',
 				'details' => 'Error en la solicitud'
@@ -70,7 +70,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$plaza->update($_GET['id_plaza'], $params);
+		$plaza->update($_GET['numero_plaza'], $params);
 
 		$response = array(
 			'result' => 'ok'

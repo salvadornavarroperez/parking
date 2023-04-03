@@ -61,3 +61,28 @@ body {
     font-size: 0.8em;
   }
   
+  .error-container {
+    background-color: #ffe6e6; /* color de fondo */
+    border: 1px solid #ff9999; /* borde */
+    border-radius: 5px; /* esquinas redondeadas */
+    color: #ff3333; /* color del texto */
+    font-size: 16px; /* tamaño de fuente */
+    padding: 10px; /* espacio interno */
+    margin-bottom: 20px; /* espacio externo inferior */
+  }
+  
+  button{
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  button:hover{
+
+    background-color: #0073aa;
+
+  }

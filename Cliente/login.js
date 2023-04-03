@@ -1,6 +1,8 @@
 const formulario=document.querySelector("#formulario")
-let correo=document.querySelector("#correo")
-let password=document.querySelector("#password")
+let correo=document.querySelector("#correo");
+let password=document.querySelector("#password");
+let olvidoContraseña=document.querySelector("#olvido");
+let error=document.querySelector("#error");
 
 formulario.addEventListener("submit",function(event){
 
@@ -38,12 +40,21 @@ formulario.addEventListener("submit",function(event){
             localStorage.setItem("Datos_usuario",JSON.stringify(usuario));            
             
             
-            window.location.href = 'inicio.html';
-            
+            window.location.href = 'inicio.html';    
 
 
         }
+        else
+        {
+            error.textContent="Usuario o contraseña incorrecta";
+        }
 
     })        
+
+})
+ 
+olvidoContraseña.addEventListener("click",function(){
+
+    hre
 
 })
