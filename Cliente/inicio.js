@@ -5,7 +5,7 @@ let acceso = document.getElementById('user')
 var menu = document.getElementById("menu");
 var socioLista = document.createElement("li");
 var enlaceSocio = document.createElement("a");
-
+let cerrarSesion=document.querySelector("#cerrar");
 enlaceSocio.textContent = "Hacerse socio";
 socioLista.id="esSocio";
 // formulario aun por hacer
@@ -42,4 +42,11 @@ fetch("http://localhost/Proyecto/parking/socios.php?Id_usuario=" + user)
     } else if( socios.length > 0 && hacerseSocio != null) {
         socioLista.removeChild(enlaceSocio);
     }
+})
+
+cerrarSesion.addEventListener("click",function(){
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("Datos_usuario");
+    comprobar();
 })
