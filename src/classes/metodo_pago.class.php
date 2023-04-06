@@ -33,7 +33,8 @@ class Metodo_pago extends Database
 		'usuario',
 		'numero_tarjeta',
         'nombre_tarjeta',
-        'fecha_caducidad'
+        'fecha_caducidad',
+		'cvc'
         
 	);
 
@@ -43,7 +44,7 @@ class Metodo_pago extends Database
 	private function validate($data)
 	{
 
-		if (!isset($data['usuario']) || empty($data['numero_tarjeta'])|| empty($data['nombre_tarjeta'])||empty($data['fecha_caducidad'])) {
+		if (!isset($data['usuario']) || empty($data['numero_tarjeta'])|| empty($data['nombre_tarjeta'])||empty($data['fecha_caducidad'])||empty($data['cvc'])) {
 			$response = array(
 				'result' => 'error',
 				'details' => 'El campo usuario es obligatorio'

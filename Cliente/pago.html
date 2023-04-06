@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metodo de pago</title>
-    <script defer src="metodoPago.js"></script>
+   
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
@@ -13,6 +13,9 @@
         <label for="numeroTarjeta" id="labNunTar" class="ocultos">Número de tarjeta</label>
         <input type="text" name="numeroTarjeta" id="numeroTarjeta" class="ocultos">
         <div id="numTarErr"></div>
+        <label for="cvc" id="cvcLabel" class="ocultos">CVC</label>
+        <input type="text" name="cvc" id="cvc" class="ocultos">
+        <div id="cvcError"></div>
         <label for="nombreTarjeta" id="labNomTar" class="ocultos">Nombre de la tarjeta</label>
         <input type="text" name="nombreTarjeta" id="nombreTarjeta" class="ocultos">
         <div id="nomTarErr"></div>
@@ -28,4 +31,5 @@
     </form>
     
 </body>
+<script src="metodoPago.js"></script>
 </html>
