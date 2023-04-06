@@ -133,7 +133,7 @@ class Vehiculos extends Database
 	 */
 	public function delete($id)
 	{
-		$affected_rows = parent::deleteDB($this->table, $id,"id_matricula");
+		$affected_rows = parent::deleteDB($this->table, $id,"matricula");
 
 		if ($affected_rows == 0) {
 			$response = array(

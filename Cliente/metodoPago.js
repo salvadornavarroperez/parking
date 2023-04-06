@@ -5,9 +5,16 @@ let numTarjeta = document.getElementById('numeroTarjeta');
 let errNumTarjeta = document.getElementById('numTarErr');
 let etNomTarjeta= document.getElementById('labNomTar');
 let nomTarjeta = document.getElementById('nombreTarjeta');
+let cvc = document.getElementById('cvc');
 let errNomTarjeta = document.getElementById('nomTarErr');
 let mesTarjeta=document.querySelector("#mes");
 let añoTarjeta=document.querySelector("#año");
+
+
+// variable usuario de storage
+var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
+var id_usuario = usuario["Id_usuario"]; 
+
 
 //vamos a crear los option para los valores de los meses de la fecha de caducidad de la tarejeta(meses y años)
 for(let i=1;i<=12;i++)
@@ -36,18 +43,17 @@ formulario.addEventListener("submit",(event)=>{
 })
 
 
-
-
 function registraMetodoPago()
 {
     //expresion regular para la tarjeta
     const regextarjeta=/^\d{16}$/
     const regexnombtarjeta=/^[a-zA-Z\s]+$/
-    
+    const regexcvc = /^\d{3,4}$/
+    console.log(cvc.value)
 
     //montamos el la fecha de caducidad de la tarjeta para que sea válida para DATE mysql(yyyy-mm-dd)
     let fechaCaducidad=`${añoTarjeta.value}-${mesTarjeta.value-1}-01`;
-    console.log(numTarjeta.value);
+
     //comprobamos la validez de los valores de la tarjeta
     if(!regextarjeta.test(numTarjeta.value))
     {
@@ -58,15 +64,22 @@ function registraMetodoPago()
         document.querySelector("#nomTarErr").textContent="El nombre de la tarjeta no es válido";
 
     }
+    if(!regexcvc.test(cvc.value))
+    {
+        document.querySelector("#cvcError").textContent="El CVC no es válido";
+
+    }
+ 
     //si ambos son válidos montamos el cuerpo del fetch
-    if(regextarjeta.test(numTarjeta.value)&&regexnombtarjeta.test(nomTarjeta.value))
+    if(regextarjeta.test(numTarjeta.value)&&regexnombtarjeta.test(nomTarjeta.value)&&regexcvc.test(cvc.value))
     {
         //montamos el cuerpo del post
         const pago={
-            'usuario':sessionStorage.getItem('id'),
+            'usuario': id_usuario,
             'numero_tarjeta':numTarjeta.value,
             'nombre_tarjeta':nomTarjeta.value,
-            'fecha_caducidad':fechaCaducidad
+            'fecha_caducidad':fechaCaducidad,
+            'cvc':cvc.value
         }
 
         let options={
@@ -78,10 +91,8 @@ function registraMetodoPago()
         fetch("http://localhost/Proyecto/parking/metodo_pago.php",options)
         .then(respuesta=>respuesta.json())
         .then(datos=>{
-
-                            console.log(datos);
-
-
+            console.log(datos)
+            window.location.href = 'inicio.html';    
         })        
     }
 

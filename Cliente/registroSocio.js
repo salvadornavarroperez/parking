@@ -31,7 +31,7 @@ divPago.style.color = "red";
 // enlace al formulario de metodo de pago
 var formPago = document.createElement("a");
 formPago.textContent = "Introducir un método de pago"
-formPago.href = "metodoPago.html"
+formPago.href = "pago.html"
 
 // añadir los divs al body, si tiene tarjeta se borra
 divMetodoPago.append(divPago, formPago);
