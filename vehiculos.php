@@ -83,7 +83,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	 * Cuando se solicita un DELETE se comprueba que se envíe un id de jugador. En caso afirmativo se utiliza el método delete() del modelo.
 	 */
 	case 'DELETE':
-		if(!isset($_GET['id_matricula']) || empty($_GET['id_matricula'])){
+		if(!isset($_GET['matricula']) || empty($_GET['matricula'])){
 			$response = array(
 				'result' => 'error',
 				'details' => 'Error en la solicitud'
@@ -93,7 +93,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$vehiculo->delete($_GET['id_matricula']);
+		$vehiculo->delete($_GET['matricula']);
 
 		$response = array(
 			'result' => 'ok'

@@ -125,7 +125,7 @@ class Database
 	 */
 	public function deleteDB($table, $id,$nombreId)
 	{
-		$query = "DELETE FROM $table WHERE '.$nombreId.' = $id";
+		$query = "DELETE FROM $table WHERE $nombreId = $id";
 		$this->connection->query($query);
 
 		if(!$this->connection->affected_rows){

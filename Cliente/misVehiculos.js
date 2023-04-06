@@ -21,5 +21,17 @@ fetch("http://localhost/Proyecto/parking/Vehiculos.php?usuario=" + id_usuario)
         borrar.textContent = "Borrar"
         matricula.appendChild(borrar);
         vehiculos.append(matricula);
+        borrar.addEventListener("click", function() {
+
+            fetch("http://localhost/Proyecto/parking/vehiculos.php?matricula=" + "'"+ m.matricula + "'", {
+                method: 'DELETE'
+              })
+                .then(response => {
+                  if (response.ok) {
+                    location.reload();
+                    console.log("hola " + m.matricula)
+                  }
+                })
+        })
     })
 })
