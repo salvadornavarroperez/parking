@@ -1,4 +1,5 @@
 import { comprobar } from "./comprobacion.js";
+import { updateLocalStorage } from "./comprobacion.js";
 comprobar();
 let formUpdateUsuario = document.getElementById("formActualizarUsuario");
 let nombreUsuario = document.getElementById("nombre");
@@ -23,6 +24,8 @@ formUpdateUsuario.addEventListener("submit", (event) => {
         "Correo":correoUsuario.value,
         "rol":rolUsuario.value
     }
+  updateLocalStorage(datos_usuario.Id_usuario,nombreUsuario.value,correoUsuario.value,rolUsuario.value);
+
   let options={
         method: "PUT",
         headers:{'Content-type':'aplication/json'},
@@ -30,8 +33,6 @@ formUpdateUsuario.addEventListener("submit", (event) => {
             }
     
     fetch("http://localhost/Proyecto/parking/usuarios.php", options)
-    .then((respuesta) => respuesta.json())
-    .then((datos) => {
-        console.log(datos)
-    });
+    
+    
 });
