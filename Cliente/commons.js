@@ -29,3 +29,16 @@ const usuario={
 }            
 localStorage.setItem("Datos_usuario",JSON.stringify(usuario));
 }
+
+export function testPassword(password)
+{
+    const regexPassword = /^(?=.*\d)(?=.*[A-Z]).{8,}$/;
+    if(!regexPassword.test(password))
+        {
+            return true
+        }
+    else
+    {
+        return false
+    }
+}
