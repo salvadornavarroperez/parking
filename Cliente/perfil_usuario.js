@@ -8,5 +8,4 @@ infoUsuario.innerHTML = `<p>
                         Id Usuario: <b>${datos_usuario.Id_usuario}<br>
                         Nombre: <b>${datos_usuario.Nombre}<br>
                         Correo: <b>${datos_usuario.Correo}<br>
-                        Tipo: <b>${datos_usuario.rol}<br>
                         </p>`
