@@ -30,8 +30,7 @@ formCambiarContrasena.addEventListener("submit", function(event){
             fetch("http://localhost/Proyecto/parking/usuarios.php", options)
 
             alert("Las contraseña se ha modificado correctamente");
-            nueva.value=''
-            confirmar.value=''
+            window.location = "perfil_usuario.html";
         }else{
             alert("Las contraseñas no cumplen");
         }
