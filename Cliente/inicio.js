@@ -1,4 +1,4 @@
-import { comprobar } from './comprobacion.js';
+import { comprobar } from './commons.js';
 comprobar();
 let acceso = document.getElementById('user')
 

@@ -36,13 +36,18 @@ class Usuarios extends Database
 	/**
 	 * Array con los campos de la tabla que se pueden proporcionar para insertar registros
 	 */
-	private $allowedConditions_update = array(
+	
+	 private $allowedConditions_update = array(
 		'Id_usuario',
 		'nombre',
         'Correo',
-		'rol' 
+		'rol',
 	);
-
+	private $allowedConditions_update_pass = array(
+		'Id_usuario',
+		'Password'
+	);
+	
 	/**
 	 * Método para validar los datos que se mandan para insertar un registro, comprobar campos obligatorios, valores válidos, etc.
 	 */
@@ -53,6 +58,21 @@ class Usuarios extends Database
 			$response = array(
 				'result' => 'error',
 				'details' => 'El campo player_name es obligatorio'
+			);
+
+			Response::result(400, $response);
+			exit;
+		}
+
+		return true;
+	}
+	private function validatePass($data)
+	{
+
+		if (!isset($data['Password']) || empty($data['Password'])) {
+			$response = array(
+				'result' => 'error',
+				'details' => 'Debes de indicar una constaseña'
 			);
 
 			Response::result(400, $response);
@@ -127,6 +147,35 @@ class Usuarios extends Database
 		}
 
 		if ($this->validate($params)) {
+			$affected_rows = parent::updateDB($this->table, $id, $params,"Id_usuario");
+
+			if ($affected_rows == 0) {
+				$response = array(
+					'result' => 'error',
+					'details' => 'No hubo cambios'
+				);
+
+				Response::result(200, $response);
+				exit;
+			}
+		}
+	}
+	public function updatePass($id, $params)
+	{
+		foreach ($params as $key => $parm) {
+			if (!in_array($key, $this->allowedConditions_update_pass)) {
+				unset($params[$key]);
+				$response = array(
+					'result' => 'error',
+					'details' => 'Error en la solicitud'
+				);
+
+				Response::result(400, $response);
+				exit;
+			}
+		}
+
+		if ($this->validatePass($params)) {
 			$affected_rows = parent::updateDB($this->table, $id, $params,"Id_usuario");
 
 			if ($affected_rows == 0) {
