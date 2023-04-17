@@ -14,7 +14,7 @@ formCambiarContrasena.addEventListener("submit", function(event){
    
     else
     {
-        if (testPassword(nueva)){
+        if (testPassword(nueva.value)){
 
             let cuerpo={
                 "Id_usuario":datos_usuario.Id_usuario,
