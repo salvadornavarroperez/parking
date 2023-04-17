@@ -32,7 +32,7 @@ formCambiarContrasena.addEventListener("submit", function(event){
             alert("Las contraseña se ha modificado correctamente");
             window.location = "perfil_usuario.html";
         }else{
-            alert("Las contraseñas no cumplen");
+            alert("La contraseña debe de tener al menos 8 carácteres, y entre ellos una letra mayuscula y un numero");
         }
         
     }
