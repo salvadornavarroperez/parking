@@ -18,3 +18,27 @@ export function comprobar()
     },1800000)
 
 }
+
+export function updateLocalStorage(id,nombre,correo,rol)
+{
+const usuario={
+    "Id_usuario":id,
+    "Nombre":nombre,
+    "Correo":correo,
+    "rol":rol
+}            
+localStorage.setItem("Datos_usuario",JSON.stringify(usuario));
+}
+
+export function testPassword(password)
+{
+    const regexPassword = /^(?=.*\d)(?=.*[A-Z]).{8,}$/;
+    if(regexPassword.test(password))
+        {
+        return true
+        }
+    else
+    {
+        return false
+    }
+}

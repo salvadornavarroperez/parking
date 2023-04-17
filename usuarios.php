@@ -70,8 +70,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
+		if(isset($params['Password']) || !empty($params['Password'])){
+		
+		$passMd5=hash('sha256',$params['Password']);
+        $params["Password"]=$passMd5;
+		$usuario->updatePass($params['Id_usuario'], $params);
+		}
+
 		$usuario->update($params['Id_usuario'], $params);
 
+
+		
 		$response = array(
 			'result' => 'ok'
 		);
