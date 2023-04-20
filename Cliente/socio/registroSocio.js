@@ -181,7 +181,7 @@ botonSocio.addEventListener("click", function(){
                 console.log(datos)
                 if(datos.result==="ok") {       
                     // si tenemos resuesta ok entonces vamos al inicio
-                    window.location.href = 'inicio.html';    
+                    window.location.href = '../inicio.html';    
                 } else {
                     console.log("hemos pinchao primo");
                 }            

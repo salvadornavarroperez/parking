@@ -7,7 +7,7 @@ var socioLista = document.createElement("li");
 var enlaceSocio = document.createElement("a");
 enlaceSocio.textContent = "Hacerse socio";
 socioLista.id="esSocio";
-enlaceSocio.href="registroSocio.html" 
+enlaceSocio.href="socio/registroSocio.html" 
 socioLista.className = "nav-item";
 enlaceSocio.className = "nav-link"
 
