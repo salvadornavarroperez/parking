@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enlace al archivo CSS de Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Registro Socio</title>
     <script defer src="registroSocio.js"></script>
 </head>
+
 <body>
-    <h1>¿Deseas hacerte socio?</h1>
+    <div class="container mt-5">
+        <h1>¿Deseas hacerte socio?</h1>
 
-    <label for="plaza">¿Desea tener plaza fija?</label>
-     <select name="plaza" id="plaza">
-        <option value="x">Escoja una opción</option>
-        <option value="si">Si</option>
-        <option value="no">No</option>
-     </select><br>
+        <div class="form-group">
+            <label for="plaza">¿Desea tener plaza fija?</label>
+            <select class="form-control" name="plaza" id="plaza">
+                <option value="x">Escoja una opción</option>
+                <option value="si">Si</option>
+                <option value="no">No</option>
+            </select>
+        </div>
 
-     <!--para plaza fija-->
-     <div id="selectPlazasDiv"></div>
-    <p></p>
-    <input type="checkbox" id="checkSocio" name="miCheckbox" onchange="activarBoton()"> Acepto los terminos y condiciones de hacerse socio<br>
-    <hr>
-    <button id="botonSocio">Hacerse Socio</button>
-   
+        <!--para plaza fija-->
+        <div id="selectPlazasDiv"></div>
+        <p></p>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="checkSocio" name="miCheckbox"
+                onchange="activarBoton()">
+            <label class="form-check-label" for="checkSocio">Acepto los términos y condiciones de hacerse socio</label>
+        </div>
+        <hr>
+        <button class="btn btn-primary" id="botonSocio">Hacerse Socio</button>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
