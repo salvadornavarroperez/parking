@@ -129,7 +129,7 @@ formulario.addEventListener('submit', function(event) {
             .then(datos=>{                                        
                 if(datos.result==="ok") {       
                     // si tenemos resuesta ok entonces vamos al inicio
-                     window.location.href = '../inicio.html';    
+                     window.location.href = 'misReservas.html';    
                 }         
             }) 
         }    
