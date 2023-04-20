@@ -6,12 +6,31 @@
   <title>Mis vehículos</title>
   <!-- Agregamos los estilos de Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <style>
+    #vehiculos {
+        display: flex;
+    }
+    
+    .cuadrado {
+      width: 200px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border: 1px solid #000;
+      border-radius: 10px;
+      margin-left: 1%;
+      margin-top: 10px;
+      font-size: 28px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
+  <h2 style="padding-left:1%;">Mis vehiculos</h2>
     <div id="vehiculos"></div>
     <div style="padding-left:1%;">
         <p></p>
-        <a class="btn btn-secondary" href = "inicio.html">Volver al inicio</a>        
+        <a class="btn btn-secondary" href = "../inicio.html">Volver al inicio</a>        
     </div> 
 </body>
 <script src="misVehiculos.js"></script>
