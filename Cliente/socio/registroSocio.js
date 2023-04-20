@@ -15,6 +15,7 @@ var plazaFija = false;
 
 //select de las plazas
 var selectPlazas = document.createElement("select");
+selectPlazas.classList.add("container")
 
 // por defecto van sin aparecer en el documento
 textoSelectPlazas.hidden = true;
@@ -22,16 +23,17 @@ selectPlazas.hidden = true;
 
 // div padre para añadir o quitar segun tenga tarjeta metida o no
 var divMetodoPago = document.createElement("div");
+divMetodoPago.classList.add("container");
 
 // h4 de informacion
 var divPago = document.createElement("h4");
-divPago.textContent = "Usted no tiene un método de pago actualizado"
+divPago.innerHTML = "<h3>Usted no tiene un método de pago actualizado</h3>"
 divPago.style.color = "red";
 
 // enlace al formulario de metodo de pago
 var formPago = document.createElement("a");
 formPago.textContent = "Introducir un método de pago"
-formPago.href = "pago.html"
+formPago.href = "../pago.html"
 
 // añadir los divs al body, si tiene tarjeta se borra
 divMetodoPago.append(divPago, formPago);
