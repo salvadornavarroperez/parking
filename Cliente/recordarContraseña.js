@@ -1,9 +1,8 @@
 let correo=document.querySelector("#correo");
 let boton=document.querySelector("#enviar");
 let error=document.querySelector("#error");
-let enlace=document.createElement("a");
 //montamos el enlace en caso de que se pueda usar
-enlace.href="http://localhost/Proyecto/parking/Cliente/cambiar_password.html";
+let enlace ="http://localhost/Proyecto/parking/Cliente/cambiar_pass.html?id=";
 
 
 const regexEmail = /\S+@\S+\.\S+/;
@@ -20,8 +19,10 @@ boton.addEventListener("click",function(){
 
                 if(datos.result=="ok")
                 {
+                    enlace=enlace+`${datos.usuarios[0].Id_usuario}`;
                     enviarCorreo(correo.value)
-                    console.log()
+                    console.log(enlace);
+                    console.log(datos.usuarios[0].Id_usuario)
                 }
                 else
                 {
@@ -46,8 +47,8 @@ function enviarCorreo(correo)
             SecureToken : "1f353e26-2417-4109-85ea-1067ce8a71de",
             To : correo,
             From : "parkingrest2023@gmail.com",
-            Subject : "This is the subject",
-            Body : "And this is the body"
+            Subject : "Cambio de password",
+            Body : `No te olvides más del password hijo puta: <a href="${enlace}">${enlace}</a>`
         }).then(
         message => alert(message)
         );

@@ -79,6 +79,31 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		Response::result(200, $response);
 		break;
 
+
+		case 'PATCH':
+			$params = json_decode(file_get_contents('php://input'), true);
+	
+			if(!isset($params) || !isset($params['Id_usuario']) || empty($params['Id_usuario'])){
+				$response = array(
+					'result' => 'error',
+					'details' => 'Error en la solicitud'
+				);
+	
+				Response::result(400, $response);
+				exit;
+			}
+	
+			$usuario->update($params['Id_usuario'], $params);
+	
+			$response = array(
+				'result' => 'ok'
+			);
+	
+			Response::result(200, $response);
+			break;
+	
+	
+
 	/**
 	 * Cuando se solicita un DELETE se comprueba que se envíe un id de jugador. En caso afirmativo se utiliza el método delete() del modelo.
 	 */

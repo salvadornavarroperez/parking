@@ -34,12 +34,13 @@ class Usuarios extends Database
 	);
 	
 	/**
-	 * Array con los campos de la tabla que se pueden proporcionar para insertar registros
+	 * Array con los campos de la tabla que se pueden proporcionar para actualizar registros
 	 */
 	private $allowedConditions_update = array(
 		'Id_usuario',
 		'nombre',
         'Correo',
+		'Password',
 		'rol' 
 	);
 
