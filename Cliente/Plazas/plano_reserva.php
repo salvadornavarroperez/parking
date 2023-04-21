@@ -4,6 +4,9 @@
     <title>Area de reserva</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
+      .btn-outline-success:hover {
+      background-color: gray;
+      }
       .parking-lot-container {
         padding:  5%;
         margin: 0 auto;
@@ -21,11 +24,24 @@
         margin-right: 5px;
         background-color: lightgray;
       }
-      .ocupada{
+      .libre{
         background-color: green;
       }
-      .libre{
+      .ocupada{
         background-color: red;
+        pointer-events: none;
+      }
+      .marcado{
+      -webkit-animation: blinker 1s linear infinite;
+      animation: blinker 1s linear infinite;
+      }
+
+      @-webkit-keyframes blinker {  
+        50% { opacity: 0; }
+      }
+
+      @keyframes blinker {  
+        50% { opacity: 0; }
       }
     </style>
   </head>
