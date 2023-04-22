@@ -1,12 +1,12 @@
 <?php
 /**
- *	Script que se usa en los endpoints para trabajar con registros de la tabla usuario
- *	La clase "usuario.class.php" es la clase del modelo, que representa a un jugador de la tabla
+ *	Script que se usa en los endpoints para trabajar con registros de la tabla reserva
+ *	La clase "reserva.class.php" es la clase del modelo, que representa a un jugador de la tabla
 */
 require_once 'src/response.php';
-require_once 'src/classes/usuarios.class.php';
+require_once 'src/classes/reservas.class.php';
 
-$usuario = new Usuarios();
+$reserva = new Reservas();
 
 /**
  * Se mira el tipo de petición que ha llegado a la API y dependiendo de ello se realiza una u otra accción
@@ -18,11 +18,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
 		$params = $_GET;
 
-		$usuarios = $usuario->get($params);
+		$reserva = $reserva->get($params);
 
 		$response = array(
 			'result' => 'ok',
-			'usuarios' => $usuarios
+			'reserva' => $reserva
 		);
 
 		Response::result(200, $response);
@@ -44,7 +44,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$insert_id = $usuario->insert($params);
+		$insert_id = $reserva->insert($params);
 
 		$response = array(
 			'result' => 'ok',
@@ -60,7 +60,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	case 'PUT':
 		$params = json_decode(file_get_contents('php://input'), true);
 
-		if(!isset($params) || !isset($params['Id_usuario']) || empty($params['Id_usuario'])){
+		if(!isset($params) || !isset($params['Id_reserva']) || empty($params['Id_reserva'])){
 			$response = array(
 				'result' => 'error',
 				'details' => 'Error en la solicitud'
@@ -70,17 +70,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		if(isset($params['Password']) || !empty($params['Password'])){
-		
-		$passMd5=hash('sha256',$params['Password']);
-        $params["Password"]=$passMd5;
-		$usuario->updatePass($params['Id_usuario'], $params);
-		}
+		$reserva->update($params['Id_reserva'], $params);
 
-		$usuario->update($params['Id_usuario'], $params);
-
-
-		
 		$response = array(
 			'result' => 'ok'
 		);
@@ -92,7 +83,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	 * Cuando se solicita un DELETE se comprueba que se envíe un id de jugador. En caso afirmativo se utiliza el método delete() del modelo.
 	 */
 	case 'DELETE':
-		if(!isset($_GET['Id_usuario']) || empty($_GET['Id_usuario'])){
+		if(!isset($_GET['Id_reserva']) || empty($_GET['Id_reserva'])){
 			$response = array(
 				'result' => 'error',
 				'details' => 'Error en la solicitud'
@@ -102,7 +93,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$usuario->delete($_GET['Id_usuario']);
+		$reserva->delete($_GET['Id_reserva']);
 
 		$response = array(
 			'result' => 'ok'

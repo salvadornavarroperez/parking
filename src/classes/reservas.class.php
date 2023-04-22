@@ -36,8 +36,7 @@ class Reservas extends Database
         'fecha',
         'hora_entrada',
         'hora_salida',
-        'importe',
-		'page'
+        'importe'
 	);
 
 	/**
@@ -49,7 +48,7 @@ class Reservas extends Database
 		if (!isset($data['id_usuario']) || empty($data['id_plaza'])|| empty($data['fecha']) || empty($data['hora_entrada'])|| empty($data['hora_salida']) || empty($data['importe'])) {
 			$response = array(
 				'result' => 'error',
-				'details' => 'El campo player_name es obligatorio'
+				'details' => 'El campo tal es obligatorio'
 			);
 
 			Response::result(400, $response);

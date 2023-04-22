@@ -40,7 +40,7 @@ formulario.addEventListener("submit", function(event){
 
         console.log(datos)
         if(datos.result==="ok") {
-            window.location.href = 'inicio.html';
+            window.location.href = 'misVehiculos.html';
         }
     })        
     }
