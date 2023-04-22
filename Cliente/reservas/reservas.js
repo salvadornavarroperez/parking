@@ -4,6 +4,8 @@ const fechaEntradaInput = document.getElementById('fechaEntrada');
 const fechaSalidaInput = document.getElementById('fechaSalida');
 const horaEntrada = document.getElementById('horaEntrada');
 const horaSalida = document.getElementById('horaSalida');
+var botonReserva = document.getElementById('btnreserva');
+botonReserva.disabled = true;
 
 // Obtener el campo de resultado del precio
 const resultadoPrecio = document.getElementById('resultadoPrecio');
@@ -42,7 +44,6 @@ fetch("http://localhost/Proyecto/parking/plazas.php?disponible=1")
         let randomIndex = Math.floor(Math.random() * plazas.length);
         let randomNum = plazas[randomIndex];
         plazaAleatoria = randomNum['Id_plaza'] 
-        console.log(plazaAleatoria);
     }  
 }) 
 
@@ -56,14 +57,16 @@ function calcularPrecio() {
     const diferenciaTiempo = fechaSalida - fechaEntrada;
     const diferenciaDias = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
 
-    if (diferenciaDias < 0) {
+    if (diferenciaDias <= 0) {
         // Mostrar un mensaje emergente si la fecha de entrada es mayor que la fecha de salida
-        alert('La fecha de entrada debe ser menor o igual a la fecha de salida.');
+        alert('La fecha de entrada debe ser menor a la fecha de salida y la reserva será minimo de un dia.');
         resultadoPrecio.textContent = ''; // Limpiar el campo de resultado del precio
-    } else {
+        botonReserva.disabled = true;
+    } else if (diferenciaDias >= 1) {
         // Calcular el precio en función de la cantidad de días y mostrarlo en el campo de resultado del precio
         precio = diferenciaDias * 8;
         resultadoPrecio.textContent = `Precio: ${precio} €`;
+        botonReserva.disabled = false;
     }
 }
 
@@ -90,8 +93,6 @@ formulario.addEventListener('submit', function(event) {
 
     var fechaEInsert = fechaInsert(fechaEntradaInput.value, horaEntrada.value);
     var fechaSInsert = fechaInsert(fechaSalidaInput.value, horaSalida.value)
-
-    console.log(fechaSInsert)
     
     let cuerpo={
         'id_usuario': id_usuario,               
