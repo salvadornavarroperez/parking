@@ -92,6 +92,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
 				Response::result(400, $response);
 				exit;
 			}
+
+			//añadimops esto para que la contraseña se meta encriptada
+			$passMd5=hash('sha256',$params['Password']);
+        	$params["Password"]=$passMd5;
 	
 			$usuario->update($params['Id_usuario'], $params);
 	
