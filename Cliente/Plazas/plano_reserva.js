@@ -14,7 +14,7 @@ if(!plaza){
         "plaza":plaza.id
      }            
      localStorage.setItem("plaza",JSON.stringify(reservaPlaza));
-     window.location = "../reservas/nuevaReserva.html"
+     window.location = "../Cliente/reservas/nuevaReserva.html"
 }
 
 /*if(e.target.classList.contains('ocupada')){
@@ -41,7 +41,7 @@ fetch("http://localhost/Proyecto/parking/plazas.php")
 .then(datos=>{
     var plazas = Array.from(datos.plazas);
     plazas.forEach(pl => {
-        if(pl.disponible === '1'){
+        if(pl.disponible === '0'){
             ocupada(pl.Id_plaza)
         }else{
             libre(pl.Id_plaza)

@@ -18,8 +18,7 @@
             <li class="nav-item"><a class="nav-link" href="vehiculos/registrarVehiculo.html">Registro Vehiculo</a></li>
             <li class="nav-item"><a class="nav-link" href="vehiculos/misVehiculos.html">Mis vehiculos</a></li>
             <li class="nav-item"><a class="nav-link" href="pago.html">Añadir metodo de pago</a></li>
-            <li class="nav-item"><a class="nav-link" href="perfil_usuario.html">Mi perfil</a></li>
-            <li class="nav-item"><a class="nav-link" href="reservas/nuevaReserva.html">Reservar</a></li>
+            <li class="nav-item"><a class="nav-link" href="perfil_usuario.html">Mi perfil</a></li>            
             <li class="nav-item"><a class="nav-link" href="reservas/misReservas.html">Mis Reservas</a></li>
         </ul>
     </nav>
