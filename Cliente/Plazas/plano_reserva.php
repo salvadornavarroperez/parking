@@ -17,6 +17,8 @@
         height: 25px;
         margin-right: 5px;
         border: 1px solid #e9ecef;
+        color:black;
+        font-size:10px;
       }
       .parking-street {
         width: 60px;
@@ -54,10 +56,10 @@
             echo '<div class="d-flex flex-nowrap">';
           }
           if ($i % 2 == 0) {
-            echo '<button class="parking-spot btn btn-outline-success" id= '.($i+1).'></button>';
+            echo '<button class="parking-spot btn btn-outline-success" id= '.($i+1).'>'.($i+1).'</button>';
           } else {
             echo '<div class="parking-street text-secondary"></div>';
-            echo '<button class="parking-spot btn btn-outline-success" id= '.($i+1).'></button>';
+            echo '<button class="parking-spot btn btn-outline-success" id= '.($i+1).'>'.($i+1).'</button>';
           }
           if ($i % 12 == 11) {
             echo '</div>';
