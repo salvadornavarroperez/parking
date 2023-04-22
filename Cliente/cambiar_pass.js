@@ -12,67 +12,45 @@ const id=sacarId();
 let nueva = document.getElementById("nueva");
 let confirmar = document.getElementById("confirmar");
 let formCambiarContrasena = document.getElementById("formCambiarContrasena");
-//let datos_usuario = recuperarUsuario(id);
-//console.log(datos_usuario.usuarios)
 
 
-fetch(`http://localhost/Proyecto/parking/usuarios.php?Id_usuario=${}`)
-.then(respuesta =>respuesta.json())
-.then(datos=>{
 
+formCambiarContrasena.addEventListener("submit", function(event){
+    event.preventDefault();
+    
+    if (nueva.value != confirmar.value) {
+        alert("Las contraseñas no coinciden");
+    }
    
-    formCambiarContrasena.addEventListener("submit", function(event){
-        event.preventDefault();
-        console.log(nueva.value,confirmar.value)
-        console.log(datos_usuario.usuarios)
-        if (nueva.value != confirmar.value) {
-            alert("Las contraseñas no coinciden");
-        }
-       
-    
-        else
-        {
-            if (testPassword(nueva.value)){
-    
-                let cuerpo={
-                    "Id_usuario":id,
-                    "Password":nueva.value,
-                    "Nombre": datos.usuarios.Nombre,
-                    "Correo": datos.usuarios.Correo,
-                    "rol":datos.usuarios.rol
-                    
-                }
-              let options={
-                    method: "PUT",
-                    headers:{'Content-type':'aplication/json'},
-                    body:JSON.stringify(cuerpo)
-                        }
+
+    else
+    {
+        if (testPassword(nueva.value)){
+
+            let cuerpo={
+                "Id_usuario":id,
+                "Password":nueva.value,
+               
                 
-                fetch("http://localhost/Proyecto/parking/usuarios.php", options)
-    
-                alert("Las contraseña se ha modificado correctamente");
-                window.location = "login.html";
-            }else{
-                alert("La contraseña debe de tener al menos 8 carácteres, y entre ellos una letra mayuscula y un numero");
-                console.log(nueva.value,confirmar.value)
             }
+          let options={
+                method: "PUT",
+                headers:{'Content-type':'aplication/json'},
+                body:JSON.stringify(cuerpo)
+                    }
             
+            fetch("http://localhost/Proyecto/parking/usuarios.php", options)
+
+            alert("Las contraseña se ha modificado correctamente");
+            window.location = "login.html";
+        }else{
+            alert("La contraseña debe de tener al menos 8 carácteres, y entre ellos una letra mayuscula y un numero");
+            console.log(nueva.value,confirmar.value)
         }
         
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-})
+    }
+    
+});
 
 
 
