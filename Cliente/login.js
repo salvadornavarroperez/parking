@@ -55,6 +55,6 @@ formulario.addEventListener("submit",function(event){
  
 olvidoContraseña.addEventListener("click",function(){
 
-    hre
+    window.location.href = 'recordarContraseña.html';  
 
 })
