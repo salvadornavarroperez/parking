@@ -41,11 +41,26 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
 
             fetch("http://localhost/Proyecto/parking/reservas.php?Id_reserva=" + m.Id_reserva, {
                 method: 'DELETE'
-              })
-                .then(response => {
-                  if (response.ok) {
-                    location.reload();                   
-                  }
+            }).then(response => {
+
+                  let cuerpoPUT={
+                    'disponible': 1
+                }
+                
+                let optionsPUT={
+                    method: "PUT",
+                    headers:{'Content-type':'aplication/json'},
+                    body:JSON.stringify(cuerpoPUT)
+                }
+                // si tenemos resuesta ok entonces ponemos la plaza a disponible
+                fetch("http://localhost/Proyecto/parking/plazas.php?numero_plaza=" + m.id_plaza, optionsPUT)
+                .then(respuesta=>respuesta.json())
+                .then(datos=>{                                        
+                    if(datos.result==="ok") {       
+                        // si tenemos resuesta ok entonces vamos al inicio
+                        location.reload();         
+                    }         
+                  }) 
                 })
         })
     })
