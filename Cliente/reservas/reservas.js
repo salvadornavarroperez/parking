@@ -4,6 +4,8 @@ const fechaEntradaInput = document.getElementById('fechaEntrada');
 const fechaSalidaInput = document.getElementById('fechaSalida');
 const horaEntrada = document.getElementById('horaEntrada');
 const horaSalida = document.getElementById('horaSalida');
+var botonReserva = document.getElementById('btnreserva');
+botonReserva.disabled = true;
 
 // Obtener el campo de resultado del precio
 const resultadoPrecio = document.getElementById('resultadoPrecio');
@@ -22,29 +24,13 @@ var fechaSalida;
 var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
 var id_usuario = usuario["Id_usuario"]; 
 
+// obtener la plaza desde el inicio
+var plaza = JSON.parse(localStorage.getItem("plaza"));
+var id_plaza = plaza["plaza"]; 
+
 // Agregar eventos de escucha a los campos de fecha de entrada y salida
 fechaEntradaInput.addEventListener('input', calcularPrecio);
 fechaSalidaInput.addEventListener('input', calcularPrecio);
-
-// saber las plazas libres y obtener una libre aleatoriamente
-// obtener plazas libres del parking
-fetch("http://localhost/Proyecto/parking/plazas.php?disponible=1")
-.then(respuesta=>respuesta.json())
-.then(datos=>{
-
-    // comprobamos que hay plazas libres
-    var plazas = Array.from(datos.plazas);
-
-    if(plazas.length == 0) {
-       console.log("Pues te has quedao sin plaza amigo")
-    } else {
-                
-        let randomIndex = Math.floor(Math.random() * plazas.length);
-        let randomNum = plazas[randomIndex];
-        plazaAleatoria = randomNum['Id_plaza'] 
-        console.log(plazaAleatoria);
-    }  
-}) 
 
 // Función para calcular el precio
 function calcularPrecio() {
@@ -56,14 +42,16 @@ function calcularPrecio() {
     const diferenciaTiempo = fechaSalida - fechaEntrada;
     const diferenciaDias = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
 
-    if (diferenciaDias < 0) {
+    if (diferenciaDias <= 0) {
         // Mostrar un mensaje emergente si la fecha de entrada es mayor que la fecha de salida
-        alert('La fecha de entrada debe ser menor o igual a la fecha de salida.');
+        alert('La fecha de entrada debe ser menor a la fecha de salida y la reserva será minimo de un dia.');
         resultadoPrecio.textContent = ''; // Limpiar el campo de resultado del precio
-    } else {
+        botonReserva.disabled = true;
+    } else if (diferenciaDias >= 1) {
         // Calcular el precio en función de la cantidad de días y mostrarlo en el campo de resultado del precio
         precio = diferenciaDias * 8;
         resultadoPrecio.textContent = `Precio: ${precio} €`;
+        botonReserva.disabled = false;
     }
 }
 
@@ -90,12 +78,10 @@ formulario.addEventListener('submit', function(event) {
 
     var fechaEInsert = fechaInsert(fechaEntradaInput.value, horaEntrada.value);
     var fechaSInsert = fechaInsert(fechaSalidaInput.value, horaSalida.value)
-
-    console.log(fechaSInsert)
     
     let cuerpo={
         'id_usuario': id_usuario,               
-        'id_plaza': plazaAleatoria,
+        'id_plaza': id_plaza,
         'fecha': new Date(),
         'hora_entrada': fechaEInsert,
         'hora_salida': fechaSInsert,
@@ -124,7 +110,7 @@ formulario.addEventListener('submit', function(event) {
     
         if(datos.result==="ok") {       
             // si tenemos resuesta ok entonces ponemos la plaza a no disponible
-            fetch("http://localhost/Proyecto/parking/plazas.php?numero_plaza=" + plazaAleatoria, optionsPUT)
+            fetch("http://localhost/Proyecto/parking/plazas.php?numero_plaza=" + id_plaza, optionsPUT)
             .then(respuesta=>respuesta.json())
             .then(datos=>{                                        
                 if(datos.result==="ok") {       
