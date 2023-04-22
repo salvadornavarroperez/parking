@@ -92,7 +92,7 @@ function registraMetodoPago()
         .then(respuesta=>respuesta.json())
         .then(datos=>{
             console.log(datos)
-            window.location.href = 'inicio.html';    
+            window.location.href = 'inicio.php';    
         })        
     }
 

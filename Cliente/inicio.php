@@ -14,7 +14,7 @@
     <div id="user"></div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="navbar-nav mr-auto" id = "menu">
-            <li class="nav-item"><a class="nav-link" href="inicio.html">Inicio</a></li>                       
+            <li class="nav-item"><a class="nav-link" href="inicio.php">Inicio</a></li>                       
             <li class="nav-item"><a class="nav-link" href="vehiculos/registrarVehiculo.html">Registro Vehiculo</a></li>
             <li class="nav-item"><a class="nav-link" href="vehiculos/misVehiculos.html">Mis vehiculos</a></li>
             <li class="nav-item"><a class="nav-link" href="pago.html">Añadir metodo de pago</a></li>
@@ -24,8 +24,9 @@
         </ul>
     </nav>
     <!-- Contenido de la página -->
+    <?php include 'Plazas/plano_reserva.php'; ?>
     <main class="container mt-4">
-        <!-- Contenido de la página aquí -->
+       
     </main>
     <!-- Enlace al archivo de JavaScript con atributo defer para carga asíncrona -->
     <script type="module" defer src="inicio.js"></script>

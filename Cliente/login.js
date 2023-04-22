@@ -40,7 +40,7 @@ formulario.addEventListener("submit",function(event){
             localStorage.setItem("Datos_usuario",JSON.stringify(usuario));            
             
             
-            window.location.href = 'inicio.html';    
+            window.location.href = 'inicio.php';    
 
 
         }

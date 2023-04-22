@@ -69,6 +69,6 @@
     <div style="text-align:center;">
     <input type="button" value="Reservar" id="reservar"/>
     </div>
-    <script type="module" defer src="plano_reserva.js"></script>
+    <script type="module" defer src="Plazas/plano_reserva.js"></script>
   </body>
 </html>
