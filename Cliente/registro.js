@@ -51,7 +51,7 @@ formulario.addEventListener("submit",(event)=>{
 
           //formamos el objeto que vamos a enviar por post para que la api rest haga un post
             const objeto={
-                'nombre':nombre.value,
+                'Nombre':nombre.value,
                 'Password':password.value,
                 'Correo':email.value,
                 'rol':1
