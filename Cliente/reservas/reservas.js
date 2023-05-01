@@ -26,8 +26,27 @@ var id_usuario = usuario["Id_usuario"];
 
 // obtener la plaza desde el inicio
 var plaza = JSON.parse(localStorage.getItem("plaza"));
-var id_plaza = plaza["plaza"]; 
+var id_plaza = plaza["plaza"];
 
+//estos elementos son para el qr
+const imagen=document.createElement("img")
+let cuerpoDatos={
+
+                  
+    
+    Plaza:0,
+    FechaReserva:"",
+    FechaEntrada:"",
+    HoraEntrada:"",
+    FechaSalida:"",
+    HoraSalida:"",
+    importe:0,
+    correo:""
+
+
+}
+let datosUsuario=JSON.parse(localStorage.getItem("Datos_usuario"))
+console.log(datosUsuario.Correo)
 // Agregar eventos de escucha a los campos de fecha de entrada y salida
 fechaEntradaInput.addEventListener('input', calcularPrecio);
 fechaSalidaInput.addEventListener('input', calcularPrecio);
@@ -87,6 +106,18 @@ formulario.addEventListener('submit', function(event) {
         'hora_salida': fechaSInsert,
         'importe' : precio
     }
+    cuerpoDatos={
+
+            
+        Plaza:id_plaza,       
+        HoraEntrada:fechaEInsert,        
+        HoraSalida:fechaSInsert,
+        importe:precio
+        
+
+
+    }
+
     
     let options={
         method: "POST",
@@ -115,9 +146,56 @@ formulario.addEventListener('submit', function(event) {
             .then(datos=>{                                        
                 if(datos.result==="ok") {       
                     // si tenemos resuesta ok entonces vamos al inicio
-                     window.location.href = 'misReservas.html';    
+                    enviarCorreo(datosUsuario.Correo)    
+                    window.location.href = 'misReservas.html';
+                      
                 }         
             }) 
         }    
     }) 
 });
+
+
+const generarQr=()=>{
+
+    const qr=new QRious({
+        element: imagen,
+        value: `Plaza ${cuerpoDatos.Plaza}       
+        Hora de entrada: ${cuerpoDatos.HoraEntrada}
+        Fecha de salida: ${cuerpoDatos.FechaSalida}        
+        Importe:${cuerpoDatos.importe} euros`
+          
+        , // La URL o el texto
+        size: 200,
+        backgroundAlpha: 0, // 0 para fondo transparente
+        foreground: "#8bc34a", // Color del QR
+        level: "H" // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
+        
+      });
+    // Obtener la cadena de texto base64 de la imagen PNG
+    return qr
+
+
+}
+
+function enviarCorreo(correo)
+{
+    let imagenQr = generarQr();    
+
+    //mi token 1f353e26-2417-4109-85ea-1067ce8a71de
+        //contraseña 219DBD3DBB0D7FD47A408F23674DDE128588
+        Email.send({
+            SecureToken : "1f353e26-2417-4109-85ea-1067ce8a71de",
+            To : correo,
+            From : "parkingrest2023@gmail.com",
+            Subject : "Cambio de password",
+            Body :"Adjunto imagen QR:",
+            Attachments: [{
+              name: "imagenQR.png",
+              data: imagenQr.toDataURL()
+            }]
+        }).then(
+        message => alert(message)
+        );
+
+}

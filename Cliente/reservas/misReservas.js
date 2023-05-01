@@ -4,7 +4,16 @@ var id_usuario = usuario["Id_usuario"];
 
 // div de vehiculos
 var vehiculos = document.getElementById("reservas");
+let datosReserva={
 
+    Plaza:0,
+    FechaReserva:"",
+    FechaEntrada:"",
+    HoraEntrada:"",
+    FechaSalida:"",
+    HoraSalida:"",
+    importe:0
+}
 fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
 .then(respuesta=>respuesta.json())
 .then(datos=>{
@@ -30,6 +39,34 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
                             "<b>Salida: </b>" + fechaS +
                             "<b> a las </b>" + horaS +  "<br>" +
                             "<b>Importe:  </b>" + m.importe + "€ <br>";
+        datosReserva={
+            Plaza:m.id_plaza,
+            FechaReserva:m.fecha,
+            FechaEntrada:fechaE,
+            HoraEntrada:horaE,
+            FechaSalida:fechaS,
+            HoraSalida:horaS,
+            importe:m.importe
+        }
+        //con esto creamos el qr
+        new QRious({
+            element: document.querySelector("#codigo"),
+            value: `Plaza ${datosReserva.Plaza}
+            Fecha de reserva: ${datosReserva.FechaReserva}
+            Fecha de entrada: ${datosReserva.FechaEntrada}
+            Hora de entrada: ${datosReserva.HoraEntrada}
+            Fecha de salida: ${datosReserva.FechaSalida}
+            Hora de salida: ${datosReserva.HoraSalida}
+            Importe:${datosReserva.importe} euros`
+              
+            , // La URL o el texto
+            size: 200,
+            backgroundAlpha: 0, // 0 para fondo transparente
+            foreground: "#8bc34a", // Color del QR
+            level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
+          });
+
+
 
         var borrar = document.createElement("button");
         borrar.className="btn btn-secondary";
