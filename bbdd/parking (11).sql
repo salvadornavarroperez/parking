@@ -41,7 +41,7 @@ CREATE TABLE `fechas` (
 CREATE TABLE `metodo_pago` (
   `id_metodo` int(11) NOT NULL,
   `usuario` int(11) NOT NULL,
-  `numero_tarjeta` int(18) NOT NULL,
+  `numero_tarjeta` BIGINT(16) NOT NULL,
   `nombre_tarjeta` varchar(50) NOT NULL,
   `fecha_caducidad` date NOT NULL,
   `cvc` int(3) NOT NULL
@@ -277,6 +277,11 @@ INSERT INTO `plazas` (`Id_plaza`, `numero_plaza`, `disponible`) VALUES
 (198, 198, 1),
 (199, 199, 0),
 (200, 200, 0);
+(201, 201, 0);
+(202, 202, 0);
+(203, 203, 0);
+(204, 204, 0);
+(205, 205, 0);
 
 -- --------------------------------------------------------
 
