@@ -7,6 +7,10 @@ const horaSalida = document.getElementById('horaSalida');
 var botonReserva = document.getElementById('btnreserva');
 botonReserva.disabled = true;
 
+// constantes de precios
+const PRECIO_DIAS_LABORALES = 8;
+const PRECIO_FESTIVOS = 10;
+
 // Obtener el campo de resultado del precio
 const resultadoPrecio = document.getElementById('resultadoPrecio');
 
@@ -40,16 +44,31 @@ function calcularPrecio() {
 
     // Calcular la cantidad de días entre las dos fechas
     const diferenciaTiempo = fechaSalida - fechaEntrada;
-    const diferenciaDias = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
+    const diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24));
 
     if (diferenciaDias <= 0) {
         // Mostrar un mensaje emergente si la fecha de entrada es mayor que la fecha de salida
         alert('La fecha de entrada debe ser menor a la fecha de salida y la reserva será minimo de un dia.');
         resultadoPrecio.textContent = ''; // Limpiar el campo de resultado del precio
         botonReserva.disabled = true;
-    } else if (diferenciaDias >= 1) {
-        // Calcular el precio en función de la cantidad de días y mostrarlo en el campo de resultado del precio
-        precio = diferenciaDias * 8;
+    } else {
+        // Obtener el día de la semana de la fecha de entrada y salida
+        const diaEntrada = fechaEntrada.getDay();
+        const diaSalida = fechaSalida.getDay();
+
+        // Calcular el precio en función de si es un día laboral o un día festivo        
+        for (let i = 0; i < diferenciaDias; i++) {
+            const diaActual = (diaEntrada + i) % 7;
+            if (diaActual === 0 || diaActual === 6) {
+                // Día festivo (sábado o domingo)
+                precio += PRECIO_FESTIVOS;
+            } else {
+                // Día laboral
+                precio += PRECIO_DIAS_LABORALES;
+            }
+        }
+
+        // Mostrar el precio en el campo de resultado del precio
         resultadoPrecio.textContent = `Precio: ${precio} €`;
         botonReserva.disabled = false;
     }

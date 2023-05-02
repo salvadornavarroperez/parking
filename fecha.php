@@ -4,9 +4,9 @@
  *	La clase "player.class.php" es la clase del modelo, que representa a un jugador de la tabla
 */
 require_once 'src/response.php';
-require_once 'src/classes/socios.class.php';
+require_once 'src/classes/fechas.class.php';
 
-$socio = new Socios();
+$fecha = new fechas();
 
 /**
  * Se mira el tipo de petición que ha llegado a la API y dependiendo de ello se realiza una u otra accción
@@ -18,11 +18,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
 		$params = $_GET;
 
-		$socios = $socio->get($params);
+		$fechas = $fecha->get($params);
 
 		$response = array(
 			'result' => 'ok',
-			'socios' => $socios
+			'fechas' => $fechas
 		);
 
 		Response::result(200, $response);
@@ -44,62 +44,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$insert_id = $socio->insert($params);
+		$insert_id = $fecha->insert($params);
 
 		$response = array(
 			'result' => 'ok',
-			'socio' => $insert_id
+			'fecha' => $insert_id
 		);
 
 		Response::result(201, $response);
-		break;
-
-	/**
-	 * Cuando es PUT, comprobamos si la petición lleva el id del jugador que hay que actualizar. En caso afirmativo se usa el método update() del modelo.
-	 */
-	case 'PUT':
-		$params = json_decode(file_get_contents('php://input'), true);
-
-		if(!isset($params) || !isset($_GET['Id_socio']) || empty($_GET['id'])){
-			$response = array(
-				'result' => 'error',
-				'details' => 'Error en la solicitud'
-			);
-
-			Response::result(400, $response);
-			exit;
-		}
-
-		$player->update($_GET['id'], $params);
-
-		$response = array(
-			'result' => 'ok'
-		);
-
-		Response::result(200, $response);
-		break;
-
-	/**
-	 * Cuando se solicita un DELETE se comprueba que se envíe un id de jugador. En caso afirmativo se utiliza el método delete() del modelo.
-	 */
-	case 'DELETE':
-		if(!isset($_GET['id']) || empty($_GET['id'])){
-			$response = array(
-				'result' => 'error',
-				'details' => 'Error en la solicitud'
-			);
-
-			Response::result(400, $response);
-			exit;
-		}
-
-		$player->delete($_GET['id']);
-
-		$response = array(
-			'result' => 'ok'
-		);
-
-		Response::result(200, $response);
 		break;
 
 	/**

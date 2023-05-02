@@ -5,7 +5,7 @@
 require_once 'src/response.php';
 require_once 'src/database.php';
 
-class Plazas extends Database
+class Pagos extends Database
 {
 	/**
 	 * Atributo que indica la tabla asociada a la clase del modelo
@@ -18,7 +18,7 @@ class Plazas extends Database
 	private $allowedConditions_get = array(
 		
        
-        'Id_pago',
+        'id_pago',
 		'id_socio',
 		'id_fecha',
         'monto',
@@ -44,7 +44,7 @@ class Plazas extends Database
 		if (!isset($data['id_socio']) || empty($data['id_fecha'])|| empty($data['monto'])) {
 			$response = array(
 				'result' => 'error',
-				'details' => 'El campo player_name es obligatorio'
+				'details' => 'El campo id es obligatorio'
 			);
 
 			Response::result(400, $response);

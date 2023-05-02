@@ -4,9 +4,9 @@
  *	La clase "player.class.php" es la clase del modelo, que representa a un jugador de la tabla
 */
 require_once 'src/response.php';
-require_once 'src/classes/socios.class.php';
+require_once 'src/classes/pagos.class.php';
 
-$socio = new Socios();
+$pago = new Pagos();
 
 /**
  * Se mira el tipo de petición que ha llegado a la API y dependiendo de ello se realiza una u otra accción
@@ -18,11 +18,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
 		$params = $_GET;
 
-		$socios = $socio->get($params);
+		$pagos = $pago->get($params);
 
 		$response = array(
 			'result' => 'ok',
-			'socios' => $socios
+			'pagos' => $pagos
 		);
 
 		Response::result(200, $response);
@@ -44,11 +44,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$insert_id = $socio->insert($params);
+		$insert_id = $pago->insert($params);
 
 		$response = array(
 			'result' => 'ok',
-			'socio' => $insert_id
+			'pago' => $insert_id
 		);
 
 		Response::result(201, $response);
@@ -60,7 +60,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	case 'PUT':
 		$params = json_decode(file_get_contents('php://input'), true);
 
-		if(!isset($params) || !isset($_GET['Id_socio']) || empty($_GET['id'])){
+		if(!isset($params) || !isset($_GET['id_pago']) || empty($_GET['id_pago'])){
 			$response = array(
 				'result' => 'error',
 				'details' => 'Error en la solicitud'
@@ -70,7 +70,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$player->update($_GET['id'], $params);
+		$pago->update($_GET['id_pago'], $params);
 
 		$response = array(
 			'result' => 'ok'
@@ -83,7 +83,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	 * Cuando se solicita un DELETE se comprueba que se envíe un id de jugador. En caso afirmativo se utiliza el método delete() del modelo.
 	 */
 	case 'DELETE':
-		if(!isset($_GET['id']) || empty($_GET['id'])){
+		if(!isset($_GET['id_pago']) || empty($_GET['id_pago'])){
 			$response = array(
 				'result' => 'error',
 				'details' => 'Error en la solicitud'
@@ -93,7 +93,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$player->delete($_GET['id']);
+		$pago->delete($_GET['id_pago']);
 
 		$response = array(
 			'result' => 'ok'
