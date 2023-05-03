@@ -31,7 +31,7 @@ divMetodoPago.classList.add("container");
 
 // h4 de informacion
 var divPago = document.createElement("h4");
-divPago.innerHTML = "<h3>Usted no tiene un método de pago actualizado</h3>"
+divPago.innerHTML = "<h5>Usted no tiene un método de pago actualizado</h5>"
 divPago.style.color = "red";
 
 // enlace al formulario de metodo de pago
@@ -114,7 +114,13 @@ function activarBoton() {
   }
 
 plaza.addEventListener("change", function() {
-    if(plaza.value == "si") {        
+    if(plaza.value == "x") {
+        textoSelectPlazas.hidden = true;
+        selectPlazas.hidden = true;       
+        precioDiv.textContent = "";
+        botonSocio.disabled = true;
+    }
+    else if(plaza.value == "si") {        
         textoSelectPlazas.hidden = false;
         selectPlazas.hidden = false;
         precio = 300;
