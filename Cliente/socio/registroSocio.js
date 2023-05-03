@@ -3,10 +3,14 @@ let plaza = document.getElementById("plaza");
 let botonSocio = document.getElementById("botonSocio");
 let checkSocio = document.getElementById("checkSocio");
 let selectPlazasDiv = document.getElementById("selectPlazasDiv");
+let precioDiv = document.getElementById("precio");
 
 // texto que sale si quieres plaza fija
 var textoSelectPlazas = document.createElement("h4");
 textoSelectPlazas.textContent = "Elija una plaza del parking";
+
+//variables monto
+var precio = 0;
 
 // variables globales y boton de hacerse socio desactivado
 botonSocio.disabled = true;
@@ -113,9 +117,13 @@ plaza.addEventListener("change", function() {
     if(plaza.value == "si") {        
         textoSelectPlazas.hidden = false;
         selectPlazas.hidden = false;
+        precio = 300;
+        precioDiv.textContent = `Precio: ${precio} €`;
     } else if (plaza.value == "no"){        
         textoSelectPlazas.hidden = true;
         selectPlazas.hidden = true;
+        precio = 250;
+        precioDiv.textContent = `Precio: ${precio} €`;
 
     }
   })
@@ -196,7 +204,7 @@ botonSocio.addEventListener("click", function(){
                     let cuerpoPOST={
                         'id_socio': datosS.socio,
                         'id_fecha': datos.fecha,
-                        'monto' : 300        
+                        'monto' : precio        
                     }
                     
                     let optionsPOST={

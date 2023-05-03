@@ -9,7 +9,6 @@ let Id_usuario = document.getElementById("Id_usuario");
 
 let datos_usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
 
-console.log(datos_usuario)
 Id_usuario.value = datos_usuario.Id_usuario;
 nombreUsuario.value = datos_usuario.Nombre;
 correoUsuario.value = datos_usuario.Correo;
@@ -17,15 +16,14 @@ correoUsuario.value = datos_usuario.Correo;
 
 formUpdateUsuario.addEventListener("submit", (event) => {
     event.preventDefault();
-console.log('hola')
+
   let cuerpo={
-        "Id_usuario":datos_usuario.Id_usuario,
-        "nombre":nombreUsuario.value,
+        "Id_usuario": datos_usuario["Id_usuario"],
+        "Nombre":nombreUsuario.value,
         "Correo":correoUsuario.value,
         "rol":datos_usuario.rol
     }
-  updateLocalStorage(datos_usuario.Id_usuario,nombreUsuario.value,correoUsuario.value,datos_usuario.rol);
-
+    
   let options={
         method: "PUT",
         headers:{'Content-type':'aplication/json'},
@@ -33,7 +31,13 @@ console.log('hola')
             }
     
     fetch("http://localhost/Proyecto/parking/usuarios.php", options)
+    .then(respuesta=>respuesta.json())
+    .then(datos=>{
 
-    alert("su datos de usuario se han cambiado correctamente");
-    window.location = "perfil_usuario.html";
+        if(datos.result==="ok") {      
+            updateLocalStorage(datos_usuario.Id_usuario,nombreUsuario.value,correoUsuario.value,datos_usuario.rol);
+        }
+        alert("su datos de usuario se han cambiado correctamente");
+        window.location = "perfil_usuario.html";
+    })
 });
