@@ -20,9 +20,10 @@ export function comprobar()
 
 }
 
-export function updateLocalStorage(nombre,correo,rol)
+export function updateLocalStorage(id,nombre,correo,rol)
 {
 const usuario={
+    "Id_usuario":id,
     "Nombre":nombre,
     "Correo":correo,
     "rol":rol
