@@ -42,7 +42,7 @@ formPago.href = "../pago.html"
 // añadir los divs al body, si tiene tarjeta se borra
 divMetodoPago.append(divPago, formPago);
 
-// variable usuario de storage, esto es la polla
+// variable usuario de storage
 var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
 var id_usuario = usuario["Id_usuario"]; 
 

@@ -13,6 +13,15 @@ enlaceSocio.href="socio/registroSocio.html"
 socioLista.className = "nav-item";
 enlaceSocio.className = "nav-link"
 
+//socio
+var sociobLista = document.createElement("li");
+var enlacebSocio = document.createElement("a");
+enlacebSocio.textContent = "Darse de baja como socio";
+sociobLista.id="esSocio";
+enlacebSocio.href="socio/bajaSocio.html" 
+sociobLista.className = "nav-item";
+enlacebSocio.className = "nav-link"
+
 // metodo pago
 var pagoLista = document.createElement("li");
 var enlacePago = document.createElement("a");
@@ -22,6 +31,7 @@ enlacePago.href="pago.html"
 pagoLista.className = "nav-item";
 enlacePago.className = "nav-link"
 
+sociobLista.appendChild(enlacebSocio);
 socioLista.appendChild(enlaceSocio);
 pagoLista.appendChild(enlacePago);
 
@@ -50,8 +60,10 @@ fetch("http://localhost/Proyecto/parking/socios.php?Id_usuario=" + id_usuario)
     // si no es socio añadimos al menu la opcion de hacerse socio, si no, la quitamos si aparece
     if(socios.length == 0) {
         menu.append(socioLista);
+        sociobLista.removeChild(enlacebSocio);
     } else if( socios.length > 0 && menu != null) {
         socioLista.removeChild(enlaceSocio);
+        menu.append(sociobLista);
     }
 })
 
