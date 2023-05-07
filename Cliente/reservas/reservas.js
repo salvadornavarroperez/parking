@@ -79,12 +79,13 @@ formulario.addEventListener('submit', function(event) {
     var fechaEInsert = fechaInsert(fechaEntradaInput.value, horaEntrada.value);
     var fechaSInsert = fechaInsert(fechaSalidaInput.value, horaSalida.value)
     
+    var dates = new Date();
     let cuerpo={
-        'id_usuario': id_usuario,               
+        'id_usuario': id_usuario,
         'id_plaza': id_plaza,
-        'fecha': new Date(),
-        'hora_entrada': fechaEInsert,
-        'hora_salida': fechaSInsert,
+        'fecha': dates.toISOString(),
+        'hora_entrada': fechaEInsert.toISOString(),
+        'hora_salida': fechaSInsert.toISOString(),
         'importe' : precio
     }
     

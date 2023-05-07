@@ -107,6 +107,19 @@ class Usuarios extends Database
 	}
 
 	/**
+	 * Método para recuperar todos registros
+	 */
+
+	 public function getAllUsers() {
+		$usuarios = parent::getDB($this->table);
+		if(empty($usuarios)) {
+			return "No hay usuarios registrados";
+		} else {
+			return $usuarios;
+		}
+	}
+
+	/**
 	 * Método para guardar un registro en la base de datos, recibe como parámetro el JSON con los datos a insertar
 	 */
 	public function insert($params)
