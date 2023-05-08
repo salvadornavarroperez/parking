@@ -4,7 +4,16 @@ var id_usuario = usuario["Id_usuario"];
 
 // div de vehiculos
 var vehiculos = document.getElementById("reservas");
+let datosReserva={
 
+    Plaza:0,
+    FechaReserva:"",
+    FechaEntrada:"",
+    HoraEntrada:"",
+    FechaSalida:"",
+    HoraSalida:"",
+    importe:0
+}
 fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
 .then(respuesta=>respuesta.json())
 .then(datos=>{
@@ -30,6 +39,17 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
                             "<b>Salida: </b>" + fechaS +
                             "<b> a las </b>" + horaS +  "<br>" +
                             "<b>Importe:  </b>" + m.importe + "€ <br>";
+        datosReserva={
+            Plaza:m.id_plaza,
+            FechaReserva:m.fecha,
+            FechaEntrada:fechaE,
+            HoraEntrada:horaE,
+            FechaSalida:fechaS,
+            HoraSalida:horaS,
+            importe:m.importe
+        }
+       
+
 
         var borrar = document.createElement("button");
         borrar.className="btn btn-secondary";

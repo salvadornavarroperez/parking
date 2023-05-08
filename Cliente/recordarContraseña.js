@@ -48,7 +48,7 @@ function enviarCorreo(correo)
             To : correo,
             From : "parkingrest2023@gmail.com",
             Subject : "Cambio de password",
-            Body : `No te olvides más del password hijo puta: <a href="${enlace}">${enlace}</a>`
+            Body : `Pinche en el siguiente enlace para cambiar su contraseña: <a href="${enlace}">${enlace}</a>`
         }).then(
         message => alert(message)
         );
