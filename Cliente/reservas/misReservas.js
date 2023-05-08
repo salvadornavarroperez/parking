@@ -48,24 +48,7 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
             HoraSalida:horaS,
             importe:m.importe
         }
-        //con esto creamos el qr
-        new QRious({
-            element: document.querySelector("#codigo"),
-            value: `Plaza ${datosReserva.Plaza}
-            Fecha de reserva: ${datosReserva.FechaReserva}
-            Fecha de entrada: ${datosReserva.FechaEntrada}
-            Hora de entrada: ${datosReserva.HoraEntrada}
-            Fecha de salida: ${datosReserva.FechaSalida}
-            Hora de salida: ${datosReserva.HoraSalida}
-            Importe:${datosReserva.importe} euros`
-              
-            , // La URL o el texto
-            size: 200,
-            backgroundAlpha: 0, // 0 para fondo transparente
-            foreground: "#8bc34a", // Color del QR
-            level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
-          });
-
+       
 
 
         var borrar = document.createElement("button");

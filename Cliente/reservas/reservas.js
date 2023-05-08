@@ -110,8 +110,9 @@ formulario.addEventListener('submit', function(event) {
 
             
         Plaza:id_plaza,       
-        HoraEntrada:fechaEInsert,        
-        HoraSalida:fechaSInsert,
+        FechaReserva:new Date(),
+        FechaEntrada:fechaEntradaInput.value+" a las "+horaEntrada.value,        
+        FechaSalida:fechaSalidaInput.value+" a las "+horaSalida.value,
         importe:precio
         
 
@@ -155,18 +156,29 @@ formulario.addEventListener('submit', function(event) {
     }) 
 });
 
-
+console.log(cuerpoDatos)
 const generarQr=()=>{
 
     const qr=new QRious({
         element: imagen,
-        value: `Plaza ${cuerpoDatos.Plaza}       
-        Hora de entrada: ${cuerpoDatos.HoraEntrada}
+        value: `Plaza ${cuerpoDatos.Plaza}
+        Fecha de reserva: ${cuerpoDatos.FechaReserva}
+        Fecha de entrada: ${cuerpoDatos.FechaEntrada}        
         Fecha de salida: ${cuerpoDatos.FechaSalida}        
         Importe:${cuerpoDatos.importe} euros`
+
+
+       
+        // Fecha de reserva: ${datosReserva.FechaReserva}
+        // Fecha de entrada: ${datosReserva.FechaEntrada}
+        // Hora de entrada: ${datosReserva.HoraEntrada}
+        // Fecha de salida: ${datosReserva.FechaSalida}
+        // Hora de salida: ${datosReserva.HoraSalida}
+        // Importe:${datosReserva.importe} euros`
+          
           
         , // La URL o el texto
-        size: 200,
+        size: 400,
         backgroundAlpha: 0, // 0 para fondo transparente
         foreground: "#8bc34a", // Color del QR
         level: "H" // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
@@ -188,7 +200,7 @@ function enviarCorreo(correo)
             SecureToken : "1f353e26-2417-4109-85ea-1067ce8a71de",
             To : correo,
             From : "parkingrest2023@gmail.com",
-            Subject : "Cambio de password",
+            Subject : "Reserva de plaza",
             Body :"Adjunto imagen QR:",
             Attachments: [{
               name: "imagenQR.png",
