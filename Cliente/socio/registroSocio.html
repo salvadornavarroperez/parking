@@ -16,7 +16,7 @@
         <h1>Registro de socio</h1>
 
         <div class="form-group">
-            <label for="plaza">¿Desea tener plaza fija?</label>
+            <label for="plaza">¿Desea tener plaza fija?</label>                      
             <select class="form-control" name="plaza" id="plaza">
                 <option value="x">Escoja una opción</option>
                 <option value="si">Si</option>
@@ -32,9 +32,13 @@
                 onchange="activarBoton()">
             <label class="form-check-label" for="checkSocio">Acepto los términos y condiciones de hacerse socio</label>
         </div>
-        <hr>
-        <button class="btn btn-primary" id="botonSocio">Hacerse Socio</button>
-        <a class="btn btn-secondary" href = "../inicio.php">Cancelar</a>
+        <div class="form-group">           
+            <span id="precio"></span>
+            <hr>
+            <button class="btn btn-primary" id="botonSocio">Aceptar y pagar</button>
+            <a class="btn btn-secondary" href = "../inicio.php">Cancelar</a>
+        </div>
+
     </div>
 
     <!-- Scripts de Bootstrap -->
