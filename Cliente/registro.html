@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alta Usuario</title>
-    <link rel="stylesheet" href="css/estilo.css">
-    <script defer src="registro.js"></script>
-</head>
-<body>
-    <h1>Bienvenido al registro de nuestro parking</h1>
-    <form id="formulario1">      
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre">
-        <div id="nombErr"></div>
-        <label for="password">Password</label>
-        <input  type="password" name="password" id="password">
-        <button id="oculto"><img src="imagenes/oculto.png" id="imagenOculto"></button>
-        <div id="passErr"></div>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email">       
-        <div id="emailErr"></div>   
-        <input type="submit" name="enviar">
-        <input type="reset" value="Reset" id="reset">    
-    </form>
-    <button id="metodoPago">Insertar Metodo pago</button>
-    <button id="login">Login</button>
-    <div id="respuesta"></div>    
-   
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alta Usuario</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/estilo.css">
+      </head>
+    <body>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <h1 class="text-center">Bienvenido al registro de nuestro parking</h1>
+              <form id="formulario1">      
+                <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" name="nombre" id="nombre">
+                  <div id="nombErr"></div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" name="password" id="password">
+                    <div class="input-group-append">                      
+                    </div>
+                  </div>
+                  <div id="passErr"></div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control" name="email" id="email">       
+                  <div id="emailErr"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>    
+              </form>
+              <p></p>
+              <button id="login" class="btn btn-warning">Login</button>              
+            </div>
+          </div>
+        </div>
+      </body> 
+      <script src="registro.js"></script>
 </html>

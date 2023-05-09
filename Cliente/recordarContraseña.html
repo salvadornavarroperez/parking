@@ -2,18 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Recordar Contraseña</title>
+    <!-- Enlace al archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilo-login.css">
     <script defer src="recordarContraseña.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
     <div class="container">
-        <input type="text" id="correo" placeholder="Introduce tu correo"></input>
-        <button id="enviar"></button>
-        <label id="error"></label>        
-      </div>    
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form class="form" id="formulario">
+                    <h2>Recordar Contraseña</h2>
+                    <div class="mb-3">
+                        <label for="correo" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="correo" placeholder="Introduce tu correo">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary" id="enviar">Enviar</button>
+                        <a class="btn btn-secondary" href="login.html">Cancelar</a>
+                    </div>
+                    <div class="mb-3">
+                        <label id="error"></label>        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -6,31 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metodo de pago</title>
    
-    <link rel="stylesheet" href="css/estilo.css">
+    <!-- Enlace al archivo de estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <form id="formulario">
-        <label for="numeroTarjeta" id="labNunTar" class="ocultos">Número de tarjeta</label>
-        <input type="text" name="numeroTarjeta" id="numeroTarjeta" class="ocultos">
-        <div id="numTarErr"></div>
-        <label for="cvc" id="cvcLabel" class="ocultos">CVC</label>
-        <input type="text" name="cvc" id="cvc" class="ocultos">
-        <div id="cvcError"></div>
-        <label for="nombreTarjeta" id="labNomTar" class="ocultos">Nombre de la tarjeta</label>
-        <input type="text" name="nombreTarjeta" id="nombreTarjeta" class="ocultos">
-        <div id="nomTarErr"></div>
-        <label id="labFecha" class="ocultos">Fecha Caducidad</label>
-        <label id="labmes">Mes</label>
-        <select  id="mes" class="ocultos">        
-        </select>
-        <label id="labaño">Año</label>
-        <select id="año" class="ocultos">            
-        </select>
-        <input type="submit" name="enviar">
-        <input type="reset" value="Reset">
-        <a class="btn btn-secondary" href = "inicio.php">Volver al inicio</a>   
-    </form>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Método de pago</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="inicio.php">Volver al inicio</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <form id="formulario">
+            <div class="form-group">
+                <label for="numeroTarjeta" class="ocultos">Número de tarjeta</label>
+                <input type="text" name="numeroTarjeta" id="numeroTarjeta" class="form-control ocultos"  maxlength="16">
+                <div id="numTarErr"></div>
+            </div>
+            <div class="form-group">
+                <label for="cvc" class="ocultos">CVC</label>
+                <input type="text" name="cvc" id="cvc" class="form-control ocultos"  maxlength="3">
+                <div id="cvcError"></div>
+            </div>
+            <div class="form-group">
+                <label for="nombreTarjeta" class="ocultos">Nombre de la tarjeta</label>
+                <input type="text" name="nombreTarjeta" id="nombreTarjeta" class="form-control ocultos">
+                <div id="nomTarErr"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label id="labFecha" class="ocultos">Fecha Caducidad</label>
+                    <label id="labmes">Mes</label>
+                    <select  id="mes" class="form-control ocultos">        
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label id="labaño">Año</label>
+                    <select id="año" class="form-control ocultos">            
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+            <a class="btn btn-secondary" href="inicio.php">Cancelar</a>
+        </form>
+    </div>
     
+    <!-- Enlace al archivo de JavaScript de Bootstrap con atributo defer para carga asíncrona -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
+    
+    <script src="metodoPago.js"></script>
 </body>
-<script src="metodoPago.js"></script>
 </html>
