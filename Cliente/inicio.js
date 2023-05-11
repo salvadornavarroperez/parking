@@ -79,27 +79,27 @@ fetch("http://localhost/Proyecto/parking/usuarios.php?Id_usuario=" + id_usuario)
         // Creamos los enlaces de los submenús del menú desplegable "Panel Admin"
         var enlaceUsuarios = document.createElement("a");
         enlaceUsuarios.className = "dropdown-item";
-        enlaceUsuarios.href = "#";
+        enlaceUsuarios.href = "./admin/listaUsuarios.php";
         enlaceUsuarios.textContent = "Usuarios";
 
         var enlaceReservas = document.createElement("a");
         enlaceReservas.className = "dropdown-item";
-        enlaceReservas.href = "#";
+        enlaceReservas.href = "./admin/listaReservas.html";
         enlaceReservas.textContent = "Reservas";
 
         var enlaceTarifas = document.createElement("a");
         enlaceTarifas.className = "dropdown-item";
-        enlaceTarifas.href = "#";
+        enlaceTarifas.href = "./admin/Tarifas.html";
         enlaceTarifas.textContent = "Tarifas";
 
         var enlaceNotificaciones = document.createElement("a");
         enlaceNotificaciones.className = "dropdown-item";
-        enlaceNotificaciones.href = "#";
+        enlaceNotificaciones.href = "./admin/envioNotificaiones.html";
         enlaceNotificaciones.textContent = "Notificaciones";
 
         var enlaceCotizacion = document.createElement("a");
         enlaceCotizacion.className = "dropdown-item";
-        enlaceCotizacion.href = "#";
+        enlaceCotizacion.href = "./admin/cotizaciones.html";
         enlaceCotizacion.textContent = "Visor de cotizacion";
 
         // Añadimos los enlaces de submenús al menú desplegable

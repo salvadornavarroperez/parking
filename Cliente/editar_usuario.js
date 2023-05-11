@@ -17,7 +17,6 @@ correoUsuario.value = datos_usuario.Correo;
 
 formUpdateUsuario.addEventListener("submit", (event) => {
     event.preventDefault();
-console.log('hola')
   let cuerpo={
         "Id_usuario":datos_usuario.Id_usuario,
         "nombre":nombreUsuario.value,
