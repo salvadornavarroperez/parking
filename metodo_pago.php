@@ -5,6 +5,7 @@
 */
 require_once 'src/response.php';
 require_once 'src/classes/metodo_pago.class.php';
+include_once 'cors.php';
 
 $metodo_pago = new Metodo_pago();
 

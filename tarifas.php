@@ -5,7 +5,7 @@
 */
 require_once 'src/response.php';
 require_once 'src/classes/tarifas.class.php';
-
+include_once 'cors.php';
 $tarifa = new tarifas();
 
 /**

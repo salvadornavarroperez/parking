@@ -6,6 +6,7 @@
 require_once 'src/classes/auth.class.php';
 require_once 'src/response.php';
 require_once 'src/classes/usuarios.class.php';
+include_once 'cors.php';
 
 $auth = new Authentication();
 $usuario=new Usuarios();
