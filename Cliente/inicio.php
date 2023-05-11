@@ -30,8 +30,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto text-center">
-            <h6 class="mb-0">Precio días laborales: <span class="precio precio-dias-laborales">8€</span></h6>
-            <h6 class="mb-0">Precio fin de semana y festivos: <span class="precio precio-festivos">10€</span></h6>
+            <h6 class="mb-0">Precio días laborales: <span class="precio precio-dias-laborales" id="tarifa1"></span></h6>
+            <h6 class="mb-0">Precio fin de semana y festivos: <span class="precio precio-festivos" id="tarifa2"></span></h6>
             </div>
         </div>
     </div>

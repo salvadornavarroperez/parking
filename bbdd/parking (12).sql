@@ -367,8 +367,23 @@ CREATE TABLE `vehiculos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Estructura de tabla para la tabla `tarifas`
+--
+CREATE TABLE `tarifas` (
+  `id_tarifa` int(11) NOT NULL,
+  `precio` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `tarifas` (`id_tarifa`, `precio`) VALUES ('1', '8'), ('2', '10');
+--
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `fechas`
+--
+ALTER TABLE `tarifas`
+  ADD PRIMARY KEY (`id_tarifa`);
 
 --
 -- Indices de la tabla `fechas`
