@@ -1,20 +1,17 @@
 //elementos del formulario1
 const formulario=document.querySelector("#formulario1");
-let respuesta=document.querySelector("#respuesta");
 let nombre=document.querySelector("#nombre");
 let nombErr=document.querySelector("#nombErr");
 let password=document.querySelector("#password");
 let passErr=document.querySelector("#passErr");
 let email=document.querySelector("#email");
-let mostrarPass=document.querySelector("#oculto");
 let botonReset=document.querySelector("#reset");
 //recogemos el select que nos sirve para pasar a la siguiente pagina
 let metodoPago=document.querySelector("#metodoPago");
-let login=document.querySelector("#login");
+var login=document.getElementById("login");
 
 //lo deshabilitamos de primeras hasta que el registro de usuario se complete
-metodoPago.disabled=true;
-
+//metodoPago.disabled=true;
 
 formulario.addEventListener("submit",(event)=>{
 
@@ -57,21 +54,8 @@ formulario.addEventListener("submit",(event)=>{
                 'rol':1
             };            
             registraUsuario(objeto); 
-            
-            
-            
-            
-           
-            
     }
-
-   
-    
 })
-
-
-
-
 
 
 function registraUsuario(objeto)
@@ -86,69 +70,15 @@ function registraUsuario(objeto)
         fetch("http://localhost/Proyecto/parking/altaUsuario.php",options)
         .then(respuesta=>respuesta.json())
         .then(datos=>{
-            respuesta.style.display="block";
-            respuesta.textContent="Resultado: "+datos.result+" id de usuario: "+datos.user_id;
-            //vamos a almacenar el id de usuario, que podemos usar en el formulario2
-            
-            
-            
-            
-
-            
+            if(datos.result==="ok") {
+                window.location.href = 'login.html';
+            }
         })  
 
 }
 
-metodoPago.addEventListener("click",function(){
-
-    window.location.href = 'pago.html';
-
-})
 
 login.addEventListener("click",function(){
-
+    console.log("hola")
     window.location.href = 'login.html';
-
-
-})
-
-
-
-/*
-
-
-
-
-
-function mostrarPlazas(datos)
-{
-    //creamos una fila por cada 50 resultados
-    let fila=tablaPlazas.insertRow();
-    
-    for(let i=0;i<datos.length;i++)
-    {
-        //cada 25 plazas insertamos la fila a la tabla
-        if((i+1)%25==0)
-        {
-            tablaPlazas.appendChild(fila)
-            //borramos el contenido de la fila
-            fila.innerHTML="";
-        }
-        let celda=fila.insertCell();
-        if(datos[i].disponible==1)
-        {
-            celda.classList.add("disponible");
-            celda.textContent=datos[i].número_plaza;
-        }
-        fila.appendChild(celda);
-
-    }
-
-}
-*/
-mostrarPass.addEventListener("click",function() {
-    
-    const tipo=password.getAttribute('type') === 'password' ? 'text' : 'password';
-    password.setAttribute("type", tipo);
-
 })

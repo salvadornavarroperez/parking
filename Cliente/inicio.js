@@ -4,6 +4,10 @@ let acceso = document.getElementById('user')
 
 var menu = document.getElementById("menu");
 
+var t1 = document.getElementById("tarifa1");
+var t2 = document.getElementById("tarifa2");
+
+
 //socio
 var socioLista = document.createElement("li");
 var enlaceSocio = document.createElement("a");
@@ -37,7 +41,6 @@ pagoLista.appendChild(enlacePago);
 
 // hacemos aparecer diferente menu si el usuario esta logeado o no
 let datos_usuario = JSON.parse(localStorage.getItem('Datos_usuario'));
-console.log(datos_usuario)
 
 //acceso.innerHTML = `<p>Bienvenido/a, ${datos_usuario.Nombre}</p> <a href="perfil_usuario.html">Mi perfil</a>`
 acceso.innerHTML = `
@@ -79,6 +82,17 @@ fetch("http://localhost/Proyecto/parking/metodo_pago.php?usuario=" + id_usuario)
         menu.append(pagoLista);
     } else if( pago.length > 0 && menu != null) {
         pagoLista.removeChild(enlacePago);
+    }
+})
+
+fetch("http://localhost/Proyecto/parking/tarifas.php")
+.then(respuesta=>respuesta.json())
+.then(datos=>{
+    if(datos.result==="ok"){
+        // comprobar que recibimos datos de tarifa
+        var tarifas = Array.from(datos.tarifas);
+        t1.textContent = tarifas[0].precio + "€"
+        t2.textContent = tarifas[1].precio + "€"
     }
 })
 

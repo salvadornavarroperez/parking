@@ -63,7 +63,7 @@ formulario.addEventListener("submit", function(event){
         body:JSON.stringify(cuerpo)
     }
 
-    fetch("http://localhost/Proyecto/parking/Vehiculos.php", options)
+    fetch("http://localhost/Proyecto/parking/vehiculos.php", options)
     .then(respuesta=>respuesta.json())
     .then(datos=>{
 
@@ -79,7 +79,7 @@ formulario.addEventListener("submit", function(event){
 async function consulta()
 {
 
-    const consulta=await fetch("http://localhost/Proyecto/parking/Vehiculos.php");
+    const consulta=await fetch("http://localhost/Proyecto/parking/vehiculos.php");
     const datos=await consulta.json();
     return datos;
 
