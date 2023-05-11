@@ -374,7 +374,6 @@ CREATE TABLE `tarifas` (
   `precio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `tarifas` (`id_tarifa`, `precio`) VALUES ('1', '8'), ('2', '10');
 --
 -- Índices para tablas volcadas
 --
@@ -384,6 +383,9 @@ INSERT INTO `tarifas` (`id_tarifa`, `precio`) VALUES ('1', '8'), ('2', '10');
 --
 ALTER TABLE `tarifas`
   ADD PRIMARY KEY (`id_tarifa`);
+
+
+INSERT INTO `tarifas` (`id_tarifa`, `precio`) VALUES ('1', '8'), ('2', '10');
 
 --
 -- Indices de la tabla `fechas`
