@@ -6,24 +6,39 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	</head>
 	<body>
+		<div id="alerta" class="alert" style="display:none;"></div>
 		<div class="container mt-5">
 			<h1 class="text-center">Usuarios</h1>
-			<div class="table-responsive">
-				<table id="tabla-usuarios" class="table table-hover table-bordered">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Nombre</th>
-							<th>Correo electrónico</th>
-							<th>Contraseña</th>
-							<th>Acciones</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
+		  
+			<div class="form-row">
+			  <div class="col-md-6 mb-3">
+				<label for="search-nombre">Buscar por nombre:</label>
+				<input type="text" class="form-control" id="search-nombre">
+			  </div>
+			  <div class="col-md-6 mb-3">
+				<label for="search-correo">Buscar por correo:</label>
+				<input type="text" class="form-control" id="search-correo">
+			  </div>
 			</div>
-		</div>
+		  
+			<div class="table-responsive">
+			  <table id="tabla-usuarios" class="table table-hover table-bordered">
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Correo electrónico</th>
+					<th>Rol</th>
+					<th>Contraseña</th>
+					<th>Acciones</th>
+				  </tr>
+				</thead>
+				<tbody>
+				</tbody>
+			  </table>
+			</div>
+		  </div>
+		  
 		<script type="module" defer src="listaUsuarios.js"></script>
 	</body>
 </html>

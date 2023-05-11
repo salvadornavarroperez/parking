@@ -79,7 +79,7 @@ fetch("http://localhost/Proyecto/parking/usuarios.php?Id_usuario=" + id_usuario)
         // Creamos los enlaces de los submenús del menú desplegable "Panel Admin"
         var enlaceUsuarios = document.createElement("a");
         enlaceUsuarios.className = "dropdown-item";
-        enlaceUsuarios.href = "./admin/listaUsuarios.php";
+        enlaceUsuarios.href = "./admin/listaUsuarios.html";
         enlaceUsuarios.textContent = "Usuarios";
 
         var enlaceReservas = document.createElement("a");
