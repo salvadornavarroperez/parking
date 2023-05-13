@@ -40,11 +40,31 @@ formulario.addEventListener("submit",(event)=>{
     {
         emailErr.textContent="El correo no es valido";
     }
+    if(regexEmail.test(email.value))
+    {
+        existe=false;
+        //comprobamos si el correo está ya resgistrado
+        fetch("http://localhost/Proyecto/parking/usuarios.php")
+        .then(respuesta=>respuesta.json())
+        .then(datos=>{
+            if(datos.usuarios.filter(usuario=>usuario.Correo=="email.value"))
+            {
+                emailErr.textContent="El correo ya existe";
+                existe=true
+            }
+                
+           
+        })
+        if(existe)
+        {
+            return;
+        }
+
+    }
     if(regexNombre.test(nombre.value)&&regexPassword.test(password.value)&&regexEmail.test(email.value))
     {
         
-          //si ha seleccionado un métodod de pago
-            
+                    
 
           //formamos el objeto que vamos a enviar por post para que la api rest haga un post
             const objeto={
