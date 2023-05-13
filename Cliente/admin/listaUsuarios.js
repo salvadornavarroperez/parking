@@ -77,7 +77,7 @@ fetch('http://localhost/Proyecto/parking/usuarios.php')
         fetch(`http://localhost/Proyecto/parking/usuarios.php?Id_usuario=${id}`, options)
           .then(response => {
             if (response.ok) {
-              alert("Los cambios de usuario se han realizado correctamente");
+              alert("El usuario se ha eliminado correctamente");
               location.reload();
             } else {
               console.log('Error al eliminar el usuario');

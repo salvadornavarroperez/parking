@@ -115,3 +115,5 @@ fetch("http://localhost/Proyecto/parking/usuarios.php?Id_usuario=" + id_usuario)
         menu.appendChild(adminLista)
     }
 })
+
+  
