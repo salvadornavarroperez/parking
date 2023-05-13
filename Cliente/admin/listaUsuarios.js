@@ -1,10 +1,10 @@
-// Obtener los usuarios desde la API
+
 fetch('http://localhost/Proyecto/parking/usuarios.php')
   .then(response => response.json())
   .then(data => {
     const tbody = document.querySelector('#tabla-usuarios tbody');
 
-    // Iterar sobre los usuarios y construir la tabla HTML con campos editables
+    // falta añadir la condicion si no hay usuarios
     data.usuarios.forEach(usuario => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
