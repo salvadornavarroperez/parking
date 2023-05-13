@@ -17,9 +17,12 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
         <td><input type="text" class="form-control" name="HoraEntrada" value="${reserva.hora_entrada.substring(11, 16)}"></td>
         <td><input type="text" class="form-control" name="HoraSalida" value="${reserva.hora_salida.substring(11, 16)}"></td>
         <td><input type="text" class="form-control" name="Importe" value="${reserva.importe}"></td>
-          <button class="btn btn-sm btn-primary actualizar" data-id="${reserva.Id_reserva}">Actualizar</button>
-          <button class="btn btn-sm btn-danger eliminar" data-id="${reserva.Id_reserva}">Eliminar</button>
+        <td>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-sm btn-danger eliminar" data-id="${reserva.Id_reserva}">Eliminar</button>
+        </div>
         </td>
+
       `;
       tbody.appendChild(tr);
     });
@@ -29,6 +32,7 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
 
     // Agregar eventos a los botones de "Actualizar" y "Eliminar"
     const botonesActualizar = document.querySelectorAll('.actualizar');
+    /*
     botonesActualizar.forEach(boton => {
         boton.addEventListener('click', () => {
           const id_reserva = boton.getAttribute('data-id');
@@ -66,7 +70,7 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
             .catch(error => console.log(error));
         });
       });
-      
+      */
 
     const botonesEliminar = document.querySelectorAll('.eliminar');
     botonesEliminar.forEach(boton => {
