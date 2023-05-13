@@ -5,7 +5,7 @@ var id_usuario = usuario["Id_usuario"];
 // div de vehiculos
 var vehiculos = document.getElementById("vehiculos");
 
-fetch("http://localhost/Proyecto/parking/Vehiculos.php?usuario=" + id_usuario)
+fetch("http://localhost/Proyecto/parking/vehiculos.php?usuario=" + id_usuario)
 .then(respuesta=>respuesta.json())
 .then(datos=>{
 
