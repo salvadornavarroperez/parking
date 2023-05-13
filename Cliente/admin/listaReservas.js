@@ -12,10 +12,10 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
       tr.innerHTML = `
         <td>${reserva.Id_reserva}</td>
         <td><input type="text" class="form-control" name="Usuario" value="${reserva.Id_reserva}"></td>
-        <td><input type="text" class="form-control" name="Plaza" value="${reserva.Id_plaza}"></td>
-        <td><input type="text" class="form-control" name="Fecha" value="${reserva.fecha}"></td>
-        <td><input type="text" class="form-control" name="HoraEntrada" value="${reserva.hora_entrada}"></td>
-        <td><input type="text" class="form-control" name="HoraSalida" value="${reserva.hora_salida}"></td>
+        <td><input type="text" class="form-control" name="Plaza" value="${reserva.id_plaza}"></td>
+        <td><input type="text" class="form-control datepicker" name="Fecha" value="${reserva.fecha}"></td>
+        <td><input type="text" class="form-control" name="HoraEntrada" value="${reserva.hora_entrada.substring(11, 16)}"></td>
+        <td><input type="text" class="form-control" name="HoraSalida" value="${reserva.hora_salida.substring(11, 16)}"></td>
         <td><input type="text" class="form-control" name="Importe" value="${reserva.importe}"></td>
           <button class="btn btn-sm btn-primary actualizar" data-id="${reserva.Id_reserva}">Actualizar</button>
           <button class="btn btn-sm btn-danger eliminar" data-id="${reserva.Id_reserva}">Eliminar</button>
@@ -23,6 +23,9 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
       `;
       tbody.appendChild(tr);
     });
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+      });
 /*
     // Agregar eventos a los botones de "Actualizar" y "Eliminar"
     const botonesActualizar = document.querySelectorAll('.actualizar');
