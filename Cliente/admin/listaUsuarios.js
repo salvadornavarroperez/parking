@@ -4,7 +4,7 @@ fetch('http://localhost/Proyecto/parking/usuarios.php')
   .then(data => {
     const tbody = document.querySelector('#tabla-usuarios tbody');
 
-    // falta añadir la condicion si no hay usuarios
+    // falta añadir la condicion si no hay usuarios registrados
     data.usuarios.forEach(usuario => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
@@ -46,7 +46,7 @@ fetch('http://localhost/Proyecto/parking/usuarios.php')
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(cuerpo)
           };
-          fetch(`http://localhost/Proyecto/parking/usuarios.php?Id_usuario=${id}&Nombre=${nombre}&Correo=${correo}`, options)
+          fetch(`http://localhost/Proyecto/parking/usuarios.php?Id_usuario=${id}`, options)
             .then(response => {
               if (response.ok) {
                 alert("Los cambios de usuario se han realizado correctamente");
@@ -57,12 +57,6 @@ fetch('http://localhost/Proyecto/parking/usuarios.php')
             })
             
             .catch(error => console.log(error));
-            
-            document.getElementById("alerta").innerHTML = "Usuario editado/eliminado correctamente";
-            document.getElementById("alerta").style.display = "block";
-            setTimeout(function(){
-            document.getElementById("alerta").style.display = "none";
-}, 3000); // Ocultar la alerta después de 3 segundos
         });
       });
       

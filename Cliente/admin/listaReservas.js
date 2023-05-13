@@ -10,8 +10,8 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
     data.reserva.forEach(reserva => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${reserva.Id_reserva}</td>
-        <td><input type="text" class="form-control" name="Usuario" value="${reserva.Id_reserva}"></td>
+      <td><input type="text" class="form-control" name="Reserva" value="${reserva.Id_reserva}" readonly></td>
+        <td><input type="text" class="form-control" name="Usuario" value="${reserva.id_usuario}"></td>
         <td><input type="text" class="form-control" name="Plaza" value="${reserva.id_plaza}"></td>
         <td><input type="text" class="form-control datepicker" name="Fecha" value="${reserva.fecha}"></td>
         <td><input type="text" class="form-control" name="HoraEntrada" value="${reserva.hora_entrada.substring(11, 16)}"></td>
@@ -26,43 +26,44 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd',
       });
-/*
+
     // Agregar eventos a los botones de "Actualizar" y "Eliminar"
     const botonesActualizar = document.querySelectorAll('.actualizar');
     botonesActualizar.forEach(boton => {
         boton.addEventListener('click', () => {
-          const id = boton.getAttribute('data-id');
-          const nombre = boton.parentNode.parentNode.querySelector('input[name="Nombre"]').value;
-          const correo = boton.parentNode.parentNode.querySelector('input[name="Correo"]').value;
-          const rol = boton.parentNode.parentNode.querySelector('select[name="Rol"]').value;
+          const id_reserva = boton.getAttribute('data-id');
+          const id_usuario = boton.parentNode.parentNode.querySelector('input[name="Usuario"]').value;
+          const plaza = boton.parentNode.parentNode.querySelector('input[name="Plaza"]').value;
+          const fechaReserva = boton.parentNode.parentNode.querySelector('input[name="Fecha"]').value;
+          console.log(fechaReserva)
+          const horaEntrada = boton.parentNode.parentNode.querySelector('input[name="HoraEntrada"]').value;
+          const horaSalida = boton.parentNode.parentNode.querySelector('input[name="HoraSalida"]').value;
+          const importe = boton.parentNode.parentNode.querySelector('input[name="Importe"]').value;
           const cuerpo = {
-            "Id_usuario": id,
-            "Nombre": nombre,
-            "Correo": correo,
-            "rol": rol
+            "Id_reserva": id_reserva,
+            "fecha": fechaReserva,
+            "hora_entrada": horaEntrada,
+            "hora_salida": horaSalida,
+            "id_plaza": plaza,
+            "id_usuario": id_usuario,
+            "importe": importe
           };
           const options = {
             method: "PUT",
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(cuerpo)
           };
-          fetch(`http://localhost/Proyecto/parking/usuarios.php?Id_usuario=${id}&Nombre=${nombre}&Correo=${correo}`, options)
+          fetch(`http://localhost/Proyecto/parking/reservas.php?Id_reserva=${id_reserva}`, options)
             .then(response => {
               if (response.ok) {
-                alert("Los cambios de usuario se han realizado correctamente");
+                alert("Los cambios de la reserva se han realizado correctamente");
                 location.reload();
               } else {
-                console.log('Error al actualizar el usuario');
+                alert("Error al actualizar la reserva");
               }
             })
             
             .catch(error => console.log(error));
-            
-            document.getElementById("alerta").innerHTML = "Usuario editado/eliminado correctamente";
-            document.getElementById("alerta").style.display = "block";
-            setTimeout(function(){
-            document.getElementById("alerta").style.display = "none";
-}, 3000); // Ocultar la alerta después de 3 segundos
         });
       });
       
@@ -70,48 +71,54 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
     const botonesEliminar = document.querySelectorAll('.eliminar');
     botonesEliminar.forEach(boton => {
       boton.addEventListener('click', () => {
-        const id = boton.getAttribute('data-id');
+        const id_reserva = boton.getAttribute('data-id');
         const options = {
           method: "DELETE"
         };
-        fetch(`http://localhost/Proyecto/parking/usuarios.php?Id_usuario=${id}`, options)
+        fetch(`http://localhost/Proyecto/parking/reservas.php?Id_reserva=${id_reserva}`, options)
           .then(response => {
             if (response.ok) {
-              alert("El usuario se ha eliminado correctamente");
+              alert("La reserva se ha eliminado correctamente");
               location.reload();
             } else {
-              console.log('Error al eliminar el usuario');
+                alert("Error al eliminar la reserva");
             }
           })
           .catch(error => console.log(error));
       });
-    });*/
-  })/*
+    });
+  })
   .catch(error => console.log(error));
 
-  const searchNombre = document.querySelector('#search-nombre');
-const searchCorreo = document.querySelector('#search-correo');
+const searchReserva = document.querySelector('#search-reserva');
+const searchUsuario = document.querySelector('#search-usuario');
+const searchPlaza = document.querySelector('#search-plaza');
 
-searchNombre.addEventListener('input', () => {
-  buscarUsuarios(searchNombre.value, searchCorreo.value);
+searchReserva.addEventListener('input', () => {
+    buscarReservas(searchReserva.value, searchUsuario.value, searchPlaza.value);
 });
 
-searchCorreo.addEventListener('input', () => {
-  buscarUsuarios(searchNombre.value, searchCorreo.value);
+searchUsuario.addEventListener('input', () => {
+    buscarReservas(searchReserva.value, searchUsuario.value, searchPlaza.value);
 });
 
-function buscarUsuarios(nombre, correo) {
-    const filas = document.querySelectorAll('#tabla-usuarios tbody tr');
+searchPlaza.addEventListener('input', () => {
+    buscarReservas(searchReserva.value, searchUsuario.value, searchPlaza.value);
+});
+
+function buscarReservas(reserva, usuario, plaza) {
+    const filas = document.querySelectorAll('#tabla-reservas tbody tr');
   
     // Convertir la lista de filas en un array para usar el método filter
     const filasArray = Array.from(filas);
   
     // Filtrar las filas que coinciden con la búsqueda
     const filasFiltradas = filasArray.filter(fila => {
-      const nombreUsuario = fila.querySelector('input[name="Nombre"]').value.toLowerCase();
-      const correoUsuario = fila.querySelector('input[name="Correo"]').value.toLowerCase();
+      const idReserva = fila.querySelector('input[name="Reserva"]').value;
+      const idUsuario = fila.querySelector('input[name="Usuario"]').value;
+      const idPlaza = fila.querySelector('input[name="Plaza"]').value;
   
-      return nombreUsuario.includes(nombre.toLowerCase()) && correoUsuario.includes(correo.toLowerCase());
+      return idReserva.includes(reserva) && idUsuario.includes(usuario) && idPlaza.includes(plaza);
     });
   
     // Ocultar todas las filas y mostrar solo las filas filtradas
@@ -122,5 +129,5 @@ function buscarUsuarios(nombre, correo) {
     filasFiltradas.forEach(fila => {
       fila.style.display = '';
     });
-  }*/
+  }
   
