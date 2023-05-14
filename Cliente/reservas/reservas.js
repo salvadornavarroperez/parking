@@ -57,6 +57,7 @@ fechaSalidaInput.addEventListener('input', calcularPrecio);
 
 // Función para calcular el precio
 function calcularPrecio() {
+    precio = 0;
     // Obtener las fechas de entrada y salida del formulario
     fechaEntrada = new Date(fechaEntradaInput.value);
     fechaSalida = new Date(fechaSalidaInput.value);
