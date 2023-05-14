@@ -25,6 +25,19 @@ function eliminarSocio() {
         headers:{'Content-type':'aplication/json'},
         body:JSON.stringify(cuerpoPUT)
     }
+
+    let cuerpoPUTuser={
+        "Id_usuario": usuario["Id_usuario"],
+        "Nombre":usuario["Nombre"],
+        "Correo":usuario["Correo"],
+        "rol":1
+    }
+    
+    let optionsPUTuser={
+        method: "PUT",
+        headers:{'Content-type':'aplication/json'},
+        body:JSON.stringify(cuerpoPUTuser)
+    }
     
     // obtenemos el socio para borrarlo
     fetch("http://localhost/Proyecto/parking/socios.php?Id_usuario=" + id_usuario)
@@ -45,10 +58,19 @@ function eliminarSocio() {
                 .then(datosSS=>{
             
                         if(datosSS.result==="ok") {       
-                            // si tenemos resuesta ok entonces vamos al inicio
-                            alert("Hemos confirmado su baja como socio, recibirá su devolución en los próximos días");
-                            window.location.href = '../inicio.php';    
+                            // si el socio se ha borrado, ponemos su rol en 1
+                            fetch("http://localhost/Proyecto/parking/usuarios.php", optionsPUTuser)
+                            .then(respuesta=>respuesta.json())
+                            .then(datosSSs=>{
+            
+                                    if(datosSSs.result==="ok") {       
+                                
+                                        // si tenemos resuesta ok entonces vamos al inicio
+                                        alert("Hemos confirmado su baja como socio, recibirá su devolución en los próximos días");
+                                        window.location.href = '../inicio.php';    
                             
+                                    }                      
+                            })                                                            
                         }                      
                     })  
                 }                 

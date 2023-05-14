@@ -223,14 +223,36 @@ botonSocio.addEventListener("click", function(){
                     .then(respuesta=>respuesta.json())
                     .then(datos=>{
                     
-                        if(datos.result==="ok") {       
-                            // si tenemos resuesta ok entonces vamos al inicio
-                            if (confirm("Pago realizado con exito")) {
-                                window.location.href = '../inicio.php';    
-                            }
-                        } else {
-                            console.log("hemos pinchao primo");
-                        }            
+                        if(datos.result==="ok") {
+                                                
+                        let cuerpoPUTuser={                
+                            "Id_usuario": usuario["Id_usuario"],
+                            "Nombre":usuario["Nombre"],
+                            "Correo":usuario["Correo"],
+                            "rol":2
+                        }
+                        
+                        
+                        let optionsPUTuser={
+                            method: "PUT",
+                            headers:{'Content-type':'aplication/json'},
+                            body:JSON.stringify(cuerpoPUTuser)
+    }       
+                            fetch("http://localhost/Proyecto/parking/usuarios.php", optionsPUTuser)
+                            .then(respuesta=>respuesta.json())
+                            .then(datos=>{
+                            
+                                if(datos.result==="ok") {       
+                                    // si tenemos resuesta ok entonces vamos al inicio
+                                    if (confirm("Pago realizado con exito")) {
+                                        window.location.href = '../inicio.php';    
+                                    }
+                                } else {
+                                    console.log("hemos pinchao primo");
+                                }            
+                            }) 
+                            // si tenemos resuesta ok entonces vamos al inicio                        
+                        }           
                     })            
                 })                   
             })          
