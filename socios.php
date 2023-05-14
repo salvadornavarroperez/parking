@@ -1,11 +1,11 @@
 <?php
 /**
- *	Script que se usa en los endpoints para trabajar con registros de la tabla PLAYER
- *	La clase "player.class.php" es la clase del modelo, que representa a un jugador de la tabla
+ *	Script que se usa en los endpoints para trabajar con registros de la tabla socio
+ *	La clase "socio.class.php" es la clase del modelo, que representa a un jugador de la tabla
 */
 require_once 'src/response.php';
 require_once 'src/classes/socios.class.php';
-
+include_once 'cors.php';
 $socio = new Socios();
 
 /**
@@ -48,7 +48,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
 		$response = array(
 			'result' => 'ok',
-			'insert_id' => $insert_id
+			'socio' => $insert_id
 		);
 
 		Response::result(201, $response);
@@ -70,7 +70,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$player->update($_GET['id'], $params);
+		$socio->update($_GET['id'], $params);
 
 		$response = array(
 			'result' => 'ok'
@@ -93,10 +93,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			exit;
 		}
 
-		$player->delete($_GET['id']);
+		$socio->delete($_GET['id']);
 
 		$response = array(
-			'result' => 'ok'
+			'result' => 'ok',
+			'socio' => 'ok'
+
 		);
 
 		Response::result(200, $response);

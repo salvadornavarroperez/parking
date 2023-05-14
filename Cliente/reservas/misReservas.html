@@ -6,14 +6,16 @@
   <title>Mis Reservas</title>
   <!-- Agregamos los estilos de Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-<style>
+  <style>
     #reservas {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .cuadrado {
-      width: 450px;
+      width: 90%;
+      max-width: 450px;
       padding: 20px;
       background-color: #f0f0f0;
       border: 1px solid #000;
@@ -33,13 +35,14 @@
       color: #666;
     }
   </style>
+</head>
+
 <body>
     <h2 style="padding-left:1%;">Mis reservas</h2>
-    <div id="reservas"></div>
-    <div style="padding-left:1%;">
-        <p></p>
-        <a class="btn btn-secondary" href = "../inicio.php">Volver al inicio</a>        
-    </div> 
+    <div id="reservas"></div><p></p>
+    <div class="d-flex justify-content-center align-items-center">
+      <a class="btn btn-secondary" href="../inicio.php">Volver al inicio</a>        
+  </div>
 </body>
 <script src="misReservas.js"></script>
 </html>

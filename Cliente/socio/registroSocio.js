@@ -3,10 +3,14 @@ let plaza = document.getElementById("plaza");
 let botonSocio = document.getElementById("botonSocio");
 let checkSocio = document.getElementById("checkSocio");
 let selectPlazasDiv = document.getElementById("selectPlazasDiv");
+let precioDiv = document.getElementById("precio");
 
 // texto que sale si quieres plaza fija
 var textoSelectPlazas = document.createElement("h4");
 textoSelectPlazas.textContent = "Elija una plaza del parking";
+
+//variables monto
+var precio = 0;
 
 // variables globales y boton de hacerse socio desactivado
 botonSocio.disabled = true;
@@ -27,7 +31,7 @@ divMetodoPago.classList.add("container");
 
 // h4 de informacion
 var divPago = document.createElement("h4");
-divPago.innerHTML = "<h3>Usted no tiene un método de pago actualizado</h3>"
+divPago.innerHTML = "<h5>Usted no tiene un método de pago actualizado</h5>"
 divPago.style.color = "red";
 
 // enlace al formulario de metodo de pago
@@ -38,7 +42,7 @@ formPago.href = "../pago.html"
 // añadir los divs al body, si tiene tarjeta se borra
 divMetodoPago.append(divPago, formPago);
 
-// variable usuario de storage, esto es la polla
+// variable usuario de storage
 var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
 var id_usuario = usuario["Id_usuario"]; 
 
@@ -110,12 +114,22 @@ function activarBoton() {
   }
 
 plaza.addEventListener("change", function() {
-    if(plaza.value == "si") {        
+    if(plaza.value == "x") {
+        textoSelectPlazas.hidden = true;
+        selectPlazas.hidden = true;       
+        precioDiv.textContent = "";
+        botonSocio.disabled = true;
+    }
+    else if(plaza.value == "si") {        
         textoSelectPlazas.hidden = false;
         selectPlazas.hidden = false;
+        precio = 300;
+        precioDiv.textContent = `Precio: ${precio} €`;
     } else if (plaza.value == "no"){        
         textoSelectPlazas.hidden = true;
         selectPlazas.hidden = true;
+        precio = 250;
+        precioDiv.textContent = `Precio: ${precio} €`;
 
     }
   })
@@ -155,14 +169,23 @@ botonSocio.addEventListener("click", function(){
         headers:{'Content-type':'aplication/json'},
         body:JSON.stringify(cuerpoPUT)
     }
+
+    let cuerpoFecha={
+        'fecha': new Date(),
+    }
+    
+    let optionsFecha={
+        method: "POST",
+        headers:{'Content-type':'aplication/json'},
+        body:JSON.stringify(cuerpoFecha)
+    }
     
     //montamos el cuerpo del objeto
     fetch("http://localhost/Proyecto/parking/socios.php",options)
     .then(respuesta=>respuesta.json())
-    .then(datos=>{
+    .then(datosS=>{
     
-        console.log(datos)
-        if(datos.result==="ok") {       
+        if(datosS.result==="ok") {       
             var fetchss
             if(plaza.value == "si") {
 
@@ -179,14 +202,37 @@ botonSocio.addEventListener("click", function(){
             fetch(fetchss, optionsPUT)
             .then(respuesta=>respuesta.json())
             .then(datos=>{
-            
-                console.log(datos)
-                if(datos.result==="ok") {       
-                    // si tenemos resuesta ok entonces vamos al inicio
-                    window.location.href = '../inicio.php';    
-                } else {
-                    console.log("hemos pinchao primo");
-                }            
+
+                fetch("http://localhost/Proyecto/parking/fecha.php", optionsFecha)
+                .then(respuesta=>respuesta.json())
+                .then(datos=>{
+
+                    let cuerpoPOST={
+                        'id_socio': datosS.socio,
+                        'id_fecha': datos.fecha,
+                        'monto' : precio        
+                    }
+                    
+                    let optionsPOST={
+                        method: "POST",
+                        headers:{'Content-type':'aplication/json'},
+                        body:JSON.stringify(cuerpoPOST)
+                    }
+
+                    fetch("http://localhost/Proyecto/parking/pago_socios.php", optionsPOST)
+                    .then(respuesta=>respuesta.json())
+                    .then(datos=>{
+                    
+                        if(datos.result==="ok") {       
+                            // si tenemos resuesta ok entonces vamos al inicio
+                            if (confirm("Pago realizado con exito")) {
+                                window.location.href = '../inicio.php';    
+                            }
+                        } else {
+                            console.log("hemos pinchao primo");
+                        }            
+                    })            
+                })                   
             })          
         }    
     }) 

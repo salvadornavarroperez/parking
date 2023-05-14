@@ -5,7 +5,7 @@
 */
 require_once 'src/response.php';
 require_once 'src/classes/reservas.class.php';
-
+include_once 'cors.php';
 $reserva = new Reservas();
 
 /**

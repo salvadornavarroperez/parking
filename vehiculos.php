@@ -5,7 +5,7 @@
 */
 require_once 'src/response.php';
 require_once 'src/classes/Vehiculos.class.php';
-
+include_once 'cors.php';
 $vehiculo = new Vehiculos();
 
 /**

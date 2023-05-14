@@ -1,38 +1,30 @@
 <?php
 /**
- * Clase para el modelo que representa a la tabla "pagos_socios".
+ * Clase para el modelo que representa a la tabla "player".
  */
 require_once 'src/response.php';
 require_once 'src/database.php';
 
-class Pagos extends Database
+class Tarifas extends Database
 {
 	/**
 	 * Atributo que indica la tabla asociada a la clase del modelo
 	 */
-	private $table = 'pagos_socios';
+	private $table = 'tarifas';
 
 	/**
 	 * Array con los campos de la tabla que se pueden usar como filtro para recuperar registros
 	 */
 	private $allowedConditions_get = array(
-		
-       
-        'id_pago',
-		'id_socio',
-		'id_fecha',
-        'monto',
-        'page'
+		'id_tarifa',
+		'precio'
 	);
 
 	/**
 	 * Array con los campos de la tabla que se pueden proporcionar para insertar registros
 	 */
 	private $allowedConditions_insert = array(
-		'id_socio',
-		'id_fecha',
-        'monto'
-        
+		'precio'
 	);
 
 	/**
@@ -41,10 +33,10 @@ class Pagos extends Database
 	private function validate($data)
 	{
 
-		if (!isset($data['id_socio']) || empty($data['id_fecha'])|| empty($data['monto'])) {
+		if (!isset($data['precio'])) {
 			$response = array(
 				'result' => 'error',
-				'details' => 'El campo id es obligatorio'
+				'details' => 'El campo precio es obligatorio'
 			);
 
 			Response::result(400, $response);
@@ -119,7 +111,7 @@ class Pagos extends Database
 		}
 
 		if ($this->validate($params)) {
-			$affected_rows = parent::updateDB($this->table, $id, $params,"Id_pago");
+			$affected_rows = parent::updateDB($this->table, $id, $params,"id_tarifa");
 
 			if ($affected_rows == 0) {
 				$response = array(
@@ -138,7 +130,7 @@ class Pagos extends Database
 	 */
 	public function delete($id)
 	{
-		$affected_rows = parent::deleteDB($this->table, $id,"Id_pago");
+		$affected_rows = parent::deleteDB($this->table, $id,"id_tarifa");
 
 		if ($affected_rows == 0) {
 			$response = array(

@@ -37,7 +37,7 @@ class Fechas extends Database
 		if (!isset($data['fecha'])) {
 			$response = array(
 				'result' => 'error',
-				'details' => 'El campo player_name es obligatorio'
+				'details' => 'El campo fecha es obligatorio'
 			);
 
 			Response::result(400, $response);

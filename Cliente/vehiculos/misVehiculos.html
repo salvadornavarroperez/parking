@@ -9,29 +9,38 @@
 
   <style>
     #vehiculos {
-        display: flex;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    
+
     .cuadrado {
-      width: 200px;
+      width: 45%;
+      margin: 10px;
       padding: 20px;
       background-color: #f0f0f0;
       border: 1px solid #000;
       border-radius: 10px;
-      margin-left: 1%;
-      margin-top: 10px;
       font-size: 28px;
       text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .cuadrado {
+        width: 30%;
+      }
     }
   </style>
 </head>
 <body>
-  <h2 style="padding-left:1%;">Mis vehiculos</h2>
-    <div id="vehiculos"></div>
-    <div style="padding-left:1%;">
-        <p></p>
-        <a class="btn btn-secondary" href = "../inicio.php">Volver al inicio</a>        
-    </div> 
+  <div class="container">
+    <h2 class="mt-4">Mis vehículos</h2>
+    <div id="vehiculos" class="row"></div>
+    <p></p>
+    <div class="d-flex justify-content-center align-items-center">
+      <a class="btn btn-secondary" href="../inicio.php">Volver al inicio</a>        
+  </div>
+  </div>
 </body>
 <script src="misVehiculos.js"></script>
 </html>
