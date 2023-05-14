@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Lista de Reservas</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+	</head>
+	<body>
+		<div id="alerta" class="alert" style="display:none;"></div>
+		<div class="container mt-5">
+			<h1 class="text-center">Reservas</h1>
+		  
+			<div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="search-usuario">Buscar por Usuario:</label>
+                    <input type="text" class="form-control" id="search-usuario">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="search-plaza">Buscar por plaza:</label>
+                    <input type="text" class="form-control" id="search-plaza">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="search-reserva">Buscar por número de reserva:</label>
+                    <input type="text" class="form-control" id="search-reserva">
+                </div>
+            </div>
+		  
+			<div class="table-responsive">
+			  <table id="tabla-reservas" class="table table-hover table-bordered">
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>ID_Usuario</th>
+					<th>ID_Plaza</th>
+					<th>Fecha reserva</th>
+					<th>Hora entrada</th>
+					<th>Hora salida</th>
+                    <th>Importe</th>
+				  </tr>
+				</thead>
+				<tbody>
+				</tbody>
+			  </table>
+			</div>
+		  </div>
+		  
+		<script type="module" defer src="listaReservas.js"></script>
+        <a href="../inicio.php" class="btn btn-secondary">Volver al inicio</a>
+	</body>
+</html>
