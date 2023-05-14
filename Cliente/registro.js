@@ -23,6 +23,7 @@ formulario.addEventListener("submit",(event)=>{
     const regexEmail = /\S+@\S+\.\S+/;
     const regexNombre = /^[^\d\s]+(\s+[^\d\s]+)*$/;
     const regexPassword = /^(?=.*\d)(?=.*[A-Z]).{8,}$/;
+    existeCorreo=false;
 
 
     if(!regexNombre.test(nombre.value))
@@ -42,23 +43,20 @@ formulario.addEventListener("submit",(event)=>{
     }
     if(regexEmail.test(email.value))
     {
-        existe=false;
         //comprobamos si el correo está ya resgistrado
         fetch("http://localhost/Proyecto/parking/usuarios.php")
         .then(respuesta=>respuesta.json())
         .then(datos=>{
-            if(datos.usuarios.filter(usuario=>usuario.Correo=="email.value"))
+            let coincidencias=datos.usuarios.filter(usuario=>usuario.Correo==email.value)
+            if(coincidencias.length>0)
             {
                 emailErr.textContent="El correo ya existe";
-                existe=true
+                existeCorreo=true;
             }
                 
            
         })
-        if(existe)
-        {
-            return;
-        }
+        
 
     }
     if(regexNombre.test(nombre.value)&&regexPassword.test(password.value)&&regexEmail.test(email.value))
@@ -72,8 +70,12 @@ formulario.addEventListener("submit",(event)=>{
                 'Password':password.value,
                 'Correo':email.value,
                 'rol':1
-            };            
-            registraUsuario(objeto); 
+            };
+            if(!existeCorreo)
+            {
+                registraUsuario(objeto); 
+            }            
+           
     }
 })
 
