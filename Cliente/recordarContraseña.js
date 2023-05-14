@@ -1,32 +1,33 @@
 let correo=document.querySelector("#correo");
 let boton=document.querySelector("#enviar");
 let error=document.querySelector("#error");
+let formulario=document.querySelector("#formulario");
 //montamos el enlace en caso de que se pueda usar
 let enlace ="http://localhost/Proyecto/parking/Cliente/cambiar_pass.html?id=";
 
 
 const regexEmail = /\S+@\S+\.\S+/;
-//primero comprobamos que el usuario existe
-boton.addEventListener("click",function(){
 
+formulario.addEventListener("submit",(event)=>{
 
-        if(regexEmail.test(correo.value))
+    event.preventDefault();
+    if(regexEmail.test(correo.value))
         {   
             //comprobamos si ese correo existe en la base de datos
             fetch("http://localhost/Proyecto/parking/usuarios.php?Correo="+correo.value)
             .then(respuesta => respuesta.json())
             .then(datos=>{
 
-                if(datos.result=="ok")
+                if(datos.result=="ok"&&datos.usuarios.lenght>0)
                 {
                     enlace=enlace+`${datos.usuarios[0].Id_usuario}`;
                     enviarCorreo(correo.value)
-                    console.log(enlace);
-                    console.log(datos.usuarios[0].Id_usuario)
+                    error.textContent="Correo enviado con exito, puede ser que deba ver la bandeja de correo basura"
+                   
                 }
                 else
                 {
-                    console.log(datos)
+                    
                     error.textContent="El correo no está registrado en la base de datos"
                 }
             })
@@ -36,7 +37,18 @@ boton.addEventListener("click",function(){
             error.textContent="El email introducido no es válido";
         }
 
+
+
 })
+
+
+
+//primero comprobamos que el usuario existe
+// boton.addEventListener("click",function(){
+
+
+        
+// })
 
 
 function enviarCorreo(correo)
