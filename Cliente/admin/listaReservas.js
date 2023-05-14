@@ -29,10 +29,9 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd',
       });
-
+    /*
     // Agregar eventos a los botones de "Actualizar" y "Eliminar"
     const botonesActualizar = document.querySelectorAll('.actualizar');
-    /*
     botonesActualizar.forEach(boton => {
         boton.addEventListener('click', () => {
           const id_reserva = boton.getAttribute('data-id');

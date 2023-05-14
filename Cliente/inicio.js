@@ -92,11 +92,6 @@ fetch("http://localhost/Proyecto/parking/usuarios.php?Id_usuario=" + id_usuario)
         enlaceTarifas.href = "./admin/Tarifas.html";
         enlaceTarifas.textContent = "Tarifas";
 
-        var enlaceNotificaciones = document.createElement("a");
-        enlaceNotificaciones.className = "dropdown-item";
-        enlaceNotificaciones.href = "./admin/envioNotificaiones.html";
-        enlaceNotificaciones.textContent = "Notificaciones";
-
         var enlaceCotizacion = document.createElement("a");
         enlaceCotizacion.className = "dropdown-item";
         enlaceCotizacion.href = "./admin/cotizaciones.html";
@@ -106,7 +101,6 @@ fetch("http://localhost/Proyecto/parking/usuarios.php?Id_usuario=" + id_usuario)
         subMenuAdmin.appendChild(enlaceUsuarios);
         subMenuAdmin.appendChild(enlaceReservas);
         subMenuAdmin.appendChild(enlaceTarifas);
-        subMenuAdmin.appendChild(enlaceNotificaciones);
         subMenuAdmin.appendChild(enlaceCotizacion);
 
         // Añadimos el enlace del menú desplegable y la lista de submenús al menú principal

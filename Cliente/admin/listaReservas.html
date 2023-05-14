@@ -15,19 +15,19 @@
 			<h1 class="text-center">Reservas</h1>
 		  
 			<div class="form-row">
-              <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                     <label for="search-usuario">Buscar por Usuario:</label>
                     <input type="text" class="form-control" id="search-usuario">
-             </div>
-			  <div class="col-md-6 mb-3">
-				<label for="search-plaza">Buscar por plaza:</label>
-				<input type="text" class="form-control" id="search-plaza">
-			  </div>
-			  <div class="col-md-6 mb-3">
-				<label for="search-reserva">Buscar por reserva:</label>
-				<input type="text" class="form-control" id="search-reserva">
-			  </div>
-			</div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="search-plaza">Buscar por plaza:</label>
+                    <input type="text" class="form-control" id="search-plaza">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="search-reserva">Buscar por número de reserva:</label>
+                    <input type="text" class="form-control" id="search-reserva">
+                </div>
+            </div>
 		  
 			<div class="table-responsive">
 			  <table id="tabla-reservas" class="table table-hover table-bordered">
@@ -49,5 +49,6 @@
 		  </div>
 		  
 		<script type="module" defer src="listaReservas.js"></script>
+        <a href="../inicio.php" class="btn btn-secondary">Volver al inicio</a>
 	</body>
 </html>
