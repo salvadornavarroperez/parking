@@ -128,7 +128,7 @@ plaza.addEventListener("change", function() {
     } else if (plaza.value == "no"){        
         textoSelectPlazas.hidden = true;
         selectPlazas.hidden = true;
-        precio = 250;
+        precio = 275;
         precioDiv.textContent = `Precio: ${precio} €`;
 
     }
