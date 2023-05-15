@@ -53,6 +53,29 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
 		Response::result(201, $response);
 		break;
+	
+	case 'PUT':
+			$params = json_decode(file_get_contents('php://input'), true);
+	
+			if(!isset($params) || !isset($_GET['id_tarifa']) || empty($_GET['id_tarifa'])){
+				$response = array(
+					'result' => 'error',
+					'details' => 'Error en la solicitud'
+				);
+	
+				Response::result(400, $response);
+				exit;
+			}
+	
+			$tarifa->update($_GET['id_tarifa'], $params);
+	
+			$response = array(
+				'result' => 'ok'
+			);
+	
+			Response::result(200, $response);
+			break;
+	
 
 	/**
 	 * Para cualquier otro tipo de petición se devuelve un mensaje de error 404.
