@@ -140,7 +140,7 @@ fetch("http://localhost/Proyecto/parking/usuarios.php?Id_usuario=" + id_usuario)
 
         var enlaceTarifas = document.createElement("a");
         enlaceTarifas.className = "dropdown-item";
-        enlaceTarifas.href = "./admin/Tarifas.html";
+        enlaceTarifas.href = "./admin/tarifas.html";
         enlaceTarifas.textContent = "Tarifas";
 
         var enlaceCotizacion = document.createElement("a");
