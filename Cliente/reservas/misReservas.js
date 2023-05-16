@@ -59,9 +59,9 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
         vehiculos.append(reserva);
         borrar.addEventListener("click", function() {
 
-            fetch("http://localhost/Proyecto/parking/reservas.php?Id_reserva=" + m.Id_reserva, {
-                method: 'DELETE'
-            }).then(response => {
+            fetch("http://localhost/Proyecto/parking/reservas.php?Id_reserva=" + m.Id_reserva, {method: 'DELETE'})
+            .then(respuesta=>respuesta.json())
+            .then(datos=>{
 
                   let cuerpoPUT={
                     'disponible': 1
@@ -71,17 +71,12 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
                     method: "PUT",
                     headers:{'Content-type':'aplication/json'},
                     body:JSON.stringify(cuerpoPUT)
-                }
-                // si tenemos resuesta ok entonces ponemos la plaza a disponible
-                fetch("http://localhost/Proyecto/parking/plazas.php?numero_plaza=" + m.id_plaza, optionsPUT)
-                .then(respuesta=>respuesta.json())
-                .then(datos=>{                                        
-                    if(datos.result==="ok") {       
-                        // si tenemos resuesta ok entonces vamos al inicio
-                        location.reload();         
-                    }         
-                  }) 
-                })
+                }                                      
+                if(datos.result==="ok") {       
+                    // si tenemos resuesta ok entonces vamos al inicio
+                    location.reload();         
+                }                            
+            })
         })
     })
 })
