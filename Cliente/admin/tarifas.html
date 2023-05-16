@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Lista de Reservas</title>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Tarifas admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+</head>
+<body>
+  <div id="alerta" class="alert" style="display:none;"></div>
+  <div class="container mt-5">
+    <h1 class="text-center">Tarifas</h1>
+    <div class="table-responsive">
+      <table id="tabla-tarifas" class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Tarifa</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-	</head>
-	<body>
-		<div id="alerta" class="alert" style="display:none;"></div>
-		<div class="container mt-5">
-			<h1 class="text-center">Tarifas</h1>  
-			<div class="table-responsive">
-			  <table id="tabla-tarifas" class="table table-hover table-bordered">
-				<thead>
-				  <tr>
-					<th>ID</th>
-					<th>Tarifa</th>
-				  </tr>
-				</thead>
-				<tbody>
-				</tbody>
-			  </table>
-			</div>
-		  </div>
-		  
-		<script type="module" defer src="tarifas.js"></script>
-		<div class="d-flex justify-content-center align-items-center">
-			<a class="btn btn-secondary" href="../inicio.php">Volver al inicio</a>        
-		</div>
-	</body>
+  <div class="d-flex justify-content-center align-items-center mt-3">
+    <a class="btn btn-secondary" href="../inicio.php">Volver al inicio</a>
+  </div>
+
+  <script type="module" defer src="tarifas.js"></script>
+</body>
 </html>
