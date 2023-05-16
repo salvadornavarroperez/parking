@@ -98,7 +98,7 @@ class Tarifas extends Database
 	public function update($id, $params)
 	{
 		foreach ($params as $key => $parm) {
-			if (!in_array($key, $this->allowedConditions_insert)) {
+			if (!in_array($key, $this->allowedConditions_get)) {
 				unset($params[$key]);
 				$response = array(
 					'result' => 'error',
