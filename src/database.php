@@ -137,7 +137,10 @@ class Database
 
 	public function getReservasDB($fechaInicio, $fechaFin) {
 		
-		$querys = "SELECT id_plaza FROM reservas WHERE hora_entrada >= '$fechaInicio' AND hora_salida <= '$fechaFin'";
+		$querys = "SELECT id_plaza FROM reservas 
+		WHERE (DATE(hora_entrada) BETWEEN '$fechaInicio' AND '$fechaFin' AND DATE(hora_salida) BETWEEN '$fechaInicio' AND '$fechaFin')
+		OR (DATE(hora_entrada) = '$fechaInicio' OR '$fechaFin' = DATE(hora_salida)) 
+		OR (DATE(hora_salida) = '$fechaInicio' OR '$fechaFin' = DATE(hora_entrada))";
 		$results = $this->connection->query($querys);
 		$resultArray = array();		
 
