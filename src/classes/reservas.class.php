@@ -76,9 +76,9 @@ class Reservas extends Database
 			}
 		}
 
-		$players = parent::getDB($this->table, $params);
+		$reservas = parent::getDB($this->table, $params);
 
-		return $players;
+		return $reservas;
 	}
 
 	/**
@@ -153,6 +153,13 @@ class Reservas extends Database
 			Response::result(200, $response);
 			exit;
 		}
+	}
+
+	public function getReservas($fecha1, $fecha2)
+	{
+		$reservas = parent::getReservasDB($fecha1, $fecha2);		
+		return $reservas;
+
 	}
 }
 

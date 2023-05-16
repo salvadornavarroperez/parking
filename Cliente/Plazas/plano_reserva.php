@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
 
-      
-
       .parking-lot-container-outer {
         max-width: 100%;
         overflow-x: auto;
@@ -84,6 +82,19 @@
   </head>
   <body>
   <div class="parking-lot-container-outer">
+  <div class="container mt-5 d-flex justify-content-center">        
+    <form id="formularioReserva" class="form-inline">
+        <div class="form-group">
+            <label for="fechaEntrada">Fecha de Entrada:</label>&nbsp
+            <input type="date" class="form-control" id="fechaEntrada" required>
+        </div>
+        <div class="form-group mx-sm-3">
+            <label for="fechaSalida">Fecha de Salida:</label>&nbsp
+            <input type="date" class="form-control" id="fechaSalida" required>
+        </div>
+    </form>
+</div>
+
   <div class="parking-lot-container">
     <div class="d-flex flex-wrap align-content-start" id="plano">
       <?php

@@ -1,21 +1,29 @@
 // Obtener el formulario y los campos de fecha de entrada y salida
 const formulario = document.getElementById('formularioReserva');
-const fechaEntradaInput = document.getElementById('fechaEntrada');
-const fechaSalidaInput = document.getElementById('fechaSalida');
 const horaEntrada = document.getElementById('horaEntrada');
 const horaSalida = document.getElementById('horaSalida');
 var botonReserva = document.getElementById('btnreserva');
-botonReserva.disabled = true;
 
 // constantes de precios
-const PRECIO_DIAS_LABORALES = 8;
-const PRECIO_FESTIVOS = 10;
+var PRECIO_DIAS_LABORALES = 8;
+var PRECIO_FESTIVOS = 10;
+
+fetch("http://localhost/Proyecto/parking/tarifas.php")
+.then(respuesta=>respuesta.json())
+.then(datos=>{
+    if(datos.result==="ok"){
+        // comprobar que recibimos datos de tarifa
+        var tarifas = Array.from(datos.tarifas);
+        PRECIO_DIAS_LABORALES = parseInt(tarifas[0].precio)
+        PRECIO_FESTIVOS = parseInt(tarifas[1].precio)
+    }
+})
 
 // Obtener el campo de resultado del precio
 const resultadoPrecio = document.getElementById('resultadoPrecio');
 
 // variable global de precio
-var precio = 0;
+var precio = PRECIO_DIAS_LABORALES;
 
 // variable global de plaza
 var plazaAleatoria;
@@ -23,10 +31,14 @@ var plazaAleatoria;
 // variables globales de fechas y horas de entrada y salida
 var fechaEntrada;
 var fechaSalida;
+//.toISOString().split("T")[0];
 
 // Obtener el usuario actual
 var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
 var id_usuario = usuario["Id_usuario"]; 
+var fechaEntrada = JSON.parse(localStorage.getItem("fechaE"));
+var fechaSalida = JSON.parse(localStorage.getItem("fechaS"));
+
 
 // obtener la plaza desde el inicio
 var plaza = JSON.parse(localStorage.getItem("plaza"));
@@ -35,9 +47,7 @@ var id_plaza = plaza["plaza"];
 //estos elementos son para el qr
 const imagen=document.createElement("img")
 let cuerpoDatos={
-
-                  
-    
+                      
     Plaza:0,
     FechaReserva:"",
     FechaEntrada:"",
@@ -46,53 +56,41 @@ let cuerpoDatos={
     HoraSalida:"",
     importe:0,
     correo:""
-
-
 }
-let datosUsuario=JSON.parse(localStorage.getItem("Datos_usuario"))
-console.log(datosUsuario.Correo)
-// Agregar eventos de escucha a los campos de fecha de entrada y salida
-fechaEntradaInput.addEventListener('input', calcularPrecio);
-fechaSalidaInput.addEventListener('input', calcularPrecio);
 
-// Función para calcular el precio
-function calcularPrecio() {
-    precio = 0;
-    // Obtener las fechas de entrada y salida del formulario
-    fechaEntrada = new Date(fechaEntradaInput.value);
-    fechaSalida = new Date(fechaSalidaInput.value);
+let datosUsuario=JSON.parse(localStorage.getItem("Datos_usuario"));
 
-    // Calcular la cantidad de días entre las dos fechas
-    const diferenciaTiempo = fechaSalida - fechaEntrada;
-    const diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24));
-
-    if (diferenciaDias <= 0) {
-        // Mostrar un mensaje emergente si la fecha de entrada es mayor que la fecha de salida
-        alert('La fecha de entrada debe ser menor a la fecha de salida y la reserva será minimo de un dia.');
-        resultadoPrecio.textContent = ''; // Limpiar el campo de resultado del precio
-        botonReserva.disabled = true;
-    } else {
-        // Obtener el día de la semana de la fecha de entrada y salida
-        const diaEntrada = fechaEntrada.getDay();
-        const diaSalida = fechaSalida.getDay();
-
-        // Calcular el precio en función de si es un día laboral o un día festivo        
-        for (let i = 0; i < diferenciaDias; i++) {
-            const diaActual = (diaEntrada + i) % 7;
-            if (diaActual === 0 || diaActual === 6) {
-                // Día festivo (sábado o domingo)
-                precio += PRECIO_FESTIVOS;
-            } else {
-                // Día laboral
-                precio += PRECIO_DIAS_LABORALES;
-            }
-        }
-
-        // Mostrar el precio en el campo de resultado del precio
-        resultadoPrecio.textContent = `Precio: ${precio} €`;
-        botonReserva.disabled = false;
+function calcularDias(fechaEntrada, fechaSalida) {
+    // Convertir las fechas a objetos Date
+    const fecha1 = new Date(fechaEntrada);
+    const fecha2 = new Date(fechaSalida);
+  
+    // Calcular la diferencia en milisegundos entre las fechas
+    const diferencia = fecha2 - fecha1;
+  
+    // Convertir la diferencia a días
+    const diasTotales = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+  
+    // Contador para los sábados y domingos
+    let finesDeSemana = 0;
+  
+    // Recorrer los días en el rango y contar los fines de semana
+    for (let i = 0; i <= diasTotales; i++) {
+      const fecha = new Date(fecha1.getTime() + i * (1000 * 60 * 60 * 24));
+      const diaSemana = fecha.getDay();
+  
+      if (diaSemana === 0 || diaSemana === 6) {
+        finesDeSemana++;
+      }
     }
-}
+  
+    // Restar los fines de semana del total de días para obtener los días hábiles
+    const diasHabiles = diasTotales - finesDeSemana;
+    precio += (diasHabiles*PRECIO_DIAS_LABORALES) + (finesDeSemana*PRECIO_FESTIVOS);
+    resultadoPrecio.textContent = `Precio: ${precio} €`;
+  }
+
+calcularDias(fechaEntrada, fechaSalida)
 
 function fechaInsert (fecha, hora) {
 
@@ -115,8 +113,8 @@ function fechaInsert (fecha, hora) {
 formulario.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío del formulario
 
-    var fechaEInsert = fechaInsert(fechaEntradaInput.value, horaEntrada.value);
-    var fechaSInsert = fechaInsert(fechaSalidaInput.value, horaSalida.value)
+    var fechaEInsert = fechaInsert(fechaEntrada, horaEntrada.value);
+    var fechaSInsert = fechaInsert(fechaSalida, horaSalida.value)
     
     var dates = new Date();
     let cuerpo={
@@ -127,19 +125,14 @@ formulario.addEventListener('submit', function(event) {
         'hora_salida': fechaSInsert.toISOString(),
         'importe' : precio
     }
-    cuerpoDatos={
 
-            
+    cuerpoDatos={        
         Plaza:id_plaza,       
         FechaReserva:new Date(),
-        FechaEntrada:fechaEntradaInput.value+" a las "+horaEntrada.value,        
-        FechaSalida:fechaSalidaInput.value+" a las "+horaSalida.value,
+        FechaEntrada:fechaEntrada + " a las "+horaEntrada.value,        
+        FechaSalida:fechaSalida + " a las "+horaSalida.value,
         importe:precio
-        
-
-
     }
-
     
     let options={
         method: "POST",
@@ -147,38 +140,21 @@ formulario.addEventListener('submit', function(event) {
         body:JSON.stringify(cuerpo)
     }
 
-    let cuerpoPUT={
-        'disponible': 0
-    }
-    
-    let optionsPUT={
-        method: "PUT",
-        headers:{'Content-type':'aplication/json'},
-        body:JSON.stringify(cuerpoPUT)
-    }
-
     fetch("http://localhost/Proyecto/parking/reservas.php",options)
     .then(respuesta=>respuesta.json())
     .then(datos=>{
     
-        if(datos.result==="ok") {       
-            // si tenemos resuesta ok entonces ponemos la plaza a no disponible
-            fetch("http://localhost/Proyecto/parking/plazas.php?numero_plaza=" + id_plaza, optionsPUT)
-            .then(respuesta=>respuesta.json())
-            .then(datos=>{                                        
-                if(datos.result==="ok") {       
-                    // si tenemos resuesta ok entonces vamos al inicio
-                    enviarCorreo(datosUsuario.Correo)    
-                    window.location.href = 'misReservas.html';
-                      
-                }         
-            }) 
-        }    
+        if(datos.result==="ok") {            
+            // si tenemos resuesta ok entonces vamos al inicio
+            enviarCorreo(datosUsuario.Correo)    
+            window.location.href = 'misReservas.html';                      
+        }                                  
     }) 
 });
 
 console.log(cuerpoDatos)
 const generarQr=()=>{
+    console.log(cuerpoDatos)
 
     const qr=new QRious({
         element: imagen,
@@ -188,16 +164,6 @@ const generarQr=()=>{
         Fecha de salida: ${cuerpoDatos.FechaSalida}        
         Importe:${cuerpoDatos.importe} euros`
 
-
-       
-        // Fecha de reserva: ${datosReserva.FechaReserva}
-        // Fecha de entrada: ${datosReserva.FechaEntrada}
-        // Hora de entrada: ${datosReserva.HoraEntrada}
-        // Fecha de salida: ${datosReserva.FechaSalida}
-        // Hora de salida: ${datosReserva.HoraSalida}
-        // Importe:${datosReserva.importe} euros`
-          
-          
         , // La URL o el texto
         size: 400,
         backgroundAlpha: 0, // 0 para fondo transparente
@@ -207,8 +173,6 @@ const generarQr=()=>{
       });
     // Obtener la cadena de texto base64 de la imagen PNG
     return qr
-
-
 }
 
 function enviarCorreo(correo)
@@ -230,5 +194,4 @@ function enviarCorreo(correo)
         }).then(
         message => alert(message)
         );
-
 }

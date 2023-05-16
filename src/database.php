@@ -134,6 +134,19 @@ class Database
 
 		return $this->connection->affected_rows;
 	}
+
+	public function getReservasDB($fechaInicio, $fechaFin) {
+		
+		$querys = "SELECT id_plaza FROM reservas WHERE hora_entrada >= '$fechaInicio' AND hora_salida <= '$fechaFin'";
+		$results = $this->connection->query($querys);
+		$resultArray = array();		
+
+		foreach ($results as $value) {
+			$resultArray[] = $value;
+		}
+
+		return $resultArray;
+	}
 }
 
 
