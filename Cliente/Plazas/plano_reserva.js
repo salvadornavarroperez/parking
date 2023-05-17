@@ -9,10 +9,43 @@ fechaSalidaInput.value = new Date().toISOString().split("T")[0];
 fechaEntradaInput.addEventListener('input', verDisponibles);
 fechaSalidaInput.addEventListener('input', verDisponibles);
 
+// Obtener el usuario actual
+var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
+var id_usuario = usuario["Id_usuario"]; 
+
 // variables globales de fechas y horas de entrada y salida
 var fechaEntrada;
 var fechaSalida;
 verDisponibles();
+
+// variables para saber si tiene matricula y metodo pago
+var tieneMatricula = false;
+var tieneTarjeta = false;
+
+
+fetch("http://localhost/Proyecto/parking/metodo_pago.php?usuario=" + id_usuario)
+.then(respuesta=>respuesta.json())
+.then(datos=>{
+
+    // comprobar que recibimos datos o no
+    var pago = Array.from(datos.metodo_pago);
+
+    // si no es socio añadimos al menu la opcion de añadir metodo de pago, si no, la quitamos si aparece
+    if(pago.length > 0) {
+        tieneTarjeta = true;
+    } 
+});
+
+fetch("http://localhost/Proyecto/parking/vehiculos.php?usuario=" + id_usuario)
+.then(respuesta=>respuesta.json())
+.then(datos=>{
+
+    var matriculas = Array.from(datos.matriculas);
+
+    if(matriculas.length > 0) {
+        tieneMatricula = true;
+    } 
+})
 
 reservar.addEventListener('click',()=>{
     
@@ -21,7 +54,15 @@ let plaza = document.querySelector('.marcado')
 
 if(!plaza){
     alert('Debes seleccionar una plaza')
-}else{
+
+} else if(!tieneTarjeta) {
+    alert('Para reservar una plaza debes tener un método de pago actualizado')
+
+} else if(!tieneMatricula) {
+    alert('Para reservar una plaza debes tener un vehiculo registrado')
+    
+}  else {
+    reservar.disabled = false;
     const reservaPlaza={
         "plaza":plaza.id
      }            

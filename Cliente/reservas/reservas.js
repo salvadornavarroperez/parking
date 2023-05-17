@@ -4,26 +4,17 @@ const horaEntrada = document.getElementById('horaEntrada');
 const horaSalida = document.getElementById('horaSalida');
 var botonReserva = document.getElementById('btnreserva');
 
-// constantes de precios
-var PRECIO_DIAS_LABORALES = 8;
-var PRECIO_FESTIVOS = 10;
-
-fetch("http://localhost/Proyecto/parking/tarifas.php")
-.then(respuesta=>respuesta.json())
-.then(datos=>{
-    if(datos.result==="ok"){
-        // comprobar que recibimos datos de tarifa
-        var tarifas = Array.from(datos.tarifas);
-        PRECIO_DIAS_LABORALES = parseInt(tarifas[0].precio)
-        PRECIO_FESTIVOS = parseInt(tarifas[1].precio)
-    }
-})
+let datosUsuario=JSON.parse(localStorage.getItem("Datos_usuario"));
 
 // Obtener el campo de resultado del precio
 const resultadoPrecio = document.getElementById('resultadoPrecio');
 
+let precioLaboral = parseInt(localStorage.getItem("t1"));
+let precioFestivos = parseInt(localStorage.getItem("t2"));
+let tarifas;
+
 // variable global de precio
-var precio = PRECIO_DIAS_LABORALES;
+var precio = 0;
 
 // variable global de plaza
 var plazaAleatoria;
@@ -31,7 +22,6 @@ var plazaAleatoria;
 // variables globales de fechas y horas de entrada y salida
 var fechaEntrada;
 var fechaSalida;
-//.toISOString().split("T")[0];
 
 // Obtener el usuario actual
 var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
@@ -39,7 +29,8 @@ var id_usuario = usuario["Id_usuario"];
 var fechaEntrada = JSON.parse(localStorage.getItem("fechaE"));
 var fechaSalida = JSON.parse(localStorage.getItem("fechaS"));
 
-
+//calcularDias(fechaEntrada, fechaSalida, precioLaboral, precioFestivos); 
+  
 // obtener la plaza desde el inicio
 var plaza = JSON.parse(localStorage.getItem("plaza"));
 var id_plaza = plaza["plaza"];
@@ -58,9 +49,7 @@ let cuerpoDatos={
     correo:""
 }
 
-let datosUsuario=JSON.parse(localStorage.getItem("Datos_usuario"));
-
-function calcularDias(fechaEntrada, fechaSalida) {
+  function calcularHoras(fechaEntrada, fechaSalida, precio1, precio2) {
     // Convertir las fechas a objetos Date
     const fecha1 = new Date(fechaEntrada);
     const fecha2 = new Date(fechaSalida);
@@ -68,29 +57,34 @@ function calcularDias(fechaEntrada, fechaSalida) {
     // Calcular la diferencia en milisegundos entre las fechas
     const diferencia = fecha2 - fecha1;
   
-    // Convertir la diferencia a días
-    const diasTotales = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+    // Convertir la diferencia a horas
+    const horasTotales = Math.ceil(diferencia / (1000 * 60));
   
-    // Contador para los sábados y domingos
-    let finesDeSemana = 0;
+    // Contador para las horas de fines de semana
+    let horasFinesDeSemana = 0;
   
-    // Recorrer los días en el rango y contar los fines de semana
-    for (let i = 0; i <= diasTotales; i++) {
-      const fecha = new Date(fecha1.getTime() + i * (1000 * 60 * 60 * 24));
+    // Recorrer las horas en el rango y contar las horas de fines de semana
+    for (let i = 0; i <= horasTotales; i++) {
+      const fecha = new Date(fecha1.getTime() + i * (1000 * 60));
       const diaSemana = fecha.getDay();
   
       if (diaSemana === 0 || diaSemana === 6) {
-        finesDeSemana++;
+        horasFinesDeSemana++;
       }
     }
   
-    // Restar los fines de semana del total de días para obtener los días hábiles
-    const diasHabiles = diasTotales - finesDeSemana;
-    precio += (diasHabiles*PRECIO_DIAS_LABORALES) + (finesDeSemana*PRECIO_FESTIVOS);
-    resultadoPrecio.textContent = `Precio: ${precio} €`;
+    // Restar las horas de fines de semana del total de horas para obtener las horas hábiles
+    const horasHabiles = horasTotales - horasFinesDeSemana;
+    precio = (horasHabiles * (precio1/1440)) + (horasFinesDeSemana * (precio2/1440));
+    resultadoPrecio.textContent = `Precio: ${Math.abs(precio.toFixed(2))} €`;  
+  
+    //resultadoPrecio.textContent = `Precio: ${precio} €`;    
+    console.log("-------")
+    console.log(horasHabiles)
+    console.log(horasFinesDeSemana)
+    console.log(horasTotales)
+    console.log(precio)
   }
-
-calcularDias(fechaEntrada, fechaSalida)
 
 function fechaInsert (fecha, hora) {
 
@@ -109,50 +103,74 @@ function fechaInsert (fecha, hora) {
     return new Date(año, mes, dia, hora+2, minuto);
 }
 
+horaEntrada.addEventListener('change', function(event) {
+    if(fechaEntrada === fechaSalida && horaEntrada.value >= horaSalida.value) {
+        botonReserva.disabled = true;
+        alert("En reservas del mismo dia la entrada no puede ser antes que la salida")
+    }
+    else if(horaSalida.value) {
+        calcularHoras(fechaInsert(fechaEntrada, horaEntrada.value),  fechaInsert(fechaSalida, horaSalida.value), precioLaboral, precioFestivos )
+        botonReserva.disabled = false;
+    }
+});
+
+horaSalida.addEventListener('change', function(event) {
+    if(fechaEntrada === fechaSalida  && horaEntrada.value >= horaSalida.value) {
+        botonReserva.disabled = true;
+        alert("En reservas del mismo dia la salida debe ser despues que la entrada")
+    }
+    else if(horaEntrada.value) {
+        calcularHoras(fechaInsert(fechaEntrada, horaEntrada.value),  fechaInsert(fechaSalida, horaSalida.value), precioLaboral, precioFestivos )
+        botonReserva.disabled = false;
+    }
+});
+
 // Agregar un evento de escucha al envío del formulario
 formulario.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío del formulario
 
-    var fechaEInsert = fechaInsert(fechaEntrada, horaEntrada.value);
-    var fechaSInsert = fechaInsert(fechaSalida, horaSalida.value)
-    
-    var dates = new Date();
-    let cuerpo={
-        'id_usuario': id_usuario,
-        'id_plaza': id_plaza,
-        'fecha': dates.toISOString(),
-        'hora_entrada': fechaEInsert.toISOString(),
-        'hora_salida': fechaSInsert.toISOString(),
-        'importe' : precio
-    }
+        var fechaEInsert = fechaInsert(fechaEntrada, horaEntrada.value);
+        var fechaSInsert = fechaInsert(fechaSalida, horaSalida.value)
+        
+        var dates = new Date();
+        let cuerpo={
+            'id_usuario': id_usuario,
+            'id_plaza': id_plaza,
+            'fecha': dates.toISOString(),
+            'hora_entrada': fechaEInsert.toISOString(),
+            'hora_salida': fechaSInsert.toISOString(),
+            'importe' : Math.abs(precio.toFixed(2))
+        }
 
-    cuerpoDatos={        
-        Plaza:id_plaza,       
-        FechaReserva:new Date(),
-        FechaEntrada:fechaEntrada + " a las "+horaEntrada.value,        
-        FechaSalida:fechaSalida + " a las "+horaSalida.value,
-        importe:precio
-    }
-    
-    let options={
-        method: "POST",
-        headers:{'Content-type':'aplication/json'},
-        body:JSON.stringify(cuerpo)
-    }
+        cuerpoDatos={        
+            Plaza:id_plaza,       
+            FechaReserva:new Date(),
+            FechaEntrada:fechaEntrada + " a las "+horaEntrada.value,        
+            FechaSalida:fechaSalida + " a las "+horaSalida.value,
+            importe:Math.abs(precio.toFixed(2))
+        }
+        
+        let options={
+            method: "POST",
+            headers:{'Content-type':'aplication/json'},
+            body:JSON.stringify(cuerpo)
+        }
 
-    fetch("http://localhost/Proyecto/parking/reservas.php",options)
-    .then(respuesta=>respuesta.json())
-    .then(datos=>{
-    
-        if(datos.result==="ok") {            
-            // si tenemos resuesta ok entonces vamos al inicio
-            enviarCorreo(datosUsuario.Correo)    
-            window.location.href = 'misReservas.html';                      
-        }                                  
-    }) 
+        fetch("http://localhost/Proyecto/parking/reservas.php",options)
+        .then(respuesta=>respuesta.json())
+        .then(datos=>{
+        
+            if(datos.result==="ok") {          
+                if (confirm("Pago realizado con exito")) {
+                // si tenemos resuesta ok entonces vamos al inicio
+                enviarCorreo(datosUsuario.Correo)    
+                window.location.href = 'misReservas.html';                
+            }  
+                    
+            }                                  
+        }) 
 });
 
-console.log(cuerpoDatos)
 const generarQr=()=>{
     console.log(cuerpoDatos)
 

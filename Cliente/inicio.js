@@ -92,6 +92,9 @@ fetch("http://localhost/Proyecto/parking/tarifas.php")
         var tarifas = Array.from(datos.tarifas);
         t1.textContent = tarifas[0].precio + "€"
         t2.textContent = tarifas[1].precio + "€"
+
+        localStorage.setItem("t1",tarifas[0].precio);
+        localStorage.setItem("t2",tarifas[1].precio);
     }
 })
 
