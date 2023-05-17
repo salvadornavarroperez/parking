@@ -28,8 +28,6 @@ var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
 var id_usuario = usuario["Id_usuario"]; 
 var fechaEntrada = JSON.parse(localStorage.getItem("fechaE"));
 var fechaSalida = JSON.parse(localStorage.getItem("fechaS"));
-
-//calcularDias(fechaEntrada, fechaSalida, precioLaboral, precioFestivos); 
   
 // obtener la plaza desde el inicio
 var plaza = JSON.parse(localStorage.getItem("plaza"));
