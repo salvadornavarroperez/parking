@@ -73,36 +73,61 @@ fetch("http://localhost/Proyecto/parking/metodo_pago.php?usuario=" + id_usuario)
     }
 }) 
 
-// obtener plazas libres del parking
-fetch("http://localhost/Proyecto/parking/plazas.php?disponible=1")
-.then(respuesta=>respuesta.json())
-.then(datos=>{
+        // obtenemos plazas del parking a dia de hoy
+        fetch("http://localhost/Proyecto/parking/plazas.php?")
+        .then((respuesta) => respuesta.json())
+        .then((datosPlazas) => {
+          //comprobamos si hay plazas libre
+          var plazas = Array.from(datosPlazas.plazas);
+          if (datosPlazas.length == 0) {
+            fetch("http://localhost/Proyecto/parking/reservas.php?")
+              .then((respuesta) => respuesta.json())
+              .then((datosReservas) => {
+                // Filtramos las plazas sin reservas cuya fecha de entrada sea posterior a la fecha actual y que estén marcadas como no disponibles
+                const plazasSinReservas = datosPlazas.plazas.filter((plaza) => {
+                  return (
+                    !plaza.disponible &&
+                    !datosReservas.reserva.some((reserva) => {
+                      const fechaEntrada = new Date(reserva.hora_entrada);
+                      return (
+                        plaza.Id_plaza === reserva.id_plaza &&
+                        fechaEntrada > fechaHoy
+                      );
+                    })
+                  );
+                });
 
-    // comprobamos que hay plazas libres
-    var plazas = Array.from(datos.plazas);
-    console.log(plazas.length)
+                if (plazasSinReservas.length === 0) {
+                  alert("No hay plazas disponibles");
+                } else {
+                  console.log(plazasSinReservas);
+                }
+              })
+              .catch((error) => {
+                console.log("Error al obtener las reservas:", error);
+              });
+          } else {
+            // plaza aleatoria si no se quiere fija
+            let randomIndex = Math.floor(Math.random() * plazasSinReservas.length);
+            let randomNum = plazasSinReservas[randomIndex];
+            plazaAleatoria = randomNum["Id_plaza"];
 
-    if(plazas.length == 0) {
-       console.log("Pues te has quedao sin plaza amigo")
-    } else {
-        
-        // plaza aleatoria si no se quiere fija
-        let randomIndex = Math.floor(Math.random() * plazas.length);
-        let randomNum = plazas[randomIndex];
-        plazaAleatoria = randomNum['Id_plaza'] 
-        console.log(plazaAleatoria);
-
-        //designar una plaza y ponerlo en el select
-        plazas.forEach(pl => {
-            var opcionPlaza = document.createElement("option");
-            opcionPlaza.value = pl.numero_plaza
-            opcionPlaza.textContent = "Plaza " + pl.numero_plaza;
-            selectPlazas.append(opcionPlaza);                    
+            //designar una plaza y ponerlo en el select
+            plazasSinReservas.forEach((pl) => {
+              var opcionPlaza = document.createElement("option");
+              opcionPlaza.value = pl.numero_plaza;
+              opcionPlaza.textContent = "Plaza " + pl.numero_plaza;
+              selectPlazas.append(opcionPlaza);
+            });
+          }
+          // Obtener la fecha actual
+          const fechaHoy = new Date();
+        })
+        .catch((error) => {
+          console.log("Error al obtener las plazas:", error);
         });
-    }
-  
-}) 
 
+        
 function activarBoton() {
             
     // comprobar que tiene metodo de pago
