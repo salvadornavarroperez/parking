@@ -133,8 +133,6 @@ fetch("http://localhost/Proyecto/parking/plazas.php?disponible=1")
                 let randomNum = plazasSinReservas[randomIndex];
                
                 plazaAleatoria = randomNum['Id_plaza'] 
-                
-
                 if (plazasSinReservas.length === 0) {
                   alert("No hay plazas disponibles");
                 } else {
