@@ -65,18 +65,9 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
             fetch("http://localhost/Proyecto/parking/reservas.php?Id_reserva=" + m.Id_reserva, {method: 'DELETE'})
             .then(respuesta=>respuesta.json())
             .then(datos=>{
-
-                  let cuerpoPUT={
-                    'disponible': 1
-                }
-                
-                let optionsPUT={
-                    method: "PUT",
-                    headers:{'Content-type':'aplication/json'},
-                    body:JSON.stringify(cuerpoPUT)
-                }                                      
+                                    
                 if(datos.result==="ok") {       
-                    confirm("¿Está seguro de la anulación de su reserva? No se le realizará ningún cargo");
+                    confirm("Anulación de reserva confirmada, no se le realizará ningún cargo");
                     // si tenemos resuesta ok entonces vamos al inicio
                     location.reload();         
                 }                            

@@ -75,13 +75,7 @@ let cuerpoDatos={
     const horasHabiles = horasTotales - horasFinesDeSemana;
     precio = (horasHabiles * (precio1/1440)) + (horasFinesDeSemana * (precio2/1440));
     resultadoPrecio.textContent = `Precio: ${Math.abs(precio.toFixed(2))} €`;  
-  
-    //resultadoPrecio.textContent = `Precio: ${precio} €`;    
-    console.log("-------")
-    console.log(horasHabiles)
-    console.log(horasFinesDeSemana)
-    console.log(horasTotales)
-    console.log(precio)
+
   }
 
 function fechaInsert (fecha, hora) {
