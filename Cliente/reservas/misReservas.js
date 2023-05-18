@@ -76,6 +76,7 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
                     body:JSON.stringify(cuerpoPUT)
                 }                                      
                 if(datos.result==="ok") {       
+                    confirm("¿Está seguro de la anulación de su reserva? No se le realizará ningún cargo");
                     // si tenemos resuesta ok entonces vamos al inicio
                     location.reload();         
                 }                            
