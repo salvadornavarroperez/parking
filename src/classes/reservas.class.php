@@ -31,12 +31,14 @@ class Reservas extends Database
 	 * Array con los campos de la tabla que se pueden proporcionar para insertar registros
 	 */
 	private $allowedConditions_insert = array(
-		'id_usuario',
+        'Id_reserva',
+        'id_usuario',
         'id_plaza',
         'fecha',
         'hora_entrada',
         'hora_salida',
-        'importe'
+        'importe',
+		'page'
 	);
 
 	/**
@@ -122,7 +124,6 @@ class Reservas extends Database
 			}
 		}
 
-		if ($this->validate($params)) {
 			$affected_rows = parent::updateDB($this->table, $id, $params,"Id_reserva");
 
 			if ($affected_rows == 0) {
@@ -134,7 +135,7 @@ class Reservas extends Database
 				Response::result(200, $response);
 				exit;
 			}
-		}
+		
 	}
 
 	/**

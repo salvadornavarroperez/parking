@@ -146,10 +146,16 @@ fetch("http://localhost/Proyecto/parking/usuarios.php?Id_usuario=" + id_usuario)
         enlaceTarifas.href = "./admin/tarifas.html";
         enlaceTarifas.textContent = "Tarifas";
 
+        var enlaceSimulador = document.createElement("a");
+        enlaceSimulador.className = "dropdown-item";
+        enlaceSimulador.href = "./simulador/simulador.html";
+        enlaceSimulador.textContent = "Simulador";
+
         // Añadimos los enlaces de submenús al menú desplegable
         subMenuAdmin.appendChild(enlaceUsuarios);
         subMenuAdmin.appendChild(enlaceReservas);
         subMenuAdmin.appendChild(enlaceTarifas);
+        subMenuAdmin.appendChild(enlaceSimulador);
 
         // Añadimos el enlace del menú desplegable y la lista de submenús al menú principal
         adminLista.appendChild(enlaceAdmin);
