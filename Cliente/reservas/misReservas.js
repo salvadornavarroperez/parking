@@ -67,7 +67,7 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
             .then(datos=>{
                                     
                 if(datos.result==="ok") {       
-                    confirm("Anulación de reserva confirmada, no se le realizará ningún cargo");
+                    alert("Anulación de reserva confirmada, no se le realizará ningún cargo");
                     // si tenemos resuesta ok entonces vamos al inicio
                     location.reload();         
                 }                            
