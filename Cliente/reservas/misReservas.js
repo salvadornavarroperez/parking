@@ -54,9 +54,12 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
         var borrar = document.createElement("button");
         borrar.className="btn btn-secondary";
         borrar.style = "background-color:red;";
-        borrar.textContent = "Anular reserva"
-        reserva.appendChild(borrar);
-        vehiculos.append(reserva);
+        borrar.textContent = "Anular reserva"        
+        var salida = new Date(fechaCompletaS);
+        var ahora = new Date();
+        if (ahora < salida) {
+            reserva.appendChild(borrar);
+              
         borrar.addEventListener("click", function() {
 
             fetch("http://localhost/Proyecto/parking/reservas.php?Id_reserva=" + m.Id_reserva, {method: 'DELETE'})
@@ -78,5 +81,8 @@ fetch("http://localhost/Proyecto/parking/reservas.php?id_usuario=" + id_usuario)
                 }                            
             })
         })
+    }
+    vehiculos.append(reserva);
+
     })
 })
