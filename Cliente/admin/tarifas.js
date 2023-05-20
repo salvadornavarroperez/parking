@@ -1,3 +1,7 @@
+import { comprobar} from "../commons.js";
+
+comprobar();
+
 fetch('http://localhost/Proyecto/parking/tarifas.php')
   .then(response => response.json())
   .then(data => {

@@ -1,3 +1,7 @@
+import { comprobar} from "../commons.js";
+
+comprobar();
+
 //elementos del html registro socio
 let plaza = document.getElementById("plaza");
 let botonSocio = document.getElementById("botonSocio");

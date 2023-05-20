@@ -1,3 +1,7 @@
+import { comprobar} from "../commons.js";
+
+comprobar();
+
 // Obtener los usuarios desde la API
 fetch('http://localhost/Proyecto/parking/reservas.php')
   .then(response => response.json())

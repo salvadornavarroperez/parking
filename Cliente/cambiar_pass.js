@@ -1,4 +1,6 @@
-import { testPassword} from "./commons.js";
+import { testPassword, comprobar} from "./commons.js";
+
+comprobar();
 
 //recuperamos el id  de nuestro campo
 const id=sacarId();

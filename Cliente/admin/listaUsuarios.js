@@ -1,3 +1,6 @@
+import { comprobar} from "../commons.js";
+
+comprobar();
 
 fetch('http://localhost/Proyecto/parking/usuarios.php')
   .then(response => response.json())
