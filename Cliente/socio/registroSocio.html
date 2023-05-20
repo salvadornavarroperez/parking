@@ -7,7 +7,7 @@
     <!-- Enlace al archivo CSS de Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Registro Socio</title>
-    <script defer src="registroSocio.js"></script>
+    <script type="module" defer src="registroSocio.js"></script>
     <style>
         /* ajustar el tamaño de fuente para pantallas pequeñas */
         @media (max-width: 576px) {
@@ -46,8 +46,7 @@
         <div id="selectPlazasDiv"></div>
         <p></p>
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="checkSocio" name="miCheckbox"
-                onchange="activarBoton()">
+            <input type="checkbox" class="form-check-input" id="checkSocio" name="miCheckbox">
             <label class="form-check-label" for="checkSocio">Acepto los <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">términos y condiciones</a> de hacerse socio</label>
         </div>
         <div class="form-group">           

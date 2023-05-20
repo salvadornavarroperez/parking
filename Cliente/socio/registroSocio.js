@@ -1,4 +1,4 @@
-import { comprobar} from "../commons.js";
+import { comprobar } from "../commons.js";
 
 comprobar();
 
@@ -169,6 +169,9 @@ function activarBoton() {
         botonSocio.disabled = true;
     }
   }
+
+checkSocio.addEventListener("change", activarBoton);
+  
 
 plaza.addEventListener("change", function() {
     if(plaza.value == "x") {
