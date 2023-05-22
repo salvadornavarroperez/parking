@@ -9,11 +9,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <main class="container mt-5">
-        <h1 class="text-center">Información de Usuario</h1>
-        <div id="infoUsuario" class="mt-4">
-        
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuCollapse" aria-controls="menuCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuCollapse">
+            <ul class="navbar-nav mr-auto" id="menu">
+                <li class="nav-item"><a class="nav-link" href="inicio.php">Inicio</a></li>                       
+                <li class="nav-item"><a class="nav-link" href="vehiculos/registrarVehiculo.html">Registro Vehiculo</a></li>
+                <li class="nav-item"><a class="nav-link" href="vehiculos/misVehiculos.html">Mis vehiculos</a></li>
+                <li class="nav-item"><a class="nav-link" href="reservas/misReservas.html">Mis Reservas</a></li>
+            </ul>
         </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Información de Usuario</a>
+    </nav>
+    <main class="container mt-5">
+        <div id="infoUsuario" class="mt-4"></div>
         <a href="editar_usuario.html" class="btn btn-primary mt-3">Editar Usuario</a>
         <a href="inicio.php" class="btn btn-secondary mt-3 ml-2">Volver al inicio</a>
     </main>
