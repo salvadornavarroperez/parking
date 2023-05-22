@@ -81,7 +81,7 @@
     </style>
   </head>
   <body>
-  <div class="parking-lot-container-outer">
+
   <div class="container mt-5 d-flex justify-content-center">        
     <form id="formularioReserva" class="form-inline">
         <div class="form-group">
@@ -94,7 +94,7 @@
         </div>
     </form>
 </div>
-
+<div class="parking-lot-container-outer">
   <div class="parking-lot-container">
     <div class="d-flex flex-wrap align-content-start" id="plano">
       <?php
