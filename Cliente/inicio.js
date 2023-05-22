@@ -45,7 +45,7 @@ let datos_usuario = JSON.parse(localStorage.getItem('Datos_usuario'));
 //acceso.innerHTML = `<p>Bienvenido/a, ${datos_usuario.Nombre}</p> <a href="perfil_usuario.html">Mi perfil</a>`
 acceso.innerHTML = `
 <div class="d-flex justify-content-end">
-  <p class="mr-3">Bienvenido/a, ${datos_usuario.Nombre}
+  <p class="mr-3">Hola ${datos_usuario.Nombre}
   <a href="#" id="cerrar">Cerrar Sesión</a></p>
 </div>`;
 

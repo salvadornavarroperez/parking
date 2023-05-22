@@ -60,14 +60,12 @@ fetch("http://localhost/Proyecto/parking/metodo_pago.php?usuario=" + id_usuario)
 
     // comprobar que recibimos datos de tarjetas o no
     var tarjeta = Array.from(datos.metodo_pago);
-    console.log(tarjeta.length)
 
     if(tarjeta.length == 0) {
         metodoPago = false;
     } else if( tarjeta.length > 0) {
         metodoPago = true;
     }
-    console.log(metodoPago);
     if(!metodoPago) {
         document.body.appendChild(divMetodoPago);
     }
@@ -81,7 +79,6 @@ fetch("http://localhost/Proyecto/parking/plazas.php?disponible=1")
 
     // comprobamos que hay plazas libres
     var plazas = Array.from(datos.plazas);
-    console.log(plazas.length)
 
     if(plazas.length == 0) {
        console.log("Pues te has quedao sin plaza amigo")
@@ -91,7 +88,6 @@ fetch("http://localhost/Proyecto/parking/plazas.php?disponible=1")
         let randomIndex = Math.floor(Math.random() * plazas.length);
         let randomNum = plazas[randomIndex];
         plazaAleatoria = randomNum['Id_plaza'] 
-        console.log(plazaAleatoria);
 
         //designar una plaza y ponerlo en el select
         plazas.forEach(pl => {
@@ -198,7 +194,6 @@ botonSocio.addEventListener("click", function(){
     } else if(plaza.value = "no") {
         plazaFija = 0;
         plazaPOST = plazaAleatoria;
-        console.log(id_usuario + ", " + plazaFija + ", " + plazaPOST);
     }
 
     let cuerpo={

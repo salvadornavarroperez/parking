@@ -4,8 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mis Reservas</title>
-  <!-- Agregamos los estilos de Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Enlace al archivo de estilos de Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <style>
     #reservas {
         display: flex;
@@ -38,7 +43,22 @@
 </head>
 
 <body>
-    <h2 style="padding-left:1%;">Mis reservas</h2>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuCollapse" aria-controls="menuCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menuCollapse">
+        <ul class="navbar-nav mr-auto" id="menu">
+            <li class="nav-item"><a class="nav-link" href="../inicio.php">Inicio</a></li>                       
+            <li class="nav-item"><a class="nav-link" href="../vehiculos/registrarVehiculo.html">Registro Vehiculo</a></li>
+            <li class="nav-item"><a class="nav-link" href="../vehiculos/misVehiculos.html">Mis vehiculos</a></li>
+            <li class="nav-item"><a class="nav-link" href="../perfil_usuario.html">Mi perfil</a></li>            
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Mis reservas</a>
+</nav>
     <div id="reservas"></div><p></p>
     <div class="d-flex justify-content-center align-items-center">
       <a class="btn btn-secondary" href="../inicio.php">Volver al inicio</a>        
