@@ -1,6 +1,6 @@
-import { comprobar} from "../commons.js";
-
+import { comprobar, esAdmin} from "../commons.js";
 comprobar();
+esAdmin()
 
 fetch('http://localhost/Proyecto/parking/tarifas.php')
   .then(response => response.json())

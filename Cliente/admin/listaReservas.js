@@ -1,14 +1,12 @@
-import { comprobar} from "../commons.js";
-
+import { comprobar, esAdmin} from "../commons.js";
 comprobar();
+esAdmin()
 
 // Obtener los usuarios desde la API
 fetch('http://localhost/Proyecto/parking/reservas.php')
   .then(response => response.json())
   .then(data => {
     const tbody = document.querySelector('#tabla-reservas tbody');
-
-    console.log(data)
 
     // faltaria añadir la condicion si no hay reservas
     data.reserva.forEach(reserva => {
