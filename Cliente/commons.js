@@ -4,6 +4,10 @@ const regexPassword = /^(?=.*\d)(?=.*[A-Z]).{8,}$/;
 
 export function comprobar()
 {
+    if(!localStorage.getItem('Datos_usuario'))
+    {
+        window.location.href = 'login.html';
+    }
     let iguales=false;
     let datosLocalesUsuario=localStorage.getItem('Datos_usuario')
     const datosParseados=JSON.parse(datosLocalesUsuario)
