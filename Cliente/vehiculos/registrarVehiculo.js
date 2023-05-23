@@ -1,3 +1,6 @@
+import { comprobar } from '../commons.js';
+comprobar();
+
 // variable usuario de storage
 var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
 var id_usuario = usuario["Id_usuario"]; 

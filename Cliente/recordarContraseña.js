@@ -1,3 +1,5 @@
+import { comprobar} from "./commons.js";
+comprobar()
 let correo=document.querySelector("#correo");
 let boton=document.querySelector("#enviar");
 let error=document.querySelector("#error");

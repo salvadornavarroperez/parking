@@ -1,3 +1,7 @@
+import { comprobar} from "../commons.js";
+
+comprobar();
+
 var matricula = document.getElementById("matricula");
 var container = document.getElementById("container");
 var formulario = document.getElementById("formulario");

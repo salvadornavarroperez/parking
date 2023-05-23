@@ -6,7 +6,7 @@ export function comprobar()
 {
     if(!localStorage.getItem('Datos_usuario'))
     {
-        window.location.href = 'login.html';
+        window.location.href = '../Cliente/login.html';
     }
     let iguales=false;
     let datosLocalesUsuario=localStorage.getItem('Datos_usuario')
@@ -43,6 +43,20 @@ export function comprobar()
         comprobar()
     },1800000)
 
+}
+
+export function esAdmin(){
+    let user = JSON.parse(localStorage.getItem('Datos_usuario'))
+    let id_user = user.Id_usuario
+    fetch("http://localhost/Proyecto/parking/usuarios.php?Id_usuario=" + id_user)
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+      console.log(datos.usuarios[0].rol)
+      if (datos.usuarios[0].rol != '3'){
+        console.log('estoy dentro')
+        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
+      }
+    })
 }
 
 export function updateLocalStorage(id,nombre,correo,rol)
