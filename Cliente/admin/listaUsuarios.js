@@ -1,3 +1,6 @@
+import { comprobar, esAdmin} from "../commons.js";
+comprobar();
+esAdmin()
 
 fetch('http://localhost/Proyecto/parking/usuarios.php')
   .then(response => response.json())

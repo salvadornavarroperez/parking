@@ -1,3 +1,7 @@
+import { comprobar } from "../commons.js";
+
+comprobar();
+
 //elementos del html registro socio
 let plaza = document.getElementById("plaza");
 let botonSocio = document.getElementById("botonSocio");
@@ -161,6 +165,9 @@ function activarBoton() {
         botonSocio.disabled = true;
     }
   }
+
+checkSocio.addEventListener("change", activarBoton);
+  
 
 plaza.addEventListener("change", function() {
     if(plaza.value == "x") {

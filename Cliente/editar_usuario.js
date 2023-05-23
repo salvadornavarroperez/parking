@@ -1,5 +1,4 @@
-import { comprobar } from "./commons.js";
-import { updateLocalStorage } from "./commons.js";
+import { comprobar,updateLocalStorage } from "./commons.js";
 comprobar();
 let formUpdateUsuario = document.getElementById("formActualizarUsuario");
 let nombreUsuario = document.getElementById("nombre");

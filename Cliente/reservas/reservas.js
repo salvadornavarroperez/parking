@@ -1,3 +1,7 @@
+import { comprobar} from "../commons.js";
+
+comprobar();
+
 // Obtener el formulario y los campos de fecha de entrada y salida
 const formulario = document.getElementById('formularioReserva');
 const horaEntrada = document.getElementById('horaEntrada');

@@ -1,3 +1,7 @@
+import { comprobar} from "../commons.js";
+
+comprobar();
+
 let plano = document.querySelector('#plano')
 let reservar = document.querySelector('#reservar')
 const fechaEntradaInput = document.getElementById('fechaEntrada');

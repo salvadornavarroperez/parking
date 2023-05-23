@@ -1,3 +1,5 @@
+import {comprobar} from "./commons.js";
+comprobar()
 //recogemos el formulario
 const formulario = document.getElementById('formulario');
 let etNumTarjeta = document.getElementById('labNunTar');
