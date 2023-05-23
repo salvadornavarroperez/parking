@@ -1,4 +1,4 @@
-import { comprobar } from './commons.js';
+import { comprobar } from '../commons.js';
 comprobar();
 
 // variable usuario de storage

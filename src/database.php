@@ -12,7 +12,7 @@ class Database
 	private $results_page = 400;
 
 	public function __construct(){
-		$this->connection = new mysqli('localhost', 'super', '123456', 'parking', '3306');
+		$this->connection = new mysqli('localhost', 'root', '', 'parking', '3306');
 
 		if($this->connection->connect_errno){
 			echo 'Error de conexión a la base de datos';

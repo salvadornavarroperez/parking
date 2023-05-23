@@ -1,6 +1,5 @@
-// variable usuario de storage
-import { comprobar } from './commons.js';
-comprobar();
+import {comprobar} from "../commons.js";
+comprobar()
 
 var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));
 var id_usuario = usuario["Id_usuario"]; 
@@ -21,7 +20,7 @@ fetch("http://localhost/Proyecto/parking/vehiculos.php?usuario=" + id_usuario)
         let restoDelString =  m.matricula.slice(4);
         let resultado = primerosCuatro + "-" + restoDelString;
         matricula.innerHTML = resultado + "<br> ";
-        matricula.style = "color:blue;";
+        matricula.style = "color:black;";
         var borrar = document.createElement("button");
         borrar.className="btn btn-secondary";
         borrar.style = "background-color:red;";
