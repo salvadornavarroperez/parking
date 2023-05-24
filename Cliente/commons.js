@@ -4,11 +4,36 @@ const regexPassword = /^(?=.*\d)(?=.*[A-Z]).{8,}$/;
 
 export function comprobar()
 {
-    if(localStorage.getItem('token')===null)
+    if(!localStorage.getItem('Datos_usuario'))
     {
-        window.location.href = 'http://localhost/Proyecto/parking/Cliente/login.html';
-
+        window.location.href = '../Cliente/login.html';
     }
+    let iguales=false;
+    let datosLocalesUsuario=localStorage.getItem('Datos_usuario')
+    const datosParseados=JSON.parse(datosLocalesUsuario)
+    let id_user=datosParseados.Id_usuario
+    //hacemos peticion al endpoint de usuarios
+    fetch("http://localhost/Proyecto/parking/usuarios.php")
+    .then(response  => response.json())
+    .then(datos=>{
+        let datosUsuario=datos.usuarios.filter(usuario=> usuario.Id_usuario===id_user)
+        if(datosUsuario.length>0){
+
+            if(datosUsuario[0].Token===localStorage.getItem('token'))
+            {
+                iguales=true;
+            }
+
+        }          
+        if(!iguales)
+        {
+            window.location.href = 'login.html';
+
+        }
+        
+    })
+
+    
 
     setTimeout(function(){
 
