@@ -23,7 +23,7 @@ formulario.addEventListener("submit",(event)=>{
     const regexEmail = /\S+@\S+\.\S+/;
     const regexNombre = /^[^\d\s]+(\s+[^\d\s]+)*$/;
     const regexPassword = /^(?=.*\d)(?=.*[A-Z]).{8,}$/;
-    existeCorreo=false;
+    let existeCorreo=false;
 
 
     if(!regexNombre.test(nombre.value))
