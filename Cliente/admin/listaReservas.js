@@ -19,7 +19,7 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
         .then(userData => ({ userId, userName: userData.usuarios[0].Nombre }))
     );
 
-    //esperamos a todas las solicitudes
+    // esperamos a todas las solicitudes
     Promise.all(userPromises)
       .then(users => {
         const usersMap = {};
@@ -28,7 +28,7 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
         });
 
         data.reserva.forEach(reserva => {
-          console.log(reserva.Id_reserva)
+          console.log(reserva.Id_reserva);
           const tr = document.createElement('tr');
           tr.innerHTML = `
             <td><span>${reserva.Id_reserva}</span></td>
@@ -95,7 +95,7 @@ function buscarReservas(reserva, usuario, plaza) {
 
   // Filtrar las filas que coinciden con la búsqueda
   const filasFiltradas = filasArray.filter(fila => {
-    const idReserva = fila.querySelector('input[name="Reserva"]').value;
+    const idReserva = fila.querySelector('span').textContent;
     const idUsuario = fila.querySelector('input[name="Usuario"]').value;
     const idPlaza = fila.querySelector('input[name="Plaza"]').value;
 
