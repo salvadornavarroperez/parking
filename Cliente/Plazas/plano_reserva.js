@@ -96,7 +96,7 @@ fechaSalida = new Date(fechaSalidaInput.value);
 
     if (diferenciaDias < 0) {
         // Mostrar un mensaje emergente si la fecha de entrada es mayor que la fecha de salida
-        alert('La fecha de entrada debe ser menor a la fecha de salida y la reserva será minimo de un dia.');     
+        alert('La fecha de entrada de la reserva debe ser menor a la fecha de salida.');     
         reservar.disabled = true;
     } else {       
         reservar.disabled = false;
