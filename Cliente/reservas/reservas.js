@@ -199,7 +199,7 @@ function enviarCorreo(correo)
             To : correo,
             From : "parkingrest2023@gmail.com",
             Subject : "Reserva de plaza",
-            Body :"Adjunto imagen QR:",
+            Body :"Imagen QR con la informacion de su reserva",
             Attachments: [{
               name: "imagenQR.png",
               data: imagenQr.toDataURL()
