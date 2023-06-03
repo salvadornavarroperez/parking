@@ -51,9 +51,7 @@ export function esAdmin(){
     fetch("http://localhost/Proyecto/parking/usuarios.php?Id_usuario=" + id_user)
     .then(respuesta => respuesta.json())
     .then(datos => {
-      console.log(datos.usuarios[0].rol)
       if (datos.usuarios[0].rol != '3'){
-        console.log('estoy dentro')
         window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
       }
     })

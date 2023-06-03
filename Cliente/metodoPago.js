@@ -51,7 +51,6 @@ function registraMetodoPago()
     const regextarjeta=/^\d{16}$/
     const regexnombtarjeta=/^[a-zA-Z\s]+$/
     const regexcvc = /^\d{3,4}$/
-    console.log(cvc.value)
 
     //montamos el la fecha de caducidad de la tarjeta para que sea válida para DATE mysql(yyyy-mm-dd)
     let fechaCaducidad=`${añoTarjeta.value}-${mesTarjeta.value-1}-01`;
@@ -93,7 +92,6 @@ function registraMetodoPago()
         fetch("http://localhost/Proyecto/parking/metodo_pago.php",options)
         .then(respuesta=>respuesta.json())
         .then(datos=>{
-            console.log(datos)
             window.location.href = 'inicio.php';    
         })        
     }

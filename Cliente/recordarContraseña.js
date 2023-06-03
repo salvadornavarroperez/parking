@@ -22,7 +22,6 @@ formulario.addEventListener("submit",(event)=>{
 
                 if(datos.result=="ok"&&datos.usuarios)
                 {
-                    console.log(datos)
                     enlace=enlace+`${datos.usuarios[0].Id_usuario}`;
                     enviarCorreo(correo.value)
                     error.textContent="Correo enviado con exito, puede ser que deba ver la bandeja de correo basura"

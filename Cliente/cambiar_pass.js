@@ -47,7 +47,6 @@ formCambiarContrasena.addEventListener("submit", function(event){
             window.location = "login.html";
         }else{
             alert("La contraseña debe de tener al menos 8 carácteres, y entre ellos una letra mayuscula y un numero");
-            console.log(nueva.value,confirmar.value)
         }
         
     }
