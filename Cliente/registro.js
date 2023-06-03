@@ -34,7 +34,6 @@ formulario.addEventListener("submit",(event)=>{
     }
     if(!regexPassword.test(password.value))
     {
-        console.log(password.value)
         passErr.textContent="El password debe tener al menos 1 letra mayúscula, 1 número y al menos 8 caracteres";
     }
     if(!regexEmail.test(email.value))
@@ -101,6 +100,5 @@ function registraUsuario(objeto)
 
 
 login.addEventListener("click",function(){
-    console.log("hola")
     window.location.href = 'login.html';
 })

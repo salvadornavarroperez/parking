@@ -79,7 +79,6 @@ function obtenerUsuario() {
                 var fechaS = fechaCompletaS.toISOString().slice(0, 10);
                 var horaS = fechaCompletaS.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         
-                console.log(m)
                 reserva.innerHTML = "<b>Plaza nº </b>" + m.id_plaza + "<br>" +
                                     "<b>Fecha de la reserva: </b>" + m.fecha + "<br>" +
                                     "<b>Entrada: </b>" + fechaE + 
@@ -114,7 +113,6 @@ function obtenerUsuario() {
 
                                                 // Convierte la diferencia de milisegundos a días
                                                 var diasPasados = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60 * 24));
-                                                console.log(diasPasados)
                                                 if(diasPasados > 1) {
                                                     importe =  parseFloat(m.importe) + parseFloat(diasPasados*precio)
                                                     cuerpoPUT={

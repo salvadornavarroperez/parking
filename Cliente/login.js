@@ -25,7 +25,6 @@ formulario.addEventListener("submit",function(event){
     .then(respuesta=>respuesta.json())
     .then(datos=>{
 
-        console.log(datos)
         if(datos.result==="ok")
         {
             //guradamos el token

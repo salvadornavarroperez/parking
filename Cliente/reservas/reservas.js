@@ -168,7 +168,6 @@ formulario.addEventListener('submit', function(event) {
 });
 
 const generarQr=()=>{
-    console.log(cuerpoDatos)
 
     const qr=new QRious({
         element: imagen,

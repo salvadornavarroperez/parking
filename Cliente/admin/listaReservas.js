@@ -28,7 +28,6 @@ fetch('http://localhost/Proyecto/parking/reservas.php')
         });
 
         data.reserva.forEach(reserva => {
-          console.log(reserva.Id_reserva);
           const tr = document.createElement('tr');
           tr.innerHTML = `
             <td><span>${reserva.Id_reserva}</span></td>
