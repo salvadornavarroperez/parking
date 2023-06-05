@@ -7,6 +7,9 @@ var menu = document.getElementById("menu");
 var t1 = document.getElementById("tarifa1");
 var t2 = document.getElementById("tarifa2");
 
+document.body.style.backgroundImage = "url('imagenes/vehiculos-estacionados.png')";
+document.body.style.backgroundRepeat = "no-repeat";
+document.body.style.backgroundSize = "cover";
 
 //socio
 var socioLista = document.createElement("li");

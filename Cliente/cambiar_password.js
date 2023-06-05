@@ -1,5 +1,7 @@
 import { comprobar, testPassword} from "./commons.js";
-
+document.body.style.backgroundImage = "url('imagenes/textura-acero.png')";
+document.body.style.backgroundRepeat = "no-repeat";
+document.body.style.backgroundSize = "cover";
 comprobar();
 let nueva = document.getElementById("nueva");
 let confirmar = document.getElementById("confirmar");

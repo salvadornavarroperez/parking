@@ -12,12 +12,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-
-    
 </head>
 <body>
    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning font-weight-bold">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuCollapse" aria-controls="menuCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,8 +34,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto text-center">
-            <h6 class="mb-0">Precio días laborales: <span class="precio precio-dias-laborales" id="tarifa1"></span></h6>
-            <h6 class="mb-0">Precio fin de semana y festivos: <span class="precio precio-festivos" id="tarifa2"></span></h6>
+            <strong><h6 class="mb-0">Precio días laborales: <span class="precio precio-dias-laborales" id="tarifa1"></span></h6></strong>
+            <strong><h6 class="mb-0">Precio fin de semana y festivos: <span class="precio precio-festivos" id="tarifa2"></span></h6></strong>
             </div>
         </div>
     </div>

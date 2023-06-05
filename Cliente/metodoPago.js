@@ -1,5 +1,8 @@
 import {comprobar} from "./commons.js";
-comprobar()
+comprobar();
+document.body.style.backgroundImage = "url('imagenes/textura-acero.png')";
+document.body.style.backgroundRepeat = "no-repeat";
+document.body.style.backgroundSize = "cover";
 //recogemos el formulario
 const formulario = document.getElementById('formulario');
 let etNumTarjeta = document.getElementById('labNunTar');

@@ -1,3 +1,6 @@
+document.body.style.backgroundImage = "url('imagenes/vehiculos-estacionados.png')";
+document.body.style.backgroundRepeat = "no-repeat";
+document.body.style.backgroundSize = "cover";
 const formulario=document.querySelector("#formulario")
 let correo=document.querySelector("#correo");
 let password=document.querySelector("#password");

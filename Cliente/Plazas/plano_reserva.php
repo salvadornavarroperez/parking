@@ -85,11 +85,11 @@
   <div class="container mt-5 d-flex justify-content-center">        
     <form id="formularioReserva" class="form-inline">
         <div class="form-group">
-            <label for="fechaEntrada">Fecha de Entrada:</label>&nbsp
+        <strong><label for="fechaEntrada">Fecha de Entrada:</label></strong>&nbsp
             <input type="date" class="form-control" id="fechaEntrada" required>
         </div>
         <div class="form-group mx-sm-3">
-            <label for="fechaSalida">Fecha de Salida:</label>&nbsp
+        <strong><label for="fechaSalida">Fecha de Salida:</label></strong>&nbsp
             <input type="date" class="form-control" id="fechaSalida" required>
         </div>
     </form>
@@ -117,7 +117,7 @@
   </div>
 </div>
     <div class="text-center">
-    <input type="button" value="Reservar" id="reservar" class="btn btn-primary">
+    <input type="button" value="Reservar" id="reservar" class="btn bg-warning">
     </div>
     <script type="module" defer src="Plazas/plano_reserva.js"></script>
   </body>

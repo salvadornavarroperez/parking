@@ -1,7 +1,9 @@
 import { comprobar } from "../commons.js";
 
 comprobar();
-
+document.body.style.backgroundImage = "url('../imagenes/textura-acero.png')";
+document.body.style.backgroundRepeat = "no-repeat";
+document.body.style.backgroundSize = "cover";
 //elementos del html registro socio
 let plaza = document.getElementById("plaza");
 let botonSocio = document.getElementById("botonSocio");

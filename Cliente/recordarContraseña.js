@@ -1,4 +1,6 @@
-
+document.body.style.backgroundImage = "url('imagenes/textura-acero.png')";
+document.body.style.backgroundRepeat = "no-repeat";
+document.body.style.backgroundSize = "cover";
 let correo=document.querySelector("#correo");
 let boton=document.querySelector("#enviar");
 let error=document.querySelector("#error");

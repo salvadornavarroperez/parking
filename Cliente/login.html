@@ -9,6 +9,7 @@
         .error-container {
             color: red;
             margin-top: 20px;
+            text-transform: bold;
         }
     </style>
     <script type="module" defer src="login.js"></script>
@@ -16,18 +17,18 @@
 <body>
     <div class="container">
         <form class="form" id="formulario">
-            <h2 class="text-center">Iniciar sesión</h2>
+            <strong></b><h2 class="text-center">Iniciar sesión</h2></strong>
             <div class="form-group">
-                <label for="correo">Correo:</label>
+                <strong><label for="correo">Correo:</label></strong>
                 <input type="text" class="form-control" name="correo" id="correo" required>
             </div>
             <div class="form-group">
-                <label for="password">Contraseña:</label>
+                <strong><label for="password">Contraseña:</label></strong>
                 <input type="password" class="form-control" name="password" id="password" required>
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Iniciar sesión">
             <a class="btn btn-primary btn-block btn-warning" href="registro.html">Registro</a>
-            <p class="forgot-password text-center" id="olvido">¿Olvidaste tu contraseña?</p>
+            <strong><p class="forgot-password text-center" id="olvido">¿Olvidaste tu contraseña?</p></strong>
         </form>
         <div>
             <p class="error-container text-center" id="error" ></p>
