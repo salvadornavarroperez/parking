@@ -23,7 +23,7 @@ formulario.addEventListener("submit", function(event){
     if(!regexMatricula.test(matricula.value))
     {
         // comprobamos
-        error.textContent="El formato debe ser 4 numeros seguidos de 3 letras";
+        error.textContent="Deben ser 4 numeros seguidos de 3 letras";
         error.style = "color:red;"
     }
 
