@@ -28,6 +28,7 @@
                 <li class="nav-item"><a class="nav-link" href="reservas/misReservas.html">Mis Reservas</a></li>
             </ul>
         </div>
+        <a href="perfil_usuario.html"><img src="imagenes/avatar.avif" width="50px" height="50px" alt="Avatar foto de perfil"></a>
         <p id="user"></p>
     </nav>
     <!-- Contenido de la página -->
