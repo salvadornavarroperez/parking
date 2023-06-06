@@ -2,6 +2,10 @@ import { comprobar} from "../commons.js";
 
 comprobar();
 
+document.body.style.backgroundImage = "url('../imagenes/entrada.jpg')";
+document.body.style.backgroundRepeat = "no-repeat";
+document.body.style.backgroundSize = "cover";
+
 var matricula = document.getElementById("matricula");
 var container = document.getElementById("container");
 var formulario = document.getElementById("formulario");
