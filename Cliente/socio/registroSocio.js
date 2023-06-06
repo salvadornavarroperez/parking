@@ -2,7 +2,6 @@ import { comprobar } from "../commons.js";
 
 comprobar();
 document.body.style.backgroundImage = "url('../imagenes/textura-acero.png')";
-document.body.style.backgroundRepeat = "no-repeat";
 document.body.style.backgroundSize = "cover";
 //elementos del html registro socio
 let plaza = document.getElementById("plaza");
@@ -287,7 +286,7 @@ botonSocio.addEventListener("click", function(){
                             
                                 if(datos.result==="ok") {       
                                     // si tenemos resuesta ok entonces vamos al inicio
-                                    if (confirm("Pago realizado con exito")) {
+                                    if (confirm("Pago realizado con exito, acceda a su perfil para ver su plaza")) {
                                         window.location.href = '../inicio.php';    
                                     }
                                 } else {

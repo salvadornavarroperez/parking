@@ -2,7 +2,6 @@ import { comprobar, esAdmin} from "../commons.js";
 comprobar();
 esAdmin()
 document.body.style.backgroundImage = "url('../imagenes/textura-acero.png')";
-document.body.style.backgroundRepeat = "no-repeat";
 document.body.style.backgroundSize = "cover";
 fetch('http://localhost/Proyecto/parking/usuarios.php')
   .then(response => response.json())

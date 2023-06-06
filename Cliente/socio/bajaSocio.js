@@ -1,8 +1,7 @@
 import { comprobar} from "../commons.js";
-document.body.style.backgroundImage = "url('../imagenes/textura-acero.png')";
-document.body.style.backgroundRepeat = "no-repeat";
-document.body.style.backgroundSize = "cover";
 comprobar();
+document.body.style.backgroundImage = "url('../imagenes/textura-acero.png')";
+document.body.style.backgroundSize = "cover";
 
 // variable usuario de storage
 var usuario = JSON.parse(localStorage.getItem("Datos_usuario"));

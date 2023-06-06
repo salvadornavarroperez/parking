@@ -1,5 +1,4 @@
 document.body.style.backgroundImage = "url('imagenes/textura-acero.png')";
-document.body.style.backgroundRepeat = "no-repeat";
 document.body.style.backgroundSize = "cover";
 let correo=document.querySelector("#correo");
 let boton=document.querySelector("#enviar");
@@ -62,7 +61,7 @@ function enviarCorreo(correo)
             SecureToken : "1f353e26-2417-4109-85ea-1067ce8a71de",
             To : correo,
             From : "parkingrest2023@gmail.com",
-            Subject : "Cambio de password",
+            Subject : "Cambio de password This.park",
             Body : `Pinche en el siguiente enlace para cambiar su contraseña: <a href="${enlace}">${enlace}</a>`
         }).then(
         message => alert(message)

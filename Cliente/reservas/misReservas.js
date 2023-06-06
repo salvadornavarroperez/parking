@@ -1,6 +1,5 @@
 import { comprobar} from "../commons.js";
 document.body.style.backgroundImage = "url('../imagenes/textura-acero.png')";
-document.body.style.backgroundRepeat = "no-repeat";
 document.body.style.backgroundSize = "cover";
 comprobar();
 

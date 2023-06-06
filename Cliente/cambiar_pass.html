@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cambiar Contraseña</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Enlace al archivo de estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+</head>
+<body>    
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning font-weight-bold">
+      <a class="navbar-brand" href="#">Nueva contraseña</a>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <form id="formCambiarContrasena">
+                    <div class="form-group">
+                        <strong><label for="nueva">Nueva Contraseña:</label></strong>
+                        <input type="password" id="nueva" name="nueva" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <strong><label for="confirmar">Confirmar Contraseña:</label></strong>
+                        <input type="password" id="confirmar" name="confirmar" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-warning">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="module" defer src="cambiar_pass.js"></script>
+</html>

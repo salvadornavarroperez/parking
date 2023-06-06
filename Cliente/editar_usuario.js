@@ -1,7 +1,6 @@
 import { comprobar,updateLocalStorage } from "./commons.js";
 comprobar();
 document.body.style.backgroundImage = "url('imagenes/textura-acero.png')";
-document.body.style.backgroundRepeat = "no-repeat";
 document.body.style.backgroundSize = "cover";
 let formUpdateUsuario = document.getElementById("formActualizarUsuario");
 let nombreUsuario = document.getElementById("nombre");

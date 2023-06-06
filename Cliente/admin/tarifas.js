@@ -1,9 +1,8 @@
 import { comprobar, esAdmin} from "../commons.js";
+document.body.style.backgroundImage = "url('../imagenes/textura-acero.png')";
+document.body.style.backgroundSize = "cover";
 comprobar();
 esAdmin()
-document.body.style.backgroundImage = "url('../imagenes/textura-acero.png')";
-document.body.style.backgroundRepeat = "no-repeat";
-document.body.style.backgroundSize = "cover";
 fetch('http://localhost/Proyecto/parking/tarifas.php')
   .then(response => response.json())
   .then(data => {
