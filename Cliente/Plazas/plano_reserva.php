@@ -39,10 +39,14 @@
       }
       .libre{
         background-color: green;
+        color:white;
+        font-weight:bold;
       }
       .ocupada{
         background-color: red;
         pointer-events: none;
+        color:white;
+        font-weight:bold;
       }
       .marcado{
         -webkit-animation: blinker 1s linear infinite;
@@ -70,6 +74,7 @@
           border: 1px solid #e9ecef;
           color:black;
           font-size:5px;
+          color:white;
         }
         .parking-street {
           width: 40px;

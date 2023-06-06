@@ -30,7 +30,7 @@ fetch("http://localhost/Proyecto/parking/socios.php?Id_usuario=" + id_usuario)
             infoUsuario.innerHTML = `<p>
             Nombre: <b>${datos_usuario.Nombre}</b><br>
             Correo: <b>${datos_usuario.Correo}</b><br>
-            Socio: <b>${sociosNum == 0 ? "No" : "Si"}</b><br>                      
+            Socio: <b>${sociosNum == 0 ? "No" : "Si, Plaza nº: " + socios[0].id_plaza + ""}</b><br>                      
             </p>`
     
         } else {
@@ -38,7 +38,7 @@ fetch("http://localhost/Proyecto/parking/socios.php?Id_usuario=" + id_usuario)
             infoUsuario.innerHTML = `<p>
             Nombre: <b>${datos_usuario.Nombre}</b><br>
             Correo: <b>${datos_usuario.Correo}</b><br>
-            Socio: <b>${sociosNum == 0 ? "No" : "Si"}</b><br>
+            Socio: <b>${sociosNum == 0 ? "No" : "Si, Plaza nº: " + socios[0].id_plaza + ""}</b><br>
             Metodo de pago: <b>Tarjeta que termina en ${datos.metodo_pago[0].numero_tarjeta.slice(-4)}</b><br>
             </p>`
         }
